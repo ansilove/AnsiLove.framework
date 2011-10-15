@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		F8F0C942144910340031E777 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8F0C941144910340031E777 /* Cocoa.framework */; };
 		F8F0C94C144910340031E777 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F8F0C94A144910340031E777 /* InfoPlist.strings */; };
-		F8F0C950144910340031E777 /* AnsiLove.m in Sources */ = {isa = PBXBuildFile; fileRef = F8F0C94F144910340031E777 /* AnsiLove.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -18,11 +17,10 @@
 		F8F0C944144910340031E777 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		F8F0C945144910340031E777 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		F8F0C946144910340031E777 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		F8F0C949144910340031E777 /* AnsiLove-Info.plist */ = {isa = PBXFileReference; path = "AnsiLove-Info.plist"; sourceTree = "<group>"; };
+		F8F0C949144910340031E777 /* AnsiLove-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "AnsiLove-Info.plist"; sourceTree = "<group>"; };
 		F8F0C94B144910340031E777 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		F8F0C94D144910340031E777 /* AnsiLove-Prefix.pch */ = {isa = PBXFileReference; path = "AnsiLove-Prefix.pch"; sourceTree = "<group>"; };
-		F8F0C94E144910340031E777 /* AnsiLove.h */ = {isa = PBXFileReference; path = AnsiLove.h; sourceTree = "<group>"; };
-		F8F0C94F144910340031E777 /* AnsiLove.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AnsiLove.m; sourceTree = "<group>"; };
+		F8F0C94D144910340031E777 /* AnsiLove-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AnsiLove-Prefix.pch"; sourceTree = "<group>"; };
+		F8F0C94E144910340031E777 /* AnsiLove.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AnsiLove.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,7 +75,6 @@
 			isa = PBXGroup;
 			children = (
 				F8F0C94E144910340031E777 /* AnsiLove.h */,
-				F8F0C94F144910340031E777 /* AnsiLove.m */,
 				F8F0C948144910340031E777 /* Supporting Files */,
 			);
 			path = AnsiLove;
@@ -165,7 +162,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F8F0C950144910340031E777 /* AnsiLove.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -277,6 +273,7 @@
 				F8F0C955144910340031E777 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
