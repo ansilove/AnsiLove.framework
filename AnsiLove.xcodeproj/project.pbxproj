@@ -7,11 +7,133 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F8E082BC144996C300E30142 /* ALAnsiGenerator.h in Headers */ = {isa = PBXBuildFile; fileRef = F8E082B9144996C300E30142 /* ALAnsiGenerator.h */; };
+		F8E082BD144996C300E30142 /* ALAnsiGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = F8E082BA144996C300E30142 /* ALAnsiGenerator.m */; };
+		F8E082BE144996C300E30142 /* AnsiLove.h in Headers */ = {isa = PBXBuildFile; fileRef = F8E082BB144996C300E30142 /* AnsiLove.h */; };
+		F8E082E71449984700E30142 /* ansilove in Resources */ = {isa = PBXBuildFile; fileRef = F8E082C01449984700E30142 /* ansilove */; };
+		F8E082E81449984700E30142 /* ansilove.cfg.php in Resources */ = {isa = PBXBuildFile; fileRef = F8E082C11449984700E30142 /* ansilove.cfg.php */; };
+		F8E082E91449984700E30142 /* ansilove.php in Resources */ = {isa = PBXBuildFile; fileRef = F8E082C21449984700E30142 /* ansilove.php */; };
+		F8E083061449984700E30142 /* load_adf.php in Resources */ = {isa = PBXBuildFile; fileRef = F8E082E01449984700E30142 /* load_adf.php */; };
+		F8E083071449984700E30142 /* load_ansi.php in Resources */ = {isa = PBXBuildFile; fileRef = F8E082E11449984700E30142 /* load_ansi.php */; };
+		F8E083081449984700E30142 /* load_binary.php in Resources */ = {isa = PBXBuildFile; fileRef = F8E082E21449984700E30142 /* load_binary.php */; };
+		F8E083091449984700E30142 /* load_idf.php in Resources */ = {isa = PBXBuildFile; fileRef = F8E082E31449984700E30142 /* load_idf.php */; };
+		F8E0830A1449984700E30142 /* load_pcboard.php in Resources */ = {isa = PBXBuildFile; fileRef = F8E082E41449984700E30142 /* load_pcboard.php */; };
+		F8E0830B1449984700E30142 /* load_tundra.php in Resources */ = {isa = PBXBuildFile; fileRef = F8E082E51449984700E30142 /* load_tundra.php */; };
+		F8E0830C1449984700E30142 /* load_xbin.php in Resources */ = {isa = PBXBuildFile; fileRef = F8E082E61449984700E30142 /* load_xbin.php */; };
+		F8EE6669144A06E500AFDEB0 /* ansilove_background.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = F8E082C41449984700E30142 /* ansilove_background.png */; };
+		F8EE666A144A06E500AFDEB0 /* ansilove_font_amiga_b-strict.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = F8E082C51449984700E30142 /* ansilove_font_amiga_b-strict.png */; };
+		F8EE666B144A06E500AFDEB0 /* ansilove_font_amiga_b-struct.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = F8E082C61449984700E30142 /* ansilove_font_amiga_b-struct.png */; };
+		F8EE666C144A06E500AFDEB0 /* ansilove_font_amiga_microknight+.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = F8E082C71449984700E30142 /* ansilove_font_amiga_microknight+.png */; };
+		F8EE666D144A06E500AFDEB0 /* ansilove_font_amiga_microknight.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = F8E082C81449984700E30142 /* ansilove_font_amiga_microknight.png */; };
+		F8EE666E144A06E500AFDEB0 /* ansilove_font_amiga_mosoul.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = F8E082C91449984700E30142 /* ansilove_font_amiga_mosoul.png */; };
+		F8EE666F144A06E500AFDEB0 /* ansilove_font_amiga_pot-noodle.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = F8E082CA1449984700E30142 /* ansilove_font_amiga_pot-noodle.png */; };
+		F8EE6670144A06E500AFDEB0 /* ansilove_font_amiga_topaz_1200+.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = F8E082CB1449984700E30142 /* ansilove_font_amiga_topaz_1200+.png */; };
+		F8EE6671144A06E500AFDEB0 /* ansilove_font_amiga_topaz_1200.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = F8E082CC1449984700E30142 /* ansilove_font_amiga_topaz_1200.png */; };
+		F8EE6672144A06E500AFDEB0 /* ansilove_font_amiga_topaz_500+.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = F8E082CD1449984700E30142 /* ansilove_font_amiga_topaz_500+.png */; };
+		F8EE6673144A06E500AFDEB0 /* ansilove_font_amiga_topaz_500.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = F8E082CE1449984700E30142 /* ansilove_font_amiga_topaz_500.png */; };
+		F8EE6674144A06E500AFDEB0 /* ansilove_font_pc_80x25.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = F8E082CF1449984700E30142 /* ansilove_font_pc_80x25.png */; };
+		F8EE6675144A06E500AFDEB0 /* ansilove_font_pc_80x50.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = F8E082D01449984700E30142 /* ansilove_font_pc_80x50.png */; };
+		F8EE6676144A06E500AFDEB0 /* ansilove_font_pc_armenian.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = F8E082D11449984700E30142 /* ansilove_font_pc_armenian.png */; };
+		F8EE6677144A06E500AFDEB0 /* ansilove_font_pc_baltic.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = F8E082D21449984700E30142 /* ansilove_font_pc_baltic.png */; };
+		F8EE6678144A06E500AFDEB0 /* ansilove_font_pc_cyrillic.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = F8E082D31449984700E30142 /* ansilove_font_pc_cyrillic.png */; };
+		F8EE6679144A06E500AFDEB0 /* ansilove_font_pc_french_canadian.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = F8E082D41449984700E30142 /* ansilove_font_pc_french_canadian.png */; };
+		F8EE667A144A06E500AFDEB0 /* ansilove_font_pc_greek.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = F8E082D51449984700E30142 /* ansilove_font_pc_greek.png */; };
+		F8EE667B144A06E500AFDEB0 /* ansilove_font_pc_greek_869.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = F8E082D61449984700E30142 /* ansilove_font_pc_greek_869.png */; };
+		F8EE667C144A06E500AFDEB0 /* ansilove_font_pc_hebrew.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = F8E082D71449984700E30142 /* ansilove_font_pc_hebrew.png */; };
+		F8EE667D144A06E500AFDEB0 /* ansilove_font_pc_icelandic.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = F8E082D81449984700E30142 /* ansilove_font_pc_icelandic.png */; };
+		F8EE667E144A06E500AFDEB0 /* ansilove_font_pc_latin1.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = F8E082D91449984700E30142 /* ansilove_font_pc_latin1.png */; };
+		F8EE667F144A06E500AFDEB0 /* ansilove_font_pc_latin2.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = F8E082DA1449984700E30142 /* ansilove_font_pc_latin2.png */; };
+		F8EE6680144A06E500AFDEB0 /* ansilove_font_pc_nordic.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = F8E082DB1449984700E30142 /* ansilove_font_pc_nordic.png */; };
+		F8EE6681144A06E500AFDEB0 /* ansilove_font_pc_persian.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = F8E082DC1449984700E30142 /* ansilove_font_pc_persian.png */; };
+		F8EE6682144A06E500AFDEB0 /* ansilove_font_pc_portuguese.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = F8E082DD1449984700E30142 /* ansilove_font_pc_portuguese.png */; };
+		F8EE6683144A06E500AFDEB0 /* ansilove_font_pc_russian.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = F8E082DE1449984700E30142 /* ansilove_font_pc_russian.png */; };
+		F8EE6684144A06E500AFDEB0 /* ansilove_font_pc_turkish.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = F8E082DF1449984700E30142 /* ansilove_font_pc_turkish.png */; };
 		F8F0C942144910340031E777 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8F0C941144910340031E777 /* Cocoa.framework */; };
 		F8F0C94C144910340031E777 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F8F0C94A144910340031E777 /* InfoPlist.strings */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		F8EE6667144A069C00AFDEB0 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = fonts;
+			dstSubfolderSpec = 7;
+			files = (
+				F8EE6669144A06E500AFDEB0 /* ansilove_background.png in CopyFiles */,
+				F8EE666A144A06E500AFDEB0 /* ansilove_font_amiga_b-strict.png in CopyFiles */,
+				F8EE666B144A06E500AFDEB0 /* ansilove_font_amiga_b-struct.png in CopyFiles */,
+				F8EE666C144A06E500AFDEB0 /* ansilove_font_amiga_microknight+.png in CopyFiles */,
+				F8EE666D144A06E500AFDEB0 /* ansilove_font_amiga_microknight.png in CopyFiles */,
+				F8EE666E144A06E500AFDEB0 /* ansilove_font_amiga_mosoul.png in CopyFiles */,
+				F8EE666F144A06E500AFDEB0 /* ansilove_font_amiga_pot-noodle.png in CopyFiles */,
+				F8EE6670144A06E500AFDEB0 /* ansilove_font_amiga_topaz_1200+.png in CopyFiles */,
+				F8EE6671144A06E500AFDEB0 /* ansilove_font_amiga_topaz_1200.png in CopyFiles */,
+				F8EE6672144A06E500AFDEB0 /* ansilove_font_amiga_topaz_500+.png in CopyFiles */,
+				F8EE6673144A06E500AFDEB0 /* ansilove_font_amiga_topaz_500.png in CopyFiles */,
+				F8EE6674144A06E500AFDEB0 /* ansilove_font_pc_80x25.png in CopyFiles */,
+				F8EE6675144A06E500AFDEB0 /* ansilove_font_pc_80x50.png in CopyFiles */,
+				F8EE6676144A06E500AFDEB0 /* ansilove_font_pc_armenian.png in CopyFiles */,
+				F8EE6677144A06E500AFDEB0 /* ansilove_font_pc_baltic.png in CopyFiles */,
+				F8EE6678144A06E500AFDEB0 /* ansilove_font_pc_cyrillic.png in CopyFiles */,
+				F8EE6679144A06E500AFDEB0 /* ansilove_font_pc_french_canadian.png in CopyFiles */,
+				F8EE667A144A06E500AFDEB0 /* ansilove_font_pc_greek.png in CopyFiles */,
+				F8EE667B144A06E500AFDEB0 /* ansilove_font_pc_greek_869.png in CopyFiles */,
+				F8EE667C144A06E500AFDEB0 /* ansilove_font_pc_hebrew.png in CopyFiles */,
+				F8EE667D144A06E500AFDEB0 /* ansilove_font_pc_icelandic.png in CopyFiles */,
+				F8EE667E144A06E500AFDEB0 /* ansilove_font_pc_latin1.png in CopyFiles */,
+				F8EE667F144A06E500AFDEB0 /* ansilove_font_pc_latin2.png in CopyFiles */,
+				F8EE6680144A06E500AFDEB0 /* ansilove_font_pc_nordic.png in CopyFiles */,
+				F8EE6681144A06E500AFDEB0 /* ansilove_font_pc_persian.png in CopyFiles */,
+				F8EE6682144A06E500AFDEB0 /* ansilove_font_pc_portuguese.png in CopyFiles */,
+				F8EE6683144A06E500AFDEB0 /* ansilove_font_pc_russian.png in CopyFiles */,
+				F8EE6684144A06E500AFDEB0 /* ansilove_font_pc_turkish.png in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		F8E082B9144996C300E30142 /* ALAnsiGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ALAnsiGenerator.h; sourceTree = "<group>"; };
+		F8E082BA144996C300E30142 /* ALAnsiGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ALAnsiGenerator.m; sourceTree = "<group>"; };
+		F8E082BB144996C300E30142 /* AnsiLove.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnsiLove.h; sourceTree = "<group>"; };
+		F8E082C01449984700E30142 /* ansilove */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ansilove; sourceTree = "<group>"; };
+		F8E082C11449984700E30142 /* ansilove.cfg.php */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.php; path = ansilove.cfg.php; sourceTree = "<group>"; };
+		F8E082C21449984700E30142 /* ansilove.php */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.php; path = ansilove.php; sourceTree = "<group>"; };
+		F8E082C41449984700E30142 /* ansilove_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ansilove_background.png; sourceTree = "<group>"; };
+		F8E082C51449984700E30142 /* ansilove_font_amiga_b-strict.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ansilove_font_amiga_b-strict.png"; sourceTree = "<group>"; };
+		F8E082C61449984700E30142 /* ansilove_font_amiga_b-struct.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ansilove_font_amiga_b-struct.png"; sourceTree = "<group>"; };
+		F8E082C71449984700E30142 /* ansilove_font_amiga_microknight+.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ansilove_font_amiga_microknight+.png"; sourceTree = "<group>"; };
+		F8E082C81449984700E30142 /* ansilove_font_amiga_microknight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ansilove_font_amiga_microknight.png; sourceTree = "<group>"; };
+		F8E082C91449984700E30142 /* ansilove_font_amiga_mosoul.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ansilove_font_amiga_mosoul.png; sourceTree = "<group>"; };
+		F8E082CA1449984700E30142 /* ansilove_font_amiga_pot-noodle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ansilove_font_amiga_pot-noodle.png"; sourceTree = "<group>"; };
+		F8E082CB1449984700E30142 /* ansilove_font_amiga_topaz_1200+.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ansilove_font_amiga_topaz_1200+.png"; sourceTree = "<group>"; };
+		F8E082CC1449984700E30142 /* ansilove_font_amiga_topaz_1200.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ansilove_font_amiga_topaz_1200.png; sourceTree = "<group>"; };
+		F8E082CD1449984700E30142 /* ansilove_font_amiga_topaz_500+.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ansilove_font_amiga_topaz_500+.png"; sourceTree = "<group>"; };
+		F8E082CE1449984700E30142 /* ansilove_font_amiga_topaz_500.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ansilove_font_amiga_topaz_500.png; sourceTree = "<group>"; };
+		F8E082CF1449984700E30142 /* ansilove_font_pc_80x25.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ansilove_font_pc_80x25.png; sourceTree = "<group>"; };
+		F8E082D01449984700E30142 /* ansilove_font_pc_80x50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ansilove_font_pc_80x50.png; sourceTree = "<group>"; };
+		F8E082D11449984700E30142 /* ansilove_font_pc_armenian.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ansilove_font_pc_armenian.png; sourceTree = "<group>"; };
+		F8E082D21449984700E30142 /* ansilove_font_pc_baltic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ansilove_font_pc_baltic.png; sourceTree = "<group>"; };
+		F8E082D31449984700E30142 /* ansilove_font_pc_cyrillic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ansilove_font_pc_cyrillic.png; sourceTree = "<group>"; };
+		F8E082D41449984700E30142 /* ansilove_font_pc_french_canadian.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ansilove_font_pc_french_canadian.png; sourceTree = "<group>"; };
+		F8E082D51449984700E30142 /* ansilove_font_pc_greek.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ansilove_font_pc_greek.png; sourceTree = "<group>"; };
+		F8E082D61449984700E30142 /* ansilove_font_pc_greek_869.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ansilove_font_pc_greek_869.png; sourceTree = "<group>"; };
+		F8E082D71449984700E30142 /* ansilove_font_pc_hebrew.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ansilove_font_pc_hebrew.png; sourceTree = "<group>"; };
+		F8E082D81449984700E30142 /* ansilove_font_pc_icelandic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ansilove_font_pc_icelandic.png; sourceTree = "<group>"; };
+		F8E082D91449984700E30142 /* ansilove_font_pc_latin1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ansilove_font_pc_latin1.png; sourceTree = "<group>"; };
+		F8E082DA1449984700E30142 /* ansilove_font_pc_latin2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ansilove_font_pc_latin2.png; sourceTree = "<group>"; };
+		F8E082DB1449984700E30142 /* ansilove_font_pc_nordic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ansilove_font_pc_nordic.png; sourceTree = "<group>"; };
+		F8E082DC1449984700E30142 /* ansilove_font_pc_persian.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ansilove_font_pc_persian.png; sourceTree = "<group>"; };
+		F8E082DD1449984700E30142 /* ansilove_font_pc_portuguese.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ansilove_font_pc_portuguese.png; sourceTree = "<group>"; };
+		F8E082DE1449984700E30142 /* ansilove_font_pc_russian.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ansilove_font_pc_russian.png; sourceTree = "<group>"; };
+		F8E082DF1449984700E30142 /* ansilove_font_pc_turkish.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ansilove_font_pc_turkish.png; sourceTree = "<group>"; };
+		F8E082E01449984700E30142 /* load_adf.php */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.php; path = load_adf.php; sourceTree = "<group>"; };
+		F8E082E11449984700E30142 /* load_ansi.php */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.php; path = load_ansi.php; sourceTree = "<group>"; };
+		F8E082E21449984700E30142 /* load_binary.php */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.php; path = load_binary.php; sourceTree = "<group>"; };
+		F8E082E31449984700E30142 /* load_idf.php */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.php; path = load_idf.php; sourceTree = "<group>"; };
+		F8E082E41449984700E30142 /* load_pcboard.php */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.php; path = load_pcboard.php; sourceTree = "<group>"; };
+		F8E082E51449984700E30142 /* load_tundra.php */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.php; path = load_tundra.php; sourceTree = "<group>"; };
+		F8E082E61449984700E30142 /* load_xbin.php */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.php; path = load_xbin.php; sourceTree = "<group>"; };
 		F8F0C93E144910340031E777 /* AnsiLove.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AnsiLove.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F8F0C941144910340031E777 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		F8F0C944144910340031E777 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -20,7 +142,6 @@
 		F8F0C949144910340031E777 /* AnsiLove-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "AnsiLove-Info.plist"; sourceTree = "<group>"; };
 		F8F0C94B144910340031E777 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		F8F0C94D144910340031E777 /* AnsiLove-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AnsiLove-Prefix.pch"; sourceTree = "<group>"; };
-		F8F0C94E144910340031E777 /* AnsiLove.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AnsiLove.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,10 +156,77 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F8E082B8144996C300E30142 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				F8E082B9144996C300E30142 /* ALAnsiGenerator.h */,
+				F8E082BA144996C300E30142 /* ALAnsiGenerator.m */,
+				F8E082BB144996C300E30142 /* AnsiLove.h */,
+			);
+			name = Classes;
+			path = AnsiLove/Classes;
+			sourceTree = "<group>";
+		};
+		F8E082BF1449984700E30142 /* Library */ = {
+			isa = PBXGroup;
+			children = (
+				F8E082C01449984700E30142 /* ansilove */,
+				F8E082C11449984700E30142 /* ansilove.cfg.php */,
+				F8E082C21449984700E30142 /* ansilove.php */,
+				F8E082C31449984700E30142 /* fonts */,
+				F8E082E01449984700E30142 /* load_adf.php */,
+				F8E082E11449984700E30142 /* load_ansi.php */,
+				F8E082E21449984700E30142 /* load_binary.php */,
+				F8E082E31449984700E30142 /* load_idf.php */,
+				F8E082E41449984700E30142 /* load_pcboard.php */,
+				F8E082E51449984700E30142 /* load_tundra.php */,
+				F8E082E61449984700E30142 /* load_xbin.php */,
+			);
+			name = Library;
+			path = AnsiLove/Library;
+			sourceTree = "<group>";
+		};
+		F8E082C31449984700E30142 /* fonts */ = {
+			isa = PBXGroup;
+			children = (
+				F8E082C41449984700E30142 /* ansilove_background.png */,
+				F8E082C51449984700E30142 /* ansilove_font_amiga_b-strict.png */,
+				F8E082C61449984700E30142 /* ansilove_font_amiga_b-struct.png */,
+				F8E082C71449984700E30142 /* ansilove_font_amiga_microknight+.png */,
+				F8E082C81449984700E30142 /* ansilove_font_amiga_microknight.png */,
+				F8E082C91449984700E30142 /* ansilove_font_amiga_mosoul.png */,
+				F8E082CA1449984700E30142 /* ansilove_font_amiga_pot-noodle.png */,
+				F8E082CB1449984700E30142 /* ansilove_font_amiga_topaz_1200+.png */,
+				F8E082CC1449984700E30142 /* ansilove_font_amiga_topaz_1200.png */,
+				F8E082CD1449984700E30142 /* ansilove_font_amiga_topaz_500+.png */,
+				F8E082CE1449984700E30142 /* ansilove_font_amiga_topaz_500.png */,
+				F8E082CF1449984700E30142 /* ansilove_font_pc_80x25.png */,
+				F8E082D01449984700E30142 /* ansilove_font_pc_80x50.png */,
+				F8E082D11449984700E30142 /* ansilove_font_pc_armenian.png */,
+				F8E082D21449984700E30142 /* ansilove_font_pc_baltic.png */,
+				F8E082D31449984700E30142 /* ansilove_font_pc_cyrillic.png */,
+				F8E082D41449984700E30142 /* ansilove_font_pc_french_canadian.png */,
+				F8E082D51449984700E30142 /* ansilove_font_pc_greek.png */,
+				F8E082D61449984700E30142 /* ansilove_font_pc_greek_869.png */,
+				F8E082D71449984700E30142 /* ansilove_font_pc_hebrew.png */,
+				F8E082D81449984700E30142 /* ansilove_font_pc_icelandic.png */,
+				F8E082D91449984700E30142 /* ansilove_font_pc_latin1.png */,
+				F8E082DA1449984700E30142 /* ansilove_font_pc_latin2.png */,
+				F8E082DB1449984700E30142 /* ansilove_font_pc_nordic.png */,
+				F8E082DC1449984700E30142 /* ansilove_font_pc_persian.png */,
+				F8E082DD1449984700E30142 /* ansilove_font_pc_portuguese.png */,
+				F8E082DE1449984700E30142 /* ansilove_font_pc_russian.png */,
+				F8E082DF1449984700E30142 /* ansilove_font_pc_turkish.png */,
+			);
+			path = fonts;
+			sourceTree = "<group>";
+		};
 		F8F0C932144910340031E777 = {
 			isa = PBXGroup;
 			children = (
-				F8F0C947144910340031E777 /* AnsiLove */,
+				F8E082B8144996C300E30142 /* Classes */,
+				F8E082BF1449984700E30142 /* Library */,
+				F8F0C948144910340031E777 /* Supporting Files */,
 				F8F0C940144910340031E777 /* Frameworks */,
 				F8F0C93F144910340031E777 /* Products */,
 			);
@@ -71,15 +259,6 @@
 			name = "Other Frameworks";
 			sourceTree = "<group>";
 		};
-		F8F0C947144910340031E777 /* AnsiLove */ = {
-			isa = PBXGroup;
-			children = (
-				F8F0C94E144910340031E777 /* AnsiLove.h */,
-				F8F0C948144910340031E777 /* Supporting Files */,
-			);
-			path = AnsiLove;
-			sourceTree = "<group>";
-		};
 		F8F0C948144910340031E777 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -88,6 +267,7 @@
 				F8F0C94D144910340031E777 /* AnsiLove-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			path = AnsiLove;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -97,6 +277,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F8E082BC144996C300E30142 /* ALAnsiGenerator.h in Headers */,
+				F8E082BE144996C300E30142 /* AnsiLove.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -111,6 +293,7 @@
 				F8F0C93A144910340031E777 /* Frameworks */,
 				F8F0C93B144910340031E777 /* Headers */,
 				F8F0C93C144910340031E777 /* Resources */,
+				F8EE6667144A069C00AFDEB0 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -152,6 +335,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				F8F0C94C144910340031E777 /* InfoPlist.strings in Resources */,
+				F8E082E71449984700E30142 /* ansilove in Resources */,
+				F8E082E81449984700E30142 /* ansilove.cfg.php in Resources */,
+				F8E082E91449984700E30142 /* ansilove.php in Resources */,
+				F8E083061449984700E30142 /* load_adf.php in Resources */,
+				F8E083071449984700E30142 /* load_ansi.php in Resources */,
+				F8E083081449984700E30142 /* load_binary.php in Resources */,
+				F8E083091449984700E30142 /* load_idf.php in Resources */,
+				F8E0830A1449984700E30142 /* load_pcboard.php in Resources */,
+				F8E0830B1449984700E30142 /* load_tundra.php in Resources */,
+				F8E0830C1449984700E30142 /* load_xbin.php in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -162,6 +355,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F8E082BD144996C300E30142 /* ALAnsiGenerator.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
