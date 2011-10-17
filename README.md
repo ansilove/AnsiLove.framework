@@ -1,6 +1,6 @@
 # AnsiLove.framework
 
-This is a Cocoa framework for rendering ANSi art. It uses a modified version of Frederic Cambus' awesome [AnsiLove](http://ansilove.sourceforge.net) as library. Note that the AnsiLove.framework creates PNG images from ANSi source files, any generated output will be read-only. 
+This is a Cocoa framework for rendering ANSi art. It uses a modified version of Frederic Cambus' awesome [AnsiLove](http://ansilove.sourceforge.net) as library. Note that the AnsiLove.framework creates PNG images from ANSi source files, any generated output will be read-only.
 
 # Careful
 
@@ -8,6 +8,7 @@ What we got here is all very experimental right now, so I recommend not using it
 
 # Features
 
+- Automatic Reference Counting (ARC)
 - ANSi (.ANS) format support
 - PCBOARD (.PCB) format support
 - BiNARY (.BIN) format support
