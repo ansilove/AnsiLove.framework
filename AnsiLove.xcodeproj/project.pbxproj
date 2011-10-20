@@ -606,6 +606,7 @@
 				F82D6A5A1450045C00FD228B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		F8F0C937144910340031E777 /* Build configuration list for PBXProject "AnsiLove" */ = {
 			isa = XCConfigurationList;
