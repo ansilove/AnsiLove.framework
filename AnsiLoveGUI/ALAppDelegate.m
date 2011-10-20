@@ -24,7 +24,7 @@
     
     // The property is bound to the enabled binding of the columnsField. If you check 
     // columns in the GUI, the field gets enabled and you can enter a column value.
-    // Note that this has no educational purpose for the AnsiLove.framework, it's
+    // Note that this has NO educational purpose for the AnsiLove.framework, it's
     // just a nice feature I recommend as the columns flag is only needed for .bin files.
     self.enableColumnsField = NO;
 }
