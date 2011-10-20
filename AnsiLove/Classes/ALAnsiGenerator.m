@@ -56,7 +56,7 @@
         [arguments addObject:iceColors];
     }
     
-    // Finally start the task with the commandline arguments we gathered.
+    // Finally start the task with the flags we gathered.
     NSPipe *pipe;
     pipe = [NSPipe pipe];
     
