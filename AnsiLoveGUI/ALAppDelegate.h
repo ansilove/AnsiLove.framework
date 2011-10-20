@@ -10,7 +10,7 @@
 
 #import <Cocoa/Cocoa.h>
 #import <Ansilove/AnsiLove.h>
-// See that? Import the AnsiLove.framework as done above.
+// See that!? Import the AnsiLove.framework as done above.
 
 @interface ALAppDelegate : NSObject <NSApplicationDelegate>
 
