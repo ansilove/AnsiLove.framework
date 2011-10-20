@@ -22,41 +22,21 @@
                            font:(NSString *)font 
                            bits:(NSString *)bits
                       iceColors:(NSString *)iceColors
-{ 
-    if (inputFile == nil || inputFile == @"") {
-        // No inputfile? This means we can't do anything. Get the hell outta here.
-        return;
-    }
-    
-    if (outputFile == nil || outputFile == @"") {
-        // In case the user provided no output file / path, just use the file name and
-        // path from the inputFile value but add .png as suffix.
-        outputFile = [[NSString alloc] initWithFormat:@"%@.png", inputFile];
-    }
-    
-    // Initialize the arguments array.
-    NSMutableArray *arguments = [[NSMutableArray alloc] init];
-    
-    // Add the two most necessary arguments to the array.
-    [arguments addObject:inputFile];
-    [arguments addObject:outputFile];
-    
-    // The following if statements check if a string is nil or empty. That way we can
-    // be sure only strings with proper contents will be added to the arguments array.
-    if (columns && ![columns isEqualToString:@""]) {
+{
+    NSMutableArray *arguments = [NSMutableArray arrayWithObjects:inputFile, outputFile, nil];
+    if (columns != nil || columns != @"") {
         [arguments addObject:columns];
     }
-    if (font && ![font isEqualToString:@""]) {
+    if (font != nil || font != @"") {
         [arguments addObject:font];
     }
-    if (bits && ![bits isEqualToString:@""]) {
+    if (bits != nil || bits != @"") {
         [arguments addObject:bits];
     }
-    if (iceColors && [iceColors isEqualToString:@"1"]) {
+    if (iceColors != nil || iceColors != @"") {
         [arguments addObject:iceColors];
     }
     
-    // Finally start the task with the commandline arguments we gathered.
     NSPipe *pipe;
     pipe = [NSPipe pipe];
     
