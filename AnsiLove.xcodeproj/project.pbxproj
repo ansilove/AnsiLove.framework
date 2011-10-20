@@ -15,9 +15,9 @@
 		F82D6A581450045C00FD228B /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = F82D6A561450045C00FD228B /* MainMenu.xib */; };
 		F82D6A5F1450053B00FD228B /* AnsiLove.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8F0C93E144910340031E777 /* AnsiLove.framework */; };
 		F82D6A611450054B00FD228B /* AnsiLove.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = F8F0C93E144910340031E777 /* AnsiLove.framework */; };
-		F8E082BC144996C300E30142 /* ALAnsiGenerator.h in Headers */ = {isa = PBXBuildFile; fileRef = F8E082B9144996C300E30142 /* ALAnsiGenerator.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F8E082BC144996C300E30142 /* ALAnsiGenerator.h in Headers */ = {isa = PBXBuildFile; fileRef = F8E082B9144996C300E30142 /* ALAnsiGenerator.h */; };
 		F8E082BD144996C300E30142 /* ALAnsiGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = F8E082BA144996C300E30142 /* ALAnsiGenerator.m */; };
-		F8E082BE144996C300E30142 /* AnsiLove.h in Headers */ = {isa = PBXBuildFile; fileRef = F8E082BB144996C300E30142 /* AnsiLove.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F8E082BE144996C300E30142 /* AnsiLove.h in Headers */ = {isa = PBXBuildFile; fileRef = F8E082BB144996C300E30142 /* AnsiLove.h */; };
 		F8E082E71449984700E30142 /* ansilove in Resources */ = {isa = PBXBuildFile; fileRef = F8E082C01449984700E30142 /* ansilove */; };
 		F8E082E81449984700E30142 /* ansilove.cfg.php in Resources */ = {isa = PBXBuildFile; fileRef = F8E082C11449984700E30142 /* ansilove.cfg.php */; };
 		F8E082E91449984700E30142 /* ansilove.php in Resources */ = {isa = PBXBuildFile; fileRef = F8E082C21449984700E30142 /* ansilove.php */; };
@@ -574,7 +574,6 @@
 				FRAMEWORK_VERSION = A;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AnsiLove/AnsiLove-Prefix.pch";
-				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = "AnsiLove/AnsiLove-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = framework;
@@ -589,7 +588,6 @@
 				FRAMEWORK_VERSION = A;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AnsiLove/AnsiLove-Prefix.pch";
-				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = "AnsiLove/AnsiLove-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = framework;
