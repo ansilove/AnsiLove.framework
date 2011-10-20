@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F82D6A461450045C00FD228B /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8F0C941144910340031E777 /* Cocoa.framework */; };
+		F82D6A4C1450045C00FD228B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F82D6A4A1450045C00FD228B /* InfoPlist.strings */; };
+		F82D6A4E1450045C00FD228B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F82D6A4D1450045C00FD228B /* main.m */; };
+		F82D6A521450045C00FD228B /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = F82D6A501450045C00FD228B /* Credits.rtf */; };
+		F82D6A551450045C00FD228B /* ALAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F82D6A541450045C00FD228B /* ALAppDelegate.m */; };
+		F82D6A581450045C00FD228B /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = F82D6A561450045C00FD228B /* MainMenu.xib */; };
+		F82D6A5F1450053B00FD228B /* AnsiLove.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8F0C93E144910340031E777 /* AnsiLove.framework */; };
+		F82D6A611450054B00FD228B /* AnsiLove.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = F8F0C93E144910340031E777 /* AnsiLove.framework */; };
 		F8E082BC144996C300E30142 /* ALAnsiGenerator.h in Headers */ = {isa = PBXBuildFile; fileRef = F8E082B9144996C300E30142 /* ALAnsiGenerator.h */; };
 		F8E082BD144996C300E30142 /* ALAnsiGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = F8E082BA144996C300E30142 /* ALAnsiGenerator.m */; };
 		F8E082BE144996C300E30142 /* AnsiLove.h in Headers */ = {isa = PBXBuildFile; fileRef = F8E082BB144996C300E30142 /* AnsiLove.h */; };
@@ -53,6 +61,16 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		F82D6A601450054200FD228B /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				F82D6A611450054B00FD228B /* AnsiLove.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F8EE6667144A069C00AFDEB0 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -93,6 +111,15 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		F82D6A441450045C00FD228B /* AnsiLoveGUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AnsiLoveGUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F82D6A491450045C00FD228B /* AnsiLoveGUI-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "AnsiLoveGUI-Info.plist"; sourceTree = "<group>"; };
+		F82D6A4B1450045C00FD228B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		F82D6A4D1450045C00FD228B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		F82D6A4F1450045C00FD228B /* AnsiLoveGUI-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AnsiLoveGUI-Prefix.pch"; sourceTree = "<group>"; };
+		F82D6A511450045C00FD228B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
+		F82D6A531450045C00FD228B /* ALAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ALAppDelegate.h; sourceTree = "<group>"; };
+		F82D6A541450045C00FD228B /* ALAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ALAppDelegate.m; sourceTree = "<group>"; };
+		F82D6A571450045C00FD228B /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		F8E082B9144996C300E30142 /* ALAnsiGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ALAnsiGenerator.h; sourceTree = "<group>"; };
 		F8E082BA144996C300E30142 /* ALAnsiGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ALAnsiGenerator.m; sourceTree = "<group>"; };
 		F8E082BB144996C300E30142 /* AnsiLove.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnsiLove.h; sourceTree = "<group>"; };
@@ -145,6 +172,15 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		F82D6A411450045C00FD228B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F82D6A461450045C00FD228B /* Cocoa.framework in Frameworks */,
+				F82D6A5F1450053B00FD228B /* AnsiLove.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F8F0C93A144910340031E777 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -156,6 +192,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F82D6A471450045C00FD228B /* AnsiLoveGUI (TestApp) */ = {
+			isa = PBXGroup;
+			children = (
+				F82D6A531450045C00FD228B /* ALAppDelegate.h */,
+				F82D6A541450045C00FD228B /* ALAppDelegate.m */,
+				F82D6A561450045C00FD228B /* MainMenu.xib */,
+				F82D6A481450045C00FD228B /* Supporting Files */,
+			);
+			name = "AnsiLoveGUI (TestApp)";
+			path = AnsiLoveGUI;
+			sourceTree = "<group>";
+		};
+		F82D6A481450045C00FD228B /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				F82D6A491450045C00FD228B /* AnsiLoveGUI-Info.plist */,
+				F82D6A4A1450045C00FD228B /* InfoPlist.strings */,
+				F82D6A501450045C00FD228B /* Credits.rtf */,
+				F82D6A4D1450045C00FD228B /* main.m */,
+				F82D6A4F1450045C00FD228B /* AnsiLoveGUI-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		F8E082B8144996C300E30142 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
@@ -227,6 +287,7 @@
 				F8E082B8144996C300E30142 /* Classes */,
 				F8E082BF1449984700E30142 /* Library */,
 				F8F0C948144910340031E777 /* Supporting Files */,
+				F82D6A471450045C00FD228B /* AnsiLoveGUI (TestApp) */,
 				F8F0C940144910340031E777 /* Frameworks */,
 				F8F0C93F144910340031E777 /* Products */,
 			);
@@ -236,6 +297,7 @@
 			isa = PBXGroup;
 			children = (
 				F8F0C93E144910340031E777 /* AnsiLove.framework */,
+				F82D6A441450045C00FD228B /* AnsiLoveGUI.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -285,6 +347,24 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		F82D6A431450045C00FD228B /* AnsiLoveGUI */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F82D6A5B1450045C00FD228B /* Build configuration list for PBXNativeTarget "AnsiLoveGUI" */;
+			buildPhases = (
+				F82D6A401450045C00FD228B /* Sources */,
+				F82D6A411450045C00FD228B /* Frameworks */,
+				F82D6A421450045C00FD228B /* Resources */,
+				F82D6A601450054200FD228B /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = AnsiLoveGUI;
+			productName = AnsiLoveGUI;
+			productReference = F82D6A441450045C00FD228B /* AnsiLoveGUI.app */;
+			productType = "com.apple.product-type.application";
+		};
 		F8F0C93D144910340031E777 /* AnsiLove */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = F8F0C953144910340031E777 /* Build configuration list for PBXNativeTarget "AnsiLove" */;
@@ -325,11 +405,22 @@
 			projectRoot = "";
 			targets = (
 				F8F0C93D144910340031E777 /* AnsiLove */,
+				F82D6A431450045C00FD228B /* AnsiLoveGUI */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		F82D6A421450045C00FD228B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F82D6A4C1450045C00FD228B /* InfoPlist.strings in Resources */,
+				F82D6A521450045C00FD228B /* Credits.rtf in Resources */,
+				F82D6A581450045C00FD228B /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F8F0C93C144910340031E777 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -351,6 +442,15 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		F82D6A401450045C00FD228B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F82D6A4E1450045C00FD228B /* main.m in Sources */,
+				F82D6A551450045C00FD228B /* ALAppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F8F0C939144910340031E777 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -362,6 +462,30 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		F82D6A4A1450045C00FD228B /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F82D6A4B1450045C00FD228B /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		F82D6A501450045C00FD228B /* Credits.rtf */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F82D6A511450045C00FD228B /* en */,
+			);
+			name = Credits.rtf;
+			sourceTree = "<group>";
+		};
+		F82D6A561450045C00FD228B /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F82D6A571450045C00FD228B /* en */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
 		F8F0C94A144910340031E777 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -373,6 +497,28 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		F82D6A591450045C00FD228B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "AnsiLoveGUI/AnsiLoveGUI-Prefix.pch";
+				INFOPLIST_FILE = "AnsiLoveGUI/AnsiLoveGUI-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		F82D6A5A1450045C00FD228B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "AnsiLoveGUI/AnsiLoveGUI-Prefix.pch";
+				INFOPLIST_FILE = "AnsiLoveGUI/AnsiLoveGUI-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
 		F8F0C951144910340031E777 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -451,6 +597,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		F82D6A5B1450045C00FD228B /* Build configuration list for PBXNativeTarget "AnsiLoveGUI" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F82D6A591450045C00FD228B /* Debug */,
+				F82D6A5A1450045C00FD228B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		F8F0C937144910340031E777 /* Build configuration list for PBXProject "AnsiLove" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
