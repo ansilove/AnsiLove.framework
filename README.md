@@ -91,7 +91,7 @@ The only necessary flag you need to pass to ALAnsiGenerator. Well, that's logic.
 
 	/Users/Stefan/Desktop/MyAnsiArtwork.ans
 	
-Note that all supported file extensions like `.ans` or `.xb` are detected automatically. I recommend treating this string case-sensitive.  As you can see, that string explicitly needs to contain the path and the file name. That's pretty cool because it means you can work either with `NSStrings` or `NSURLs` internally. Just keep in mind that any `NSURL` needs to be converted to a string before passing to ALAnsiGenerator. NSURL has a method called `absoluteString` that can be used for easy conversion.
+I recommend treating this string case-sensitive.  As you can see, that string explicitly needs to contain the path and the file name. That's pretty cool because it means you can work either with `NSStrings` or `NSURLs` internally. Just keep in mind that any `NSURL` needs to be converted to a string before passing to ALAnsiGenerator. NSURL has a method called `absoluteString` that can be used for easy conversion.
 	
 	NSURL 	 *myURL;
 	NSString *urlString = [myURL absoluteString];
