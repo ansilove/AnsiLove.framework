@@ -67,7 +67,7 @@ You can call said method like this:
                                         bits:self.myBits 
                                    iceColors:self.myIceColors];
 
-That's basically it. Keep in mind that ALAnsiGenerator needs all it's flags as `NSString` instances. You can work internally with numeric types like `NSInteger` or `BOOL` but you need to convert them to strings before you pass these values to ALAnsiGenerator. For example, the iceColors flag (I'm going to explain all flags in detail below) can only be 0 or 1, so it's perfect to have that as `BOOL` type in your app. I did this in `AnsiLoveGUI` as well. To pass this value to ALAnsiGenerator you can do it something like this:
+That's basically it. Keep in mind that ALAnsiGenerator needs all it's flags as `NSString` instances. You can work internally with numeric types like `NSInteger` or `BOOL` but you need to convert them to strings before you pass these values to ALAnsiGenerator. For example, the `iceColors` flag (I'm going to explain all flags in detail below) can only be `0` or `1`, so it's perfect to have that as `BOOL` type in your app. I did this in `AnsiLoveGUI` as well. To pass this value to ALAnsiGenerator you can do it something like this:
 
 	NSString *iceColors;
 	BOOL	 shouldUseIceColors;
