@@ -204,7 +204,11 @@ Now that you know about the different flags, you may also want to have a simple 
 	| XB  |         |       |       |           |
 	|_____|_________|_______|_______|___________|
 
-# Last Words
+# Output file example
+
+You may wonder how the output looks like? You'll find an example [here](http://cl.ly/1G2i2x3v2Z0n3u28433e/o).
+
+# Last words
 
 Even though the AnsiLove.framework works well, I suggest you visit this repo now and then. It's very likely I'm adding new stuff to it. The AnsiLove.framwork was created with the vision of implementing it into one of my own apps, most of you know [Ascension](http://byteproject.net/ascension) already. On the other hand, [AnsiLove](http://ansilove.sourceforge.net) itself is work in progress, too. So if [Frederic](http://www.cambus.net) adds new features to [AnsiLove](http://ansilove.sourceforge.net) I'm going to implement those changes to the underlying library of the AnsiLove.framework, is that fine with you? I know it is. 
 
