@@ -576,6 +576,7 @@
 				GCC_PREFIX_HEADER = "AnsiLove/AnsiLove-Prefix.pch";
 				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = "AnsiLove/AnsiLove-Info.plist";
+				INSTALL_PATH = "@executable_path/../Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = framework;
 			};
@@ -591,6 +592,7 @@
 				GCC_PREFIX_HEADER = "AnsiLove/AnsiLove-Prefix.pch";
 				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = "AnsiLove/AnsiLove-Info.plist";
+				INSTALL_PATH = "@executable_path/../Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = framework;
 			};
