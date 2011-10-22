@@ -39,7 +39,7 @@
                            font:(NSString *)font 
                            bits:(NSString *)bits
                       iceColors:(NSString *)iceColors
-{ 
+{     
     if (inputFile == nil || inputFile == @"") {
         // No inputfile? This means we can't do anything. Get the hell outta here.
         return;
@@ -50,6 +50,10 @@
         // path from the inputFile value but add .png as suffix.
         outputFile = [[NSString alloc] initWithFormat:@"%@.png", inputFile];
     }
+    
+    // We need to resolve any tilde in path before passing this argument to NSTask.
+    inputFile = [inputFile stringByExpandingTildeInPath];
+    outputFile = [outputFile stringByExpandingTildeInPath];
     
     // Initialize the arguments array.
     NSMutableArray *arguments = [[NSMutableArray alloc] init];
