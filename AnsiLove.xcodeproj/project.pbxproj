@@ -16,6 +16,7 @@
 		F82D6A5F1450053B00FD228B /* AnsiLove.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8F0C93E144910340031E777 /* AnsiLove.framework */; };
 		F82D6A611450054B00FD228B /* AnsiLove.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = F8F0C93E144910340031E777 /* AnsiLove.framework */; };
 		F84066D9145A7618006F25F7 /* ansilove_font_pc_terminus.png in Resources */ = {isa = PBXBuildFile; fileRef = F84066D8145A7618006F25F7 /* ansilove_font_pc_terminus.png */; };
+		F84066DD145A8809006F25F7 /* ansilove_font_pc_terminus.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = F84066D8145A7618006F25F7 /* ansilove_font_pc_terminus.png */; };
 		F8E082BC144996C300E30142 /* ALAnsiGenerator.h in Headers */ = {isa = PBXBuildFile; fileRef = F8E082B9144996C300E30142 /* ALAnsiGenerator.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F8E082BD144996C300E30142 /* ALAnsiGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = F8E082BA144996C300E30142 /* ALAnsiGenerator.m */; };
 		F8E082BE144996C300E30142 /* AnsiLove.h in Headers */ = {isa = PBXBuildFile; fileRef = F8E082BB144996C300E30142 /* AnsiLove.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -78,6 +79,7 @@
 			dstPath = fonts;
 			dstSubfolderSpec = 7;
 			files = (
+				F84066DD145A8809006F25F7 /* ansilove_font_pc_terminus.png in CopyFiles */,
 				F8EE6669144A06E500AFDEB0 /* ansilove_background.png in CopyFiles */,
 				F8EE666A144A06E500AFDEB0 /* ansilove_font_amiga_b-strict.png in CopyFiles */,
 				F8EE666B144A06E500AFDEB0 /* ansilove_font_amiga_b-struct.png in CopyFiles */,
