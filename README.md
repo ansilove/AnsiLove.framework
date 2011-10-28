@@ -26,7 +26,7 @@ IBM PC (Code page 437), Baltic (Code page 775), Cyrillic (Code page 855), French
 
 # Documentation
 
-Let's talk about using this framework in your own projects. First of all, you have to download the sources and compile the framework. You need at least Mac OS X Lion and Xcode 4.2 for this purpose. The project contains two build targets, the framework itself and a test app `AnsiLoveGUI`, the latter is optional. Select `AnsiLoveGUI` from the Schemes dropdown in Xcode if you desire to compile that one too. The test app is a good example of implementing the AnsiLove.framework, it does not contain much code and what you find there is well commented. So `AnsiLoveGUI` might be your first place to play with the framework after studying this documentation. Basically this is an ARC framework. As far as I can estimate it will compile just fine with Garbace Collector enabled, though the test app is a pure ARC project. As mentioned on top of this page, AnsiLove.framework uses [AnsiLove](http://ansilove.sourceforge.net) as library, a special variant I modified to create what we got here on top of it. If you know me, you know also that when releasing open source code, I'm doing this under the BSD-license or the MIT-license. Not this time. AnsiLove.framework is GPL-licensed (Version 3), that's because [AnsiLove](http://ansilove.sourceforge.net) is GPL-licensed too. While it's fine to use the framework in projects with compatible open source licenses (e.g. modified BSD, MIT, Apache), it may not be suitable for commercial products.
+Let's talk about using this framework in your own projects. First of all, you have to download the sources and compile the framework. You need at least Mac OS X Lion and Xcode 4.2 for this purpose. The project contains two build targets, the framework itself and a test app `AnsiLoveGUI`, the latter is optional. Select `AnsiLoveGUI` from the Schemes dropdown in Xcode if you desire to compile that one too. The test app is a good example of implementing the AnsiLove.framework, it does not contain much code and what you find there is well commented. So `AnsiLoveGUI` might be your first place to play with the framework after studying this documentation. Basically this is an ARC framework. As far as I can estimate it will compile just fine with Garbace Collector enabled, though the test app is a pure ARC project. As mentioned on top of this page, AnsiLove.framework uses [AnsiLove](http://ansilove.sourceforge.net) as library, a special variant I modified to create what we got here on top of it. 
 
 ## Adding the framework to your projects
 
@@ -132,6 +132,7 @@ The AnsiLove.framework generates the most accurate rendering of ANSi sources you
 - `persian` (Iran System encoding standard)
 - `portuguese` (Code page 860)
 - `russian` (code page 866)
+- `terminus` (modern font, code page 437)
 - `turkish` (code page 857)
 
 `AMIGA` fonts can be (all case-sensitive):
@@ -222,4 +223,4 @@ Also, cheers to all the great ASCII / ANSi artists around the world. You are the
 
 # License
 
-The framework is released under the [GNU General Public License Version 3](http://www.gnu.org/licenses/gpl-3.0.html).
+Ascension is released under a MIT-style license. See the file `LICENSE` for details.
