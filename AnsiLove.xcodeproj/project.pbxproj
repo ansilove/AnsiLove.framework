@@ -15,6 +15,7 @@
 		F82D6A581450045C00FD228B /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = F82D6A561450045C00FD228B /* MainMenu.xib */; };
 		F82D6A5F1450053B00FD228B /* AnsiLove.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8F0C93E144910340031E777 /* AnsiLove.framework */; };
 		F82D6A611450054B00FD228B /* AnsiLove.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = F8F0C93E144910340031E777 /* AnsiLove.framework */; };
+		F84066D9145A7618006F25F7 /* ansilove_font_pc_terminus.png in Resources */ = {isa = PBXBuildFile; fileRef = F84066D8145A7618006F25F7 /* ansilove_font_pc_terminus.png */; };
 		F8E082BC144996C300E30142 /* ALAnsiGenerator.h in Headers */ = {isa = PBXBuildFile; fileRef = F8E082B9144996C300E30142 /* ALAnsiGenerator.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F8E082BD144996C300E30142 /* ALAnsiGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = F8E082BA144996C300E30142 /* ALAnsiGenerator.m */; };
 		F8E082BE144996C300E30142 /* AnsiLove.h in Headers */ = {isa = PBXBuildFile; fileRef = F8E082BB144996C300E30142 /* AnsiLove.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -120,6 +121,7 @@
 		F82D6A531450045C00FD228B /* ALAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ALAppDelegate.h; sourceTree = "<group>"; };
 		F82D6A541450045C00FD228B /* ALAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ALAppDelegate.m; sourceTree = "<group>"; };
 		F82D6A571450045C00FD228B /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		F84066D8145A7618006F25F7 /* ansilove_font_pc_terminus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ansilove_font_pc_terminus.png; sourceTree = "<group>"; };
 		F8E082B9144996C300E30142 /* ALAnsiGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ALAnsiGenerator.h; sourceTree = "<group>"; };
 		F8E082BA144996C300E30142 /* ALAnsiGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ALAnsiGenerator.m; sourceTree = "<group>"; };
 		F8E082BB144996C300E30142 /* AnsiLove.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnsiLove.h; sourceTree = "<group>"; };
@@ -277,6 +279,7 @@
 				F8E082DD1449984700E30142 /* ansilove_font_pc_portuguese.png */,
 				F8E082DE1449984700E30142 /* ansilove_font_pc_russian.png */,
 				F8E082DF1449984700E30142 /* ansilove_font_pc_turkish.png */,
+				F84066D8145A7618006F25F7 /* ansilove_font_pc_terminus.png */,
 			);
 			path = fonts;
 			sourceTree = "<group>";
@@ -436,6 +439,7 @@
 				F8E0830A1449984700E30142 /* load_pcboard.php in Resources */,
 				F8E0830B1449984700E30142 /* load_tundra.php in Resources */,
 				F8E0830C1449984700E30142 /* load_xbin.php in Resources */,
+				F84066D9145A7618006F25F7 /* ansilove_font_pc_terminus.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
