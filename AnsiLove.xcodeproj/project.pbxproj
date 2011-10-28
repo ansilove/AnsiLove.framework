@@ -15,7 +15,6 @@
 		F82D6A581450045C00FD228B /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = F82D6A561450045C00FD228B /* MainMenu.xib */; };
 		F82D6A5F1450053B00FD228B /* AnsiLove.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8F0C93E144910340031E777 /* AnsiLove.framework */; };
 		F82D6A611450054B00FD228B /* AnsiLove.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = F8F0C93E144910340031E777 /* AnsiLove.framework */; };
-		F84066D9145A7618006F25F7 /* ansilove_font_pc_terminus.png in Resources */ = {isa = PBXBuildFile; fileRef = F84066D8145A7618006F25F7 /* ansilove_font_pc_terminus.png */; };
 		F84066DD145A8809006F25F7 /* ansilove_font_pc_terminus.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = F84066D8145A7618006F25F7 /* ansilove_font_pc_terminus.png */; };
 		F8E082BC144996C300E30142 /* ALAnsiGenerator.h in Headers */ = {isa = PBXBuildFile; fileRef = F8E082B9144996C300E30142 /* ALAnsiGenerator.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F8E082BD144996C300E30142 /* ALAnsiGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = F8E082BA144996C300E30142 /* ALAnsiGenerator.m */; };
@@ -441,7 +440,6 @@
 				F8E0830A1449984700E30142 /* load_pcboard.php in Resources */,
 				F8E0830B1449984700E30142 /* load_tundra.php in Resources */,
 				F8E0830C1449984700E30142 /* load_xbin.php in Resources */,
-				F84066D9145A7618006F25F7 /* ansilove_font_pc_terminus.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
