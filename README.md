@@ -11,7 +11,7 @@ This is a Cocoa framework for rendering ANSi art. It uses a modified version of 
 - BiNARY (.BIN) format support
 - ADF (.ADF) format support (Artworx)
 - iDF (.IDF) format support (iCE Draw)
-- TUNDRA (.TND) format support [details](http://tundradraw.sourceforge.net)
+- TUNDRA (.TND) format support [details](http://sourceforge.net/projects/tundradraw)
 - XBiN (.XB) format support [details](http://www.acid.org/info/xbin/xbin.htm)
 - Small output file size (4-bit PNG)
 - SAUCE (Standard Architecture for Universal Comment Extentions)
@@ -26,11 +26,11 @@ IBM PC (Code page 437), Baltic (Code page 775), Cyrillic (Code page 855), French
 
 # Documentation
 
-Let's talk about using this framework in your own projects. First of all, you have to download the sources and compile the framework. You need at least Mac OS X Lion and Xcode 4.2 for this purpose. The project contains two build targets, the framework itself and a test app `AnsiLoveGUI`, the latter is optional. Select `AnsiLoveGUI` from the Schemes dropdown in Xcode if you desire to compile that one too. The test app is a good example of implementing the AnsiLove.framework, it does not contain much code and what you find there is well commented. So `AnsiLoveGUI` might be your first place to play with the framework after studying this documentation. Basically this is an ARC framework. As far as I can estimate it will compile just fine with Garbace Collector enabled, though the test app is a pure ARC project. As mentioned on top of this page, AnsiLove.framework uses [AnsiLove](http://ansilove.sourceforge.net) as library, a special variant I modified to create what we got here on top of it. 
+Let's talk about using this framework in your own projects. First of all, you have to download the sources and compile the framework. You need at least Mac OS X Lion and Xcode 4.2 for this purpose. The project contains two build targets, the framework itself and a test app `AnsiLoveGUI`, the latter is optional. Select `AnsiLoveGUI` from the Schemes dropdown in Xcode if you desire to compile that one too. The test app is a good example of implementing the AnsiLove.framework, it does not contain much code and what you find there is well commented. So `AnsiLoveGUI` might be your first place to play with the framework after studying this documentation. Basically this is an ARC framework. As far as I can estimate it will compile just fine with Garbage Collector enabled, though the test app is a pure ARC project. As mentioned on top of this page, AnsiLove.framework uses [AnsiLove](http://ansilove.sourceforge.net) as library, a special variant I modified to create what we got here on top of it. 
 
 ## Adding the framework to your projects
 
-Place the compiled framework in a folder inside your project, I recommend creating a `frameworks` folder, if not existing. In Xcode go to the File menu and select `Add Files to "MyProject"`, select the AnsiLove.framework you just dropped in the `frameworks` folder and then drag the framework to the other frameworks in your project hierarchy. The last steps are pretty easy:
+Place the compiled framework in a folder inside your project, I recommend creating a `Frameworks` folder, if not existing. In Xcode go to the File menu and select `Add Files to "MyProject"`, select the AnsiLove.framework you just dropped in the `Frameworks` folder and then drag the framework to the other frameworks in your project hierarchy. The last steps are pretty easy:
 
 - In the project navigator, select your project
 - Select your target
@@ -38,7 +38,7 @@ Place the compiled framework in a folder inside your project, I recommend creati
 - Open `Link Binaries With Libraries` expander
 - Click the `+` button and select AnsiLove.framework
 - Hit `Add Build Phase` at the bottom
-- Add a `Copy Files` build phase with `frameworks` as destination
+- Add a `Copy Files` build phase with `Frameworks` as destination
 - Once again select AnsiLove.framework
 
 Now AnsiLove.framework is properly linked to your target and will be added to compiled binaries.
