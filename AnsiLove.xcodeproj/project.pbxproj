@@ -123,6 +123,7 @@
 		F82D6A541450045C00FD228B /* ALAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ALAppDelegate.m; sourceTree = "<group>"; };
 		F82D6A571450045C00FD228B /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		F84066D8145A7618006F25F7 /* ansilove_font_pc_terminus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ansilove_font_pc_terminus.png; sourceTree = "<group>"; };
+		F8D7EFD9146BCE9900059707 /* AnsiLoveGUI.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = AnsiLoveGUI.entitlements; path = AnsiLoveGUI/AnsiLoveGUI.entitlements; sourceTree = "<group>"; };
 		F8E082B9144996C300E30142 /* ALAnsiGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ALAnsiGenerator.h; sourceTree = "<group>"; };
 		F8E082BA144996C300E30142 /* ALAnsiGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ALAnsiGenerator.m; sourceTree = "<group>"; };
 		F8E082BB144996C300E30142 /* AnsiLove.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnsiLove.h; sourceTree = "<group>"; };
@@ -288,6 +289,7 @@
 		F8F0C932144910340031E777 = {
 			isa = PBXGroup;
 			children = (
+				F8D7EFD9146BCE9900059707 /* AnsiLoveGUI.entitlements */,
 				F8E082B8144996C300E30142 /* Classes */,
 				F8E082BF1449984700E30142 /* Library */,
 				F8F0C948144910340031E777 /* Supporting Files */,
@@ -504,10 +506,13 @@
 		F82D6A591450045C00FD228B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = AnsiLoveGUI/AnsiLoveGUI.entitlements;
+				CODE_SIGN_IDENTITY = "3rd Party Mac Developer Application: Stefan Vogt";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AnsiLoveGUI/AnsiLoveGUI-Prefix.pch";
 				INFOPLIST_FILE = "AnsiLoveGUI/AnsiLoveGUI-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -515,10 +520,13 @@
 		F82D6A5A1450045C00FD228B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = AnsiLoveGUI/AnsiLoveGUI.entitlements;
+				CODE_SIGN_IDENTITY = "3rd Party Mac Developer Application: Stefan Vogt";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AnsiLoveGUI/AnsiLoveGUI-Prefix.pch";
 				INFOPLIST_FILE = "AnsiLoveGUI/AnsiLoveGUI-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
