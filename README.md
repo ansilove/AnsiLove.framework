@@ -6,6 +6,7 @@ This is a Cocoa framework for rendering ANSi art. It uses a modified version of 
 
 - Automatic Reference Counting (ARC)
 - Mac App Store conform
+- App Sandboxing support
 - ANSi (.ANS) format support
 - PCBOARD (.PCB) format support
 - BiNARY (.BIN) format support
@@ -208,6 +209,10 @@ Now that you know about the different flags, you may also want to have a simple 
 # Output file example
 
 You may wonder how the output looks like? You'll find an example [here](http://cl.ly/1G2i2x3v2Z0n3u28433e/o).
+
+# App Sandboxing
+
+Basically the framework works great in sandboxed apps. The test app `AnsiLoveGUI` comes with App Sandboxing enabled and the interface is designed to aquire user selected read.write permission through NSOpenPanel and NSSavePanel instances. You may want to investigate the file `AnsiLoveGUI.entitlements` to see what kind of entitlements your app explicitly needs when using AnsiLove.framework. You should notice two temporary exceptions, these are not directly related to the framework. When invoking `/usr/bin/php` in sandboxed environments you get sandboxd violations for `/private/etc/protocols` and `/private/var/db/net-snmp`. This is caused by the PHP CLI and I filed rdar://10436809 regarding the issue.
 
 # Todo
 
