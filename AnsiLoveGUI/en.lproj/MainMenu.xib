@@ -1370,14 +1370,14 @@
 						<object class="NSTextField" id="692877694">
 							<reference key="NSNextResponder" ref="439893737"/>
 							<int key="NSvFlags">268</int>
-							<string key="NSFrame">{{20, 313}, {372, 22}}</string>
+							<string key="NSFrame">{{20, 313}, {336, 22}}</string>
 							<reference key="NSSuperview" ref="439893737"/>
 							<reference key="NSWindow"/>
-							<reference key="NSNextKeyView" ref="553987812"/>
+							<reference key="NSNextKeyView" ref="371776534"/>
 							<string key="NSReuseIdentifierKey">_NS:903</string>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSTextFieldCell" key="NSCell" id="48701579">
-								<int key="NSCellFlags">-1804468671</int>
+								<int key="NSCellFlags">-2072904127</int>
 								<int key="NSCellFlags2">272630784</int>
 								<string key="NSContents"/>
 								<reference key="NSSupport" ref="213119071"/>
@@ -1407,7 +1407,7 @@
 						<object class="NSTextField" id="553987812">
 							<reference key="NSNextResponder" ref="439893737"/>
 							<int key="NSvFlags">268</int>
-							<string key="NSFrame">{{19, 288}, {326, 17}}</string>
+							<string key="NSFrame">{{19, 288}, {377, 17}}</string>
 							<reference key="NSSuperview" ref="439893737"/>
 							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="166089821"/>
@@ -1415,7 +1415,7 @@
 							<object class="NSTextFieldCell" key="NSCell" id="684929552">
 								<int key="NSCellFlags">68288064</int>
 								<int key="NSCellFlags2">4326400</int>
-								<string key="NSContents">specify file and path like this: /Users/Stefan/MyAnsi.ans</string>
+								<string key="NSContents">file types: NFO, DIZ, ASC, XB, ANS, IDF, PCB, TND, ADF, BIN</string>
 								<object class="NSFont" key="NSSupport" id="26">
 									<string key="NSName">LucidaGrande</string>
 									<double key="NSSize">11</double>
@@ -1465,14 +1465,14 @@
 						<object class="NSTextField" id="302843544">
 							<reference key="NSNextResponder" ref="439893737"/>
 							<int key="NSvFlags">268</int>
-							<string key="NSFrame">{{20, 224}, {372, 22}}</string>
+							<string key="NSFrame">{{20, 224}, {336, 22}}</string>
 							<reference key="NSSuperview" ref="439893737"/>
 							<reference key="NSWindow"/>
-							<reference key="NSNextKeyView" ref="15417906"/>
+							<reference key="NSNextKeyView" ref="886083512"/>
 							<string key="NSReuseIdentifierKey">_NS:903</string>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSTextFieldCell" key="NSCell" id="688288496">
-								<int key="NSCellFlags">-1804468671</int>
+								<int key="NSCellFlags">-2072904127</int>
 								<int key="NSCellFlags2">272630784</int>
 								<string key="NSContents"/>
 								<reference key="NSSupport" ref="213119071"/>
@@ -1494,7 +1494,7 @@
 							<object class="NSTextFieldCell" key="NSCell" id="735842487">
 								<int key="NSCellFlags">68288064</int>
 								<int key="NSCellFlags2">4326400</int>
-								<string key="NSContents">specify file and path like this: /Users/Stefan/Desktop/MyAnsi.png</string>
+								<string key="NSContents">the output file size will be optimized (4-bit)</string>
 								<reference key="NSSupport" ref="26"/>
 								<reference key="NSControlView" ref="15417906"/>
 								<reference key="NSBackgroundColor" ref="1057324514"/>
@@ -1734,13 +1734,61 @@
 							<int key="NSTitlePosition">2</int>
 							<bool key="NSTransparent">NO</bool>
 						</object>
+						<object class="NSButton" id="371776534">
+							<reference key="NSNextResponder" ref="439893737"/>
+							<int key="NSvFlags">268</int>
+							<string key="NSFrame">{{358, 306}, {40, 32}}</string>
+							<reference key="NSSuperview" ref="439893737"/>
+							<reference key="NSWindow"/>
+							<reference key="NSNextKeyView" ref="553987812"/>
+							<string key="NSReuseIdentifierKey">_NS:687</string>
+							<bool key="NSEnabled">YES</bool>
+							<object class="NSButtonCell" key="NSCell" id="370211363">
+								<int key="NSCellFlags">67239424</int>
+								<int key="NSCellFlags2">134217728</int>
+								<string key="NSContents">...</string>
+								<reference key="NSSupport" ref="213119071"/>
+								<string key="NSCellIdentifier">_NS:687</string>
+								<reference key="NSControlView" ref="371776534"/>
+								<int key="NSButtonFlags">-2038284033</int>
+								<int key="NSButtonFlags2">129</int>
+								<string key="NSAlternateContents"/>
+								<string key="NSKeyEquivalent"/>
+								<int key="NSPeriodicDelay">200</int>
+								<int key="NSPeriodicInterval">25</int>
+							</object>
+						</object>
+						<object class="NSButton" id="886083512">
+							<reference key="NSNextResponder" ref="439893737"/>
+							<int key="NSvFlags">268</int>
+							<string key="NSFrame">{{358, 217}, {40, 32}}</string>
+							<reference key="NSSuperview" ref="439893737"/>
+							<reference key="NSWindow"/>
+							<reference key="NSNextKeyView" ref="15417906"/>
+							<string key="NSReuseIdentifierKey">_NS:687</string>
+							<bool key="NSEnabled">YES</bool>
+							<object class="NSButtonCell" key="NSCell" id="1015741039">
+								<int key="NSCellFlags">67239424</int>
+								<int key="NSCellFlags2">134217728</int>
+								<string key="NSContents">...</string>
+								<reference key="NSSupport" ref="213119071"/>
+								<string key="NSCellIdentifier">_NS:687</string>
+								<reference key="NSControlView" ref="886083512"/>
+								<int key="NSButtonFlags">-2038284033</int>
+								<int key="NSButtonFlags2">129</int>
+								<string key="NSAlternateContents"/>
+								<string key="NSKeyEquivalent"/>
+								<int key="NSPeriodicDelay">200</int>
+								<int key="NSPeriodicInterval">25</int>
+							</object>
+						</object>
 					</array>
 					<string key="NSFrameSize">{412, 380}</string>
 					<reference key="NSSuperview"/>
 					<reference key="NSWindow"/>
 					<reference key="NSNextKeyView" ref="723857864"/>
 				</object>
-				<string key="NSScreenRect">{{0, 0}, {1680, 1028}}</string>
+				<string key="NSScreenRect">{{0, 0}, {1680, 1050}}</string>
 				<string key="NSMaxSize">{10000000000000, 10000000000000}</string>
 				<string key="NSFrameAutosaveName">AnsiLoveGUI</string>
 				<bool key="NSWindowIsRestorable">YES</bool>
@@ -2510,6 +2558,22 @@
 					<int key="connectionID">605</int>
 				</object>
 				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">userDefinedInputFile:</string>
+						<reference key="source" ref="976324537"/>
+						<reference key="destination" ref="371776534"/>
+					</object>
+					<int key="connectionID">610</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">userDefinedOutputFile:</string>
+						<reference key="source" ref="976324537"/>
+						<reference key="destination" ref="886083512"/>
+					</object>
+					<int key="connectionID">611</int>
+				</object>
+				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
 						<string key="label">value: shouldUseIceColors</string>
 						<reference key="source" ref="77231506"/>
@@ -3185,7 +3249,6 @@
 							<reference ref="692877694"/>
 							<reference ref="553987812"/>
 							<reference ref="723857864"/>
-							<reference ref="302843544"/>
 							<reference ref="15417906"/>
 							<reference ref="166089821"/>
 							<reference ref="651652937"/>
@@ -3193,6 +3256,9 @@
 							<reference ref="199571579"/>
 							<reference ref="77231506"/>
 							<reference ref="1072328509"/>
+							<reference ref="302843544"/>
+							<reference ref="886083512"/>
+							<reference ref="371776534"/>
 						</array>
 						<reference key="parent" ref="972006081"/>
 					</object>
@@ -3895,6 +3961,32 @@
 						<reference key="object" ref="410051517"/>
 						<reference key="parent" ref="0"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">606</int>
+						<reference key="object" ref="371776534"/>
+						<array class="NSMutableArray" key="children">
+							<reference ref="370211363"/>
+						</array>
+						<reference key="parent" ref="439893737"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">607</int>
+						<reference key="object" ref="370211363"/>
+						<reference key="parent" ref="371776534"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">608</int>
+						<reference key="object" ref="886083512"/>
+						<array class="NSMutableArray" key="children">
+							<reference ref="1015741039"/>
+						</array>
+						<reference key="parent" ref="439893737"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">609</int>
+						<reference key="object" ref="1015741039"/>
+						<reference key="parent" ref="886083512"/>
+					</object>
 				</array>
 			</object>
 			<dictionary class="NSMutableDictionary" key="flattenedProperties">
@@ -4075,6 +4167,10 @@
 				<string key="572.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="58.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="589.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="606.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="607.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="608.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="609.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="72.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="73.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="74.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -4091,7 +4187,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">605</int>
+			<int key="maxID">611</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -4101,6 +4197,8 @@
 					<dictionary class="NSMutableDictionary" key="actions">
 						<string key="clearColumnsField:">id</string>
 						<string key="createPNGfromANSi:">id</string>
+						<string key="userDefinedInputFile:">id</string>
+						<string key="userDefinedOutputFile:">id</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="actionInfosByName">
 						<object class="IBActionInfo" key="clearColumnsField:">
@@ -4109,6 +4207,14 @@
 						</object>
 						<object class="IBActionInfo" key="createPNGfromANSi:">
 							<string key="name">createPNGfromANSi:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="userDefinedInputFile:">
+							<string key="name">userDefinedInputFile:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="userDefinedOutputFile:">
+							<string key="name">userDefinedOutputFile:</string>
 							<string key="candidateClassName">id</string>
 						</object>
 					</dictionary>
