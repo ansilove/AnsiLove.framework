@@ -19,6 +19,9 @@
             iceColorsCheck, columnsCheck, inputFile, outputFile, columns, font, bits, iceColors,
             shouldUseIceColors, enableColumnsField;
 
+# pragma mark -
+# pragma mark initialization
+
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
     // When the ANSi source does not make specific use of iCE colors,
@@ -31,6 +34,9 @@
     // just a nice feature I recommend as the columns flag is only needed for .bin files.
     self.enableColumnsField = NO;
 }
+
+# pragma mark -
+# pragma mark general actions
 
 // This method gets invoked by the 'Generate' button. It collects all the content the user
 // entered into the text fields and calls the framework. The synthesized string values above
@@ -65,6 +71,70 @@
     // we make sure that no content is passed when the columns flag is not needed.
     if ([columnsField isEnabled] == NO) {
         self.columns = @"";
+    }
+}
+
+# pragma mark -
+# pragma mark sandboxing related actions
+
+// Sandboxed applications require user interaction for opening and saving specifc files.
+// We register user-defined files via NSOpenPanel and NSSavePanel. Just entering a path
+// into the corresponding textfield won't work. That's why the textfields for input and
+// output are deactivated in AnsiLoveGUI. The user is forced to hit the button and thus 
+// authenticating the whole operation.
+
+- (IBAction)userDefinedInputFile:(id)sender
+{
+    NSOpenPanel *openPanel = [NSOpenPanel openPanel];
+    
+    // Define a custom 'Open' button first.
+    [openPanel setPrompt:@"Set as Input"];
+    
+    // We should limit the extensions available for open files to those supported by 
+    // AnsiLove.framework...  everything else just doesn't make any sense!
+    NSArray *reqInTypes = [NSArray arrayWithObjects:
+                           @"nfo", @"diz", @"asc", @"xb", @"ans", @"idf", @"pcb", @"tnd",
+                           @"adf", @"bin", nil];
+    [openPanel setAllowedFileTypes:reqInTypes];
+    [openPanel setAllowsOtherFileTypes:NO];
+    
+    // A better title is appreciated!
+    [openPanel setTitle:@"Choose ANSI Source"];
+    
+    if ([openPanel runModal] == NSOKButton)
+    {
+        // Get openPanel's URL and create a string from it. Remember to pass strings 
+        // to AnsiLove.framework and no URLs.
+        NSURL *inputURL = [openPanel URL];
+        self.inputFile = [inputURL path];
+    }
+}
+
+- (IBAction)userDefinedOutputFile:(id)sender
+{
+    NSSavePanel *savePanel = [NSSavePanel savePanel];
+    
+    // We want a custom 'Save' button.
+    [savePanel setPrompt:@"Set as Output"];
+    
+    // AnsiLove.framework generates PNG images from ANSi sources. The user should not
+    // be able to specify an extension other than PNG, hence we add a limitation.
+    NSArray *reqOutTypes = [NSArray arrayWithObjects:@"png", nil];
+    [savePanel setAllowedFileTypes:reqOutTypes];
+    [savePanel setAllowsOtherFileTypes:NO];
+    
+    // Let's optionally see the PNG extension in savePanel.
+    [savePanel setCanSelectHiddenExtension:YES];
+    
+    // There's some need for a better title (though not much better).
+    [savePanel setTitle:@"Save PNG"];
+    
+    if ([savePanel runModal] == NSOKButton)
+    {   
+        // We need a string, so get the path as string value from savepanel's URL.
+        // The string is now ready for passing to ALAnsiGenerator.
+        NSURL *outputURL = [savePanel URL];
+        self.outputFile = [outputURL path];
     }
 }
 
