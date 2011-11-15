@@ -1,6 +1,6 @@
 # AnsiLove.framework
 
-This is a Cocoa framework for rendering ANSi art. It uses a modified version of [Frederic Cambus'](http://www.cambus.net) awesome [AnsiLove](http://ansilove.sourceforge.net) as library. Note that the AnsiLove.framework creates PNG images from ANSi source files, any generated output will be read-only. While the framework is pure Objective-C, the AnsiLove library underneath is a PHP commandline utility. PHP CLI (installed by default on Mac OS X Lion) is used to process given files.
+This is a Cocoa framework for rendering ANSi art. It uses a modified version of [Frederic Cambus'](http://www.cambus.net) awesome [AnsiLove](http://ansilove.sourceforge.net) as library. Note that the AnsiLove.framework creates PNG images from ANSi source files, any generated output will be read-only. While the framework is pure Objective-C, the [AnsiLove](http://ansilove.sourceforge.net) library underneath is a PHP commandline utility. PHP CLI (installed by default on Mac OS X Lion) is used to process given files.
 
 # Features
 
