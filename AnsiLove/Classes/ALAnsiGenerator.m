@@ -72,7 +72,15 @@
     [task setArguments:arguments];
     [task setStandardOutput:pipe];
     
+    // Ready for launch in 3... 2... 1...
     [task launch];
+    
+    // Stay in limbo until rendering is finished.
+    [task waitUntilExit];
+    
+    // Post a notification so any listener will know rendering has finished now.
+    NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
+	[nc postNotificationName:@"AnsiLoveFinishedRendering" object:self];
 }
 
 @end
