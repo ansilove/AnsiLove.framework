@@ -39,9 +39,10 @@
 @property (assign) BOOL shouldUseIceColors;
 @property (assign) BOOL enableColumnsField;
 
-// general actions
+// general actions and methods
 - (IBAction)createPNGfromANSi:(id)sender;
 - (IBAction)clearColumnsField:(id)sender;
+- (void)postFinishedRenderingToLog:(NSNotification *)notification;
 
 // sandboxing related actions
 - (IBAction)userDefinedInputFile:(id)sender;

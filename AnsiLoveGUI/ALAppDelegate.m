@@ -33,6 +33,17 @@
     // Note that this has NO educational purpose for the AnsiLove.framework, it's
     // just a nice feature I recommend as the columns flag is only needed for .bin files.
     self.enableColumnsField = NO;
+    
+    // AnsiLove.framework fires a notification once rendering of given ANSi source files
+    // completed. If this is relevant for your app (e.g. you can't load an instance of an
+    // image as long as it's not created) it should listen to AnsiLoveFinishedRendering.
+    // In this example app I've implemented a simple selector that just posts a message
+    // to NSLog once it recieved the finishedRendering note.
+    NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
+    [nc addObserver:self 
+           selector:@selector(postFinishedRenderingToLog:)
+               name:@"AnsiLoveFinishedRendering"
+             object:nil];
 }
 
 # pragma mark -
@@ -63,6 +74,12 @@
                                         font:self.font 
                                         bits:self.bits 
                                    iceColors:self.iceColors];
+}
+
+- (void)postFinishedRenderingToLog:(NSNotification *)notification
+{
+    // This selector gets invoked once the AnsiLove.framework finished rendering.
+    NSLog(@"Rendering of the ANSi source file has finished.");
 }
 
 - (IBAction)clearColumnsField:(id)sender 
