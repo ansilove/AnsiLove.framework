@@ -206,13 +206,25 @@ Now that you know about the different flags, you may also want to have a simple 
 	| XB  |         |       |       |           |
 	|_____|_________|_______|_______|___________|
 
-# Output file example
+# Rendering Process Feedback
 
-You may wonder how the output looks like? You'll find an example [here](http://cl.ly/1G2i2x3v2Z0n3u28433e/o).
+AnsiLove.framework will post a notification once processing of given source files is finished. In most cases it's pretty important to know when rendering is done. One might want to present an informal dialog or update the UI afterwards. For making your app listen to the `AnsiLoveFinishedRendering` note, all you need is adding this to the `init` method of the class you consider as relevant:
+
+    NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
+    [nc addObserver:self 
+           selector:@selector(addYourCustomSelectorHere:)
+               name:@"AnsiLoveFinishedRendering"
+             object:nil];
+
+The test app `AnsiLoveGUI` has a simple implementation that posts a message to NSLog as soon as the rendering is completed. 
 
 # App Sandboxing
 
-Basically the framework works great in sandboxed apps. The test app `AnsiLoveGUI` comes with App Sandboxing enabled and the interface is designed to aquire user selected read.write permission through NSOpenPanel and NSSavePanel instances. You may want to investigate the file `AnsiLoveGUI.entitlements` to see what kind of entitlements your app explicitly needs when using AnsiLove.framework. You should notice two temporary exceptions, these are not directly related to the framework. When invoking `/usr/bin/php` in sandboxed environments you get sandboxd violations for `/private/etc/protocols` and `/private/var/db/net-snmp`. This is caused by the PHP CLI and I filed rdar://10436809 regarding the issue.
+Basically the framework works great in sandboxed apps. `AnsiLoveGUI` comes with App Sandboxing enabled and the interface is designed to aquire user selected read.write permission through NSOpenPanel and NSSavePanel instances. You may want to investigate the file `AnsiLoveGUI.entitlements` to see what kind of entitlements your app explicitly needs when using AnsiLove.framework. You should notice two temporary exceptions, these are not directly related to the framework. When invoking `/usr/bin/php` in sandboxed environments you get sandboxd violations for `/private/etc/protocols` and `/private/var/db/net-snmp`. This is caused by the PHP CLI and I filed rdar://10436809 regarding the issue.
+
+# Output file example
+
+You may wonder how the output looks like? You'll find an example [here](http://cl.ly/1G2i2x3v2Z0n3u28433e/o).
 
 # Todo
 
