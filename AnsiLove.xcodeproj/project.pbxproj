@@ -29,6 +29,8 @@
 		F8E0830A1449984700E30142 /* load_pcboard.php in Resources */ = {isa = PBXBuildFile; fileRef = F8E082E41449984700E30142 /* load_pcboard.php */; };
 		F8E0830B1449984700E30142 /* load_tundra.php in Resources */ = {isa = PBXBuildFile; fileRef = F8E082E51449984700E30142 /* load_tundra.php */; };
 		F8E0830C1449984700E30142 /* load_xbin.php in Resources */ = {isa = PBXBuildFile; fileRef = F8E082E61449984700E30142 /* load_xbin.php */; };
+		F8EAE722147E4E6E005BA3A1 /* ALSauceMachine.h in Headers */ = {isa = PBXBuildFile; fileRef = F8EAE720147E4E6E005BA3A1 /* ALSauceMachine.h */; };
+		F8EAE723147E4E6E005BA3A1 /* ALSauceMachine.m in Sources */ = {isa = PBXBuildFile; fileRef = F8EAE721147E4E6E005BA3A1 /* ALSauceMachine.m */; };
 		F8EE6669144A06E500AFDEB0 /* ansilove_background.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = F8E082C41449984700E30142 /* ansilove_background.png */; };
 		F8EE666A144A06E500AFDEB0 /* ansilove_font_amiga_b-strict.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = F8E082C51449984700E30142 /* ansilove_font_amiga_b-strict.png */; };
 		F8EE666B144A06E500AFDEB0 /* ansilove_font_amiga_b-struct.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = F8E082C61449984700E30142 /* ansilove_font_amiga_b-struct.png */; };
@@ -165,6 +167,8 @@
 		F8E082E41449984700E30142 /* load_pcboard.php */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.php; path = load_pcboard.php; sourceTree = "<group>"; };
 		F8E082E51449984700E30142 /* load_tundra.php */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.php; path = load_tundra.php; sourceTree = "<group>"; };
 		F8E082E61449984700E30142 /* load_xbin.php */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.php; path = load_xbin.php; sourceTree = "<group>"; };
+		F8EAE720147E4E6E005BA3A1 /* ALSauceMachine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ALSauceMachine.h; sourceTree = "<group>"; };
+		F8EAE721147E4E6E005BA3A1 /* ALSauceMachine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ALSauceMachine.m; sourceTree = "<group>"; };
 		F8F0C93E144910340031E777 /* AnsiLove.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AnsiLove.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F8F0C941144910340031E777 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		F8F0C944144910340031E777 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -225,6 +229,8 @@
 			children = (
 				F8E082B9144996C300E30142 /* ALAnsiGenerator.h */,
 				F8E082BA144996C300E30142 /* ALAnsiGenerator.m */,
+				F8EAE720147E4E6E005BA3A1 /* ALSauceMachine.h */,
+				F8EAE721147E4E6E005BA3A1 /* ALSauceMachine.m */,
 				F8E082BB144996C300E30142 /* AnsiLove.h */,
 			);
 			name = Classes;
@@ -347,6 +353,7 @@
 			files = (
 				F8E082BC144996C300E30142 /* ALAnsiGenerator.h in Headers */,
 				F8E082BE144996C300E30142 /* AnsiLove.h in Headers */,
+				F8EAE722147E4E6E005BA3A1 /* ALSauceMachine.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -462,6 +469,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F8E082BD144996C300E30142 /* ALAnsiGenerator.m in Sources */,
+				F8EAE723147E4E6E005BA3A1 /* ALSauceMachine.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
