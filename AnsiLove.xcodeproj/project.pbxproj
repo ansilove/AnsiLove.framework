@@ -29,7 +29,7 @@
 		F8E0830A1449984700E30142 /* load_pcboard.php in Resources */ = {isa = PBXBuildFile; fileRef = F8E082E41449984700E30142 /* load_pcboard.php */; };
 		F8E0830B1449984700E30142 /* load_tundra.php in Resources */ = {isa = PBXBuildFile; fileRef = F8E082E51449984700E30142 /* load_tundra.php */; };
 		F8E0830C1449984700E30142 /* load_xbin.php in Resources */ = {isa = PBXBuildFile; fileRef = F8E082E61449984700E30142 /* load_xbin.php */; };
-		F8EAE722147E4E6E005BA3A1 /* ALSauceMachine.h in Headers */ = {isa = PBXBuildFile; fileRef = F8EAE720147E4E6E005BA3A1 /* ALSauceMachine.h */; };
+		F8EAE722147E4E6E005BA3A1 /* ALSauceMachine.h in Headers */ = {isa = PBXBuildFile; fileRef = F8EAE720147E4E6E005BA3A1 /* ALSauceMachine.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F8EAE723147E4E6E005BA3A1 /* ALSauceMachine.m in Sources */ = {isa = PBXBuildFile; fileRef = F8EAE721147E4E6E005BA3A1 /* ALSauceMachine.m */; };
 		F8EE6669144A06E500AFDEB0 /* ansilove_background.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = F8E082C41449984700E30142 /* ansilove_background.png */; };
 		F8EE666A144A06E500AFDEB0 /* ansilove_font_amiga_b-strict.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = F8E082C51449984700E30142 /* ansilove_font_amiga_b-strict.png */; };
@@ -351,8 +351,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F8E082BC144996C300E30142 /* ALAnsiGenerator.h in Headers */,
 				F8E082BE144996C300E30142 /* AnsiLove.h in Headers */,
+				F8E082BC144996C300E30142 /* ALAnsiGenerator.h in Headers */,
 				F8EAE722147E4E6E005BA3A1 /* ALSauceMachine.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
