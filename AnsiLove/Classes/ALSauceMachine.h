@@ -25,9 +25,9 @@ typedef struct {
     char             author[21];
     char             group[21];
     char             date[9];
-    int              filesize;
-    unsigned char    datatype;
-    unsigned char    filetype;
+    int              fileSize;
+    unsigned char    dataType;
+    unsigned char    fileType;
     unsigned short   tinfo1;
     unsigned short   tinfo2;
     unsigned short   tinfo3;
@@ -40,8 +40,24 @@ typedef struct {
 
 @interface ALSauceMachine : NSObject
 
+// sauce properties
+@property (nonatomic, weak)   NSString  *id;
+@property (nonatomic, weak)   NSString  *version;
+@property (nonatomic, weak)   NSString  *title;
+@property (nonatomic, weak)   NSString  *author;
+@property (nonatomic, weak)   NSString  *group;
+@property (nonatomic, weak)   NSString  *date;
+@property (nonatomic, weak)   NSString  *dataType;
+@property (nonatomic, weak)   NSString  *fileType;
+@property (nonatomic, weak)   NSString  *flags;
+@property (nonatomic, assign) NSInteger *tinfo1;
+@property (nonatomic, assign) NSInteger *tinfo2;
+@property (nonatomic, assign) NSInteger *tinfo3;
+@property (nonatomic, assign) NSInteger *tinfo4;
+@property (nonatomic, weak)   NSString  *comments;
+
 // bridge methods (Cocoa)
-+ (void)readSauceRecordFromFile:(NSString *)inputFile;
+- (void)readRecordFromFile:(NSString *)inputFile;
 
 // class internal (ye good olde C)
 sauce     *sauceReadFileName(char *fileName);

@@ -15,6 +15,9 @@
 
 @implementation ALSauceMachine
 
+@synthesize id, version, title, author, group, date, dataType, fileType, flags, 
+            tinfo1, tinfo2, tinfo3, tinfo4, comments;
+
 # pragma -
 # pragma mark bridge methods (Cocoa)
 
@@ -24,7 +27,7 @@
     return self;
 }
 
-+ (void)readSauceRecordFromFile:(NSString *)inputFile 
+- (void)readRecordFromFile:(NSString *)inputFile 
 {
     if (inputFile == nil || inputFile == @"") {
         // Y U NO have content? U get outta my method!
@@ -42,34 +45,33 @@
     
     // No Sauce record inside the file? Stop here.
     if (strcmp(record->id, SAUCE_ID) != 0) {
-        NSLog(@"File does not have a SAUCE record");
         return;
     }
     
     // Let us admire the sauce record in NSLog.
     // THIS IS JUST FOR TESTING - A BETTER IMPLEMENTATION IS ON THE WAY!
-    NSLog(@"%9s: [%s]\n", "id", record->id);
-    NSLog(@"%9s: [%s]\n", "version", record->version);
-    NSLog(@"%9s: [%s]\n", "title", record->title);
-    NSLog(@"%9s: [%s]\n", "autor", record->author);
-    NSLog(@"%9s: [%s]\n", "group", record->group);
-    NSLog(@"%9s: [%s]\n", "date", record->date);
-    NSLog(@"%9s: [%d]\n", "filesize", record->filesize);
-    NSLog(@"%9s: [%d]\n", "datatype", record->datatype);
-    NSLog(@"%9s: [%d]\n", "filetype", record->filetype);
-    NSLog(@"%9s: [%d]\n", "tinfo1", record->tinfo1);
-    NSLog(@"%9s: [%d]\n", "tinfo2", record->tinfo2);
-    NSLog(@"%9s: [%d]\n", "tinfo3", record->tinfo3);
-    NSLog(@"%9s: [%d]\n", "tinfo4", record->tinfo4);
-    NSLog(@"%9s: [%d]\n", "comments", record->comments);
+    NSLog(@"%9s: %s\n", "id", record->id);
+    NSLog(@"%9s: %s\n", "version", record->version);
+    NSLog(@"%9s: %s\n", "title", record->title);
+    NSLog(@"%9s: %s\n", "autor", record->author);
+    NSLog(@"%9s: %s\n", "group", record->group);
+    NSLog(@"%9s: %s\n", "date", record->date);
+    NSLog(@"%9s: %d\n", "fileSize", record->fileSize);
+    NSLog(@"%9s: %d\n", "dataType", record->dataType);
+    NSLog(@"%9s: %d\n", "fileType", record->fileType);
+    NSLog(@"%9s: %d\n", "tinfo1", record->tinfo1);
+    NSLog(@"%9s: %d\n", "tinfo2", record->tinfo2);
+    NSLog(@"%9s: %d\n", "tinfo3", record->tinfo3);
+    NSLog(@"%9s: %d\n", "tinfo4", record->tinfo4);
+    NSLog(@"%9s: %d\n", "comments", record->comments);
     if (record->comments > 0) {
         NSInteger i;
         for (i = 0; i < record->comments; i++) {
-            NSLog(@"%9s: [%s]\n", "", record->comment_lines[ i ]);
+            NSLog(@"%9s: %s\n", "", record->comment_lines[ i ]);
         }
     }
-    NSLog(@"%9s: [%d]\n", "flags", record->flags);
-    NSLog(@"%9s: [%s]\n", "filler", record->filler);
+    NSLog(@"%9s: %d\n", "flags", record->flags);
+    NSLog(@"%9s: %s\n", "filler", record->filler);
 }
 
 # pragma -
@@ -135,14 +137,14 @@ void readRecord(FILE *file, sauce *record)
         NSLog(@"Unable to read SAUCE date");
     }
     record->date[sizeof(record->date) - 1] = '\0';
-    if (fread(&(record->filesize), sizeof(record->filesize), 1, file) != 1) {
-        NSLog(@"Unable to read SAUCE filesize");
+    if (fread(&(record->fileSize), sizeof(record->fileSize), 1, file) != 1) {
+        NSLog(@"Unable to read SAUCE fileSize");
     }
-    if (fread(&(record->datatype), sizeof(record->datatype), 1, file) != 1) {
-        NSLog(@"Unable to read SAUCE datatype");
+    if (fread(&(record->dataType), sizeof(record->dataType), 1, file) != 1) {
+        NSLog(@"Unable to read SAUCE dataType");
     }
-    if (fread(&(record->filetype), sizeof(record->filetype), 1, file) != 1) {
-        NSLog(@"Unable to read SAUCE filetype");
+    if (fread(&(record->fileType), sizeof(record->fileType), 1, file) != 1) {
+        NSLog(@"Unable to read SAUCE fileType");
     }
     if (fread(&(record->tinfo1), sizeof(record->tinfo1), 1, file) != 1) {
         NSLog(@"Unable to read SAUCE tinfo1");
@@ -274,9 +276,9 @@ NSInteger writeRecord(FILE *file, sauce *record)
     fwrite(record->author, sizeof(record->author) - 1, 1, file);
     fwrite(record->group, sizeof(record->group) - 1, 1, file);
     fwrite(record->date, sizeof(record->date) - 1, 1, file);
-    fwrite(&(record->filesize), sizeof(record->filesize), 1, file);
-    fwrite(&(record->datatype), sizeof(record->datatype), 1, file);
-    fwrite(&(record->filetype), sizeof(record->filetype), 1, file);
+    fwrite(&(record->fileSize), sizeof(record->fileSize), 1, file);
+    fwrite(&(record->dataType), sizeof(record->dataType), 1, file);
+    fwrite(&(record->fileType), sizeof(record->fileType), 1, file);
     fwrite(&(record->tinfo1), sizeof(record->tinfo1), 1, file);
     fwrite(&(record->tinfo2), sizeof(record->tinfo2), 1, file);
     fwrite(&(record->tinfo3), sizeof(record->tinfo3), 1, file);
@@ -312,7 +314,7 @@ NSInteger sauceRemoveFile(FILE *file)
     if (record == NULL || strcmp(record->id, SAUCE_ID) != 0) {
         return EXIT_SUCCESS;
     }
-    if (ftruncate(fileno(file), record->filesize) != 0) {
+    if (ftruncate(fileno(file), record->fileSize) != 0) {
         NSLog(@"Truncate failed");
     }
     return EXIT_SUCCESS;
