@@ -124,6 +124,10 @@
         // to AnsiLove.framework and no URLs.
         NSURL *inputURL = [openPanel URL];
         self.inputFile = [inputURL path];
+        
+        // Just testing the new SAUCE record reading feature. THIS CODE IS TEMPORARY.
+        // A better implementation will be added to the sample app very soon.
+        [ALSauceMachine readSauceRecordFromFile:self.inputFile];
     }
 }
 
