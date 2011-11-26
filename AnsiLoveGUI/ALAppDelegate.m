@@ -127,7 +127,8 @@
         
         // Just testing the new SAUCE record reading feature. THIS CODE IS TEMPORARY.
         // A better implementation will be added to the sample app very soon.
-        [ALSauceMachine readSauceRecordFromFile:self.inputFile];
+        ALSauceMachine *sauce = [[ALSauceMachine alloc] init];
+        [sauce readRecordFromFile:self.inputFile];
     }
 }
 
