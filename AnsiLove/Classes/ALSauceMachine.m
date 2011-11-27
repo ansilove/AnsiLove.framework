@@ -84,7 +84,8 @@ sauce *sauceReadFileName(char *fileName)
     FILE *file = fopen(fileName, "r");
     if (file == NULL) {
         return NULL;
-    }    
+    }
+    
     sauce *record = sauceReadFile(file);
     fclose(file);
     return record;
@@ -95,8 +96,8 @@ sauce *sauceReadFileName(char *fileName)
 sauce *sauceReadFile(FILE *file) 
 {
     sauce *record;
-    
     record = malloc(sizeof *record);
+    
     if (record != NULL) {
         readRecord(file, record);
     }
@@ -117,62 +118,33 @@ void readRecord(FILE *file, sauce *record)
         free(record);
         return;
     }
-    if (fread(record->version, sizeof(record->version) - 1, 1, file) != 1) {
-        NSLog(@"Unable to read SAUCE version");
-    }
+    fread(record->version, sizeof(record->version) - 1, 1, file);
     record->version[sizeof(record->version) - 1] = '\0';
-    if (fread(record->title, sizeof(record->title) - 1, 1, file) != 1) {
-        NSLog(@"Unable to read SAUCE title");
-    }
+    fread(record->title, sizeof(record->title) - 1, 1, file);    
     record->title[sizeof(record->title) - 1] = '\0';
-    if (fread(record->author, sizeof(record->author) - 1, 1, file) != 1) {
-        NSLog(@"Unable to read SAUCE author");
-    }
+    fread(record->author, sizeof(record->author) - 1, 1, file);
     record->author[sizeof(record->author) - 1] = '\0';
-    if (fread(record->group, sizeof(record->group) - 1, 1, file) != 1) {
-        NSLog(@"Unable to read SAUCE group");
-    }
+    fread(record->group, sizeof(record->group) - 1, 1, file);    
     record->group[sizeof(record->group) - 1] = '\0';
-    if (fread(record->date, sizeof(record->date) - 1, 1, file) != 1) {
-        NSLog(@"Unable to read SAUCE date");
-    }
+    fread(record->date, sizeof(record->date) - 1, 1, file);
     record->date[sizeof(record->date) - 1] = '\0';
-    if (fread(&(record->fileSize), sizeof(record->fileSize), 1, file) != 1) {
-        NSLog(@"Unable to read SAUCE fileSize");
-    }
-    if (fread(&(record->dataType), sizeof(record->dataType), 1, file) != 1) {
-        NSLog(@"Unable to read SAUCE dataType");
-    }
-    if (fread(&(record->fileType), sizeof(record->fileType), 1, file) != 1) {
-        NSLog(@"Unable to read SAUCE fileType");
-    }
-    if (fread(&(record->tinfo1), sizeof(record->tinfo1), 1, file) != 1) {
-        NSLog(@"Unable to read SAUCE tinfo1");
-    }
-    if (fread(&(record->tinfo2), sizeof(record->tinfo2), 1, file) != 1) {
-        NSLog(@"Unable to read SAUCE tinfo2");
-    }
-    if (fread(&(record->tinfo3), sizeof(record->tinfo3), 1, file) != 1) {
-        NSLog(@"Unable to read SAUCE tinfo3");
-    }
-    if (fread(&(record->tinfo4), sizeof(record->tinfo4), 1, file) != 1) {
-        NSLog(@"Unable to read SAUCE tinfo4");
-    }
-    if (fread(&(record->comments), sizeof(record->comments), 1, file) != 1) {
-        NSLog(@"Unable to read SAUCE comments");
-    }
-    if (fread(&(record->flags), sizeof(record->flags), 1, file) != 1) {
-        NSLog(@"Unable to read SAUCE flags");
-    }
-    if (fread(record->filler, sizeof(record->filler) - 1, 1, file) != 1) {
-        NSLog(@"Unable to read SAUCE filler");
-    }
+    fread(&(record->fileSize), sizeof(record->fileSize), 1, file);    
+    fread(&(record->dataType), sizeof(record->dataType), 1, file);    
+    fread(&(record->fileType), sizeof(record->fileType), 1, file);
+    fread(&(record->tinfo1), sizeof(record->tinfo1), 1, file);
+    fread(&(record->tinfo2), sizeof(record->tinfo2), 1, file);
+    fread(&(record->tinfo3), sizeof(record->tinfo3), 1, file);
+    fread(&(record->tinfo4), sizeof(record->tinfo4), 1, file);
+    fread(&(record->comments), sizeof(record->comments), 1, file);
+    fread(&(record->flags), sizeof(record->flags), 1, file);
+    fread(record->filler, sizeof(record->filler) - 1, 1, file);
     record->filler[sizeof(record->filler) - 1] = '\0';
     
     if (ferror(file) != 0) {
         free(record);
         return;
     }
+    
     if (record->comments > 0) {
         record->comment_lines = malloc(record->comments *sizeof(*record->comment_lines));
         
@@ -192,21 +164,18 @@ void readComments(FILE *file, char **comment_lines, NSInteger comments)
     
     if (fseek(file, 0 - (RECORD_SIZE + 5 + COMMENT_SIZE *comments), SEEK_END) == 0) {
         char id[6];
-        if (fread(id, sizeof(id) - 1, 1, file) != 1) {
-            NSLog(@"COMNT record truncated (ID failed)");
-        }
+        fread(id, sizeof(id) - 1, 1, file);
         id[sizeof(id) - 1] = '\0';
         
         if (strcmp(id, COMMENT_ID) != 0) {
             free(comment_lines);
             return;
         }
+        
         for (i = 0; i < comments; i++) {
             char buf[COMMENT_SIZE + 1] = "";
             
-            if (fread(buf, COMMENT_SIZE, 1, file) != 1) {
-                NSLog(@"COMNT record truncated (comment line failed)");
-            }
+            fread(buf, COMMENT_SIZE, 1, file);
             buf[COMMENT_SIZE] = '\0';
             
             if (ferror(file) == 0) {
@@ -261,6 +230,7 @@ NSInteger writeRecord(FILE *file, sauce *record)
     if (fseek(file, 0, SEEK_END) != 0) {
         return EXIT_FAILURE;
     }
+    
     fwrite("\032", 1, 1, file);
     
     if (record->comments != 0) {
@@ -299,6 +269,7 @@ NSInteger sauceRemoveFileName(char *fileName)
     if (file == NULL) {
         return EXIT_FAILURE;
     }
+    
     NSInteger rc = sauceRemoveFile(file);
     
     fclose(file);
@@ -314,9 +285,11 @@ NSInteger sauceRemoveFile(FILE *file)
     if (record == NULL || strcmp(record->id, SAUCE_ID) != 0) {
         return EXIT_SUCCESS;
     }
+    
     if (ftruncate(fileno(file), record->fileSize) != 0) {
         NSLog(@"Truncate failed");
     }
+    
     return EXIT_SUCCESS;
 }
 
