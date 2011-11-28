@@ -45,7 +45,11 @@
     
     // No Sauce record inside the file? Stop here.
     if (strcmp(record->id, SAUCE_ID) != IDENTICAL) {
+        self.fileHasRecord = NO;
         return;
+    }
+    else {
+        self.fileHasRecord = YES;
     }
     
     // Let us admire the sauce record in NSLog.
