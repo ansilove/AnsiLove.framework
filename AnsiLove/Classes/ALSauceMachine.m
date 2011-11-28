@@ -16,7 +16,7 @@
 @implementation ALSauceMachine
 
 @synthesize id, version, title, author, group, date, dataType, fileType, flags, 
-            tinfo1, tinfo2, tinfo3, tinfo4, comments;
+            tinfo1, tinfo2, tinfo3, tinfo4, comments, fileHasRecord;
 
 # pragma -
 # pragma mark bridge methods (Cocoa)
@@ -44,7 +44,7 @@
     sauce *record = sauceReadFileName((char *)inputChar);
     
     // No Sauce record inside the file? Stop here.
-    if (strcmp(record->id, SAUCE_ID) != 0) {
+    if (strcmp(record->id, SAUCE_ID) != IDENTICAL) {
         return;
     }
     
@@ -67,7 +67,7 @@
     if (record->comments > 0) {
         NSInteger i;
         for (i = 0; i < record->comments; i++) {
-            NSLog(@"%9s: %s\n", "", record->comment_lines[ i ]);
+            NSLog(@"%9s: %s\n", "", record->comment_lines[i]);
         }
     }
     NSLog(@"%9s: %d\n", "flags", record->flags);
@@ -106,7 +106,7 @@ sauce *sauceReadFile(FILE *file)
 
 void readRecord(FILE *file, sauce *record) 
 {
-    if (fseek(file, 0 - RECORD_SIZE, SEEK_END) != 0) {
+    if (fseek(file, 0 - RECORD_SIZE, SEEK_END) != EXIT_SUCCESS) {
         free(record);
         return;
     }
@@ -114,7 +114,7 @@ void readRecord(FILE *file, sauce *record)
     NSInteger read_status = fread(record->id, sizeof(record->id) - 1, 1, file);
     record->id[sizeof(record->id) - 1] = '\0';
     
-    if (read_status != 1 || strcmp(record->id, SAUCE_ID) != 0) {
+    if (read_status != 1 || strcmp(record->id, SAUCE_ID) != IDENTICAL) {
         free(record);
         return;
     }
@@ -140,7 +140,7 @@ void readRecord(FILE *file, sauce *record)
     fread(record->filler, sizeof(record->filler) - 1, 1, file);
     record->filler[sizeof(record->filler) - 1] = '\0';
     
-    if (ferror(file) != 0) {
+    if (ferror(file) != EXIT_SUCCESS) {
         free(record);
         return;
     }
@@ -162,12 +162,12 @@ void readComments(FILE *file, char **comment_lines, NSInteger comments)
 {
     NSInteger i;
     
-    if (fseek(file, 0 - (RECORD_SIZE + 5 + COMMENT_SIZE *comments), SEEK_END) == 0) {
+    if (fseek(file, 0 - (RECORD_SIZE + 5 + COMMENT_SIZE *comments), SEEK_END) == EXIT_SUCCESS) {
         char id[6];
         fread(id, sizeof(id) - 1, 1, file);
         id[sizeof(id) - 1] = '\0';
         
-        if (strcmp(id, COMMENT_ID) != 0) {
+        if (strcmp(id, COMMENT_ID) != IDENTICAL) {
             free(comment_lines);
             return;
         }
@@ -178,7 +178,7 @@ void readComments(FILE *file, char **comment_lines, NSInteger comments)
             fread(buf, COMMENT_SIZE, 1, file);
             buf[COMMENT_SIZE] = '\0';
             
-            if (ferror(file) == 0) {
+            if (ferror(file) == EXIT_SUCCESS) {
                 comment_lines[i] = strdup(buf);
                 if (comment_lines[i] == NULL) {
                     free(comment_lines);
@@ -216,7 +216,7 @@ NSInteger sauceWriteFileName(char *fileName, sauce *record)
 // @param file The FILE pointer in which to write the SAUCE record
 NSInteger sauceWriteFile(FILE *file, sauce *record) 
 {
-    if (sauceRemoveFile(file) == 0) {
+    if (sauceRemoveFile(file) == EXIT_SUCCESS) {
         NSInteger rc = writeRecord(file, record);
         return rc;
     }
@@ -227,7 +227,7 @@ NSInteger sauceWriteFile(FILE *file, sauce *record)
 
 NSInteger writeRecord(FILE *file, sauce *record) 
 {
-    if (fseek(file, 0, SEEK_END) != 0) {
+    if (fseek(file, 0, SEEK_END) != EXIT_SUCCESS) {
         return EXIT_FAILURE;
     }
     
@@ -282,14 +282,11 @@ NSInteger sauceRemoveFile(FILE *file)
 {
     sauce *record = sauceReadFile(file);
     
-    if (record == NULL || strcmp(record->id, SAUCE_ID) != 0) {
+    if (record == NULL || strcmp(record->id, SAUCE_ID) != IDENTICAL) {
         return EXIT_SUCCESS;
     }
     
-    if (ftruncate(fileno(file), record->fileSize) != 0) {
-        NSLog(@"Truncate failed");
-    }
-    
+    ftruncate(fileno(file), record->fileSize);    
     return EXIT_SUCCESS;
 }
 

@@ -13,6 +13,10 @@
 
 #import <Foundation/Foundation.h>
 
+// better readability for strcmp() methods
+#define IDENTICAL 0
+
+// internal defines and typedefs
 #define RECORD_SIZE  128
 #define COMMENT_SIZE 64
 #define SAUCE_ID     "SAUCE"
@@ -40,7 +44,8 @@ typedef struct {
 
 @interface ALSauceMachine : NSObject
 
-// sauce properties
+// sauce record properties
+@property (nonatomic, assign) BOOL      fileHasRecord;
 @property (nonatomic, weak)   NSString  *id;
 @property (nonatomic, weak)   NSString  *version;
 @property (nonatomic, weak)   NSString  *title;
