@@ -15,7 +15,7 @@
 
 @implementation ALSauceMachine
 
-@synthesize id, version, title, author, group, date, dataType, fileType, flags, 
+@synthesize ID, version, title, author, group, date, dataType, fileType, flags, 
             tinfo1, tinfo2, tinfo3, tinfo4, comments, fileHasRecord;
 
 # pragma -
@@ -44,7 +44,7 @@
     sauce *record = sauceReadFileName((char *)inputChar);
     
     // No Sauce record inside the file? Stop here.
-    if (strcmp(record->id, SAUCE_ID) != IDENTICAL) {
+    if (strcmp(record->ID, SAUCE_ID) != IDENTICAL) {
         self.fileHasRecord = NO;
         return;
     }
@@ -52,9 +52,13 @@
         self.fileHasRecord = YES;
     }
     
+    // Assign values of the SAUCE record struct to our ObjC properties.
+    self.ID = [NSString stringWithFormat:@"%s", record->ID];
+    
+    
     // Let us admire the sauce record in NSLog.
     // THIS IS JUST FOR TESTING - A BETTER IMPLEMENTATION IS ON THE WAY!
-    NSLog(@"%9s: %s\n", "id", record->id);
+    NSLog(@"%9s: %s\n", "id", record->ID);
     NSLog(@"%9s: %s\n", "version", record->version);
     NSLog(@"%9s: %s\n", "title", record->title);
     NSLog(@"%9s: %s\n", "autor", record->author);
@@ -115,10 +119,10 @@ void readRecord(FILE *file, sauce *record)
         return;
     }
     
-    NSInteger read_status = fread(record->id, sizeof(record->id) - 1, 1, file);
-    record->id[sizeof(record->id) - 1] = '\0';
+    NSInteger read_status = fread(record->ID, sizeof(record->ID) - 1, 1, file);
+    record->ID[sizeof(record->ID) - 1] = '\0';
     
-    if (read_status != 1 || strcmp(record->id, SAUCE_ID) != IDENTICAL) {
+    if (read_status != 1 || strcmp(record->ID, SAUCE_ID) != IDENTICAL) {
         free(record);
         return;
     }
@@ -167,11 +171,11 @@ void readComments(FILE *file, char **comment_lines, NSInteger comments)
     NSInteger i;
     
     if (fseek(file, 0 - (RECORD_SIZE + 5 + COMMENT_SIZE *comments), SEEK_END) == EXIT_SUCCESS) {
-        char id[6];
-        fread(id, sizeof(id) - 1, 1, file);
-        id[sizeof(id) - 1] = '\0';
+        char ID[6];
+        fread(ID, sizeof(ID) - 1, 1, file);
+        ID[sizeof(ID) - 1] = '\0';
         
-        if (strcmp(id, COMMENT_ID) != IDENTICAL) {
+        if (strcmp(ID, COMMENT_ID) != IDENTICAL) {
             free(comment_lines);
             return;
         }
@@ -244,7 +248,7 @@ NSInteger writeRecord(FILE *file, sauce *record)
             fwrite(record->comment_lines[i], COMMENT_SIZE, 1, file);
         }
     }
-    fwrite(record->id, sizeof(record->id) - 1, 1, file);
+    fwrite(record->ID, sizeof(record->ID) - 1, 1, file);
     fwrite(record->version, sizeof(record->version) - 1, 1, file);
     fwrite(record->title, sizeof(record->title) - 1, 1, file);
     fwrite(record->author, sizeof(record->author) - 1, 1, file);
@@ -286,7 +290,7 @@ NSInteger sauceRemoveFile(FILE *file)
 {
     sauce *record = sauceReadFile(file);
     
-    if (record == NULL || strcmp(record->id, SAUCE_ID) != IDENTICAL) {
+    if (record == NULL || strcmp(record->ID, SAUCE_ID) != IDENTICAL) {
         return EXIT_SUCCESS;
     }
     

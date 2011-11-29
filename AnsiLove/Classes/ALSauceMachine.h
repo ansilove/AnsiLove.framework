@@ -23,7 +23,7 @@
 #define COMMENT_ID   "COMNT"
 
 typedef struct {
-    char             id[6];
+    char             ID[6];
     char             version[3];
     char             title[36];
     char             author[21];
@@ -46,7 +46,7 @@ typedef struct {
 
 // sauce record properties
 @property (nonatomic, assign) BOOL      fileHasRecord;
-@property (nonatomic, weak)   NSString  *id;
+@property (nonatomic, weak)   NSString  *ID;
 @property (nonatomic, weak)   NSString  *version;
 @property (nonatomic, weak)   NSString  *title;
 @property (nonatomic, weak)   NSString  *author;
