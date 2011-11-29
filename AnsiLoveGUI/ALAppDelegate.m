@@ -94,7 +94,7 @@
 # pragma mark -
 # pragma mark sandboxing related actions
 
-// Sandboxed applications require user interaction for opening and saving specifc files.
+// Sandboxed applications require user interaction for opening and saving specific files.
 // We register user-defined files via NSOpenPanel and NSSavePanel. Just entering a path
 // into the corresponding textfield won't work. That's why the textfields for input and
 // output are deactivated in AnsiLoveGUI. The user is forced to hit the button and thus 
