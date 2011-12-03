@@ -125,10 +125,67 @@
         NSURL *inputURL = [openPanel URL];
         self.inputFile = [inputURL path];
         
-        // Just testing the new SAUCE record reading feature. THIS CODE IS TEMPORARY.
-        // A better implementation will be added to the sample app very soon.
+        // The following code will explain usage of ALSauceMachine, the framework's
+        // class for handling SAUCE records. Please refer to the documentation for 
+        // general specifications of SAUCE. You may wonder why I put this in the 
+        // inputFile method? SAUCE records not only contain release informations, 
+        // they also contain (among other things) variables that define the data 
+        // type, file type, flags. The flag property e.g. can tell you if an ANSi 
+        // source uses iCE colors. So it's locical to put it somewhere before
+        // ALAnsiGenerator starts it's rendering process. Many informations you
+        // retrieve from SAUCE records can be passed as flags to ALAnsiGenerator.
+        
+        // We create an instance of ALSauceMachine first.
         ALSauceMachine *sauce = [[ALSauceMachine alloc] init];
+        
+        // Now try read SAUCE information from our given file.
         [sauce readRecordFromFile:self.inputFile];
+        
+        // ALSauceMachine comes with some handy BOOL properties, an effective way
+        // for you to check what's going on after you instructed ALSauceMachine
+        // to read SAUCE from a file.
+        
+        // The property 'fileHasRecord' will provide information if there is a 
+        // SAUCE record in your file at all.
+        if (sauce.fileHasRecord == NO) {
+            // No record means there's no need to continue, we stop here.
+            NSLog(@"%@ does not contain a SAUCE record.\n", self.inputFile);
+            return;
+        }
+        else {
+            // In case ALSauceMachine found a record in your file, we go on.
+            NSLog(@"Found SAUCE record in file %@.\n", self.inputFile);
+            
+            // We gonna display the SAUCE in NSLog, we also use the two
+            // properties 'fileHasComment' and 'fileHasFlags' for different
+            // NSLog output, depending on whether the file has comments or
+            // flags. ALSauceMachine already set this properties when it
+            // investigated the file you passed. Convenient, isn't it?
+            NSLog(@"id: %@\n", sauce.ID);
+            NSLog(@"version: %@\n", sauce.version);
+            NSLog(@"title: %@\n", sauce.title);
+            NSLog(@"author: %@\n", sauce.author);
+            NSLog(@"group: %@\n", sauce.group);
+            NSLog(@"date: %@\n", sauce.date);
+            NSLog(@"dataType: %ld\n", sauce.dataType);
+            NSLog(@"fileType: %ld\n", sauce.fileType);
+            NSLog(@"tinfo1: %ld\n", sauce.tinfo1);
+            NSLog(@"tinfo2: %ld\n", sauce.tinfo2);
+            NSLog(@"tinfo3: %ld\n", sauce.tinfo3);
+            NSLog(@"tinfo4: %ld\n", sauce.tinfo4);
+            if (sauce.fileHasComments == YES) {
+                NSLog(@"comments:%@\n", sauce.comments);
+            }
+            else {
+                NSLog(@"comments: no comments\n");
+            }
+            if (sauce.fileHasFlags == YES) {
+                NSLog(@"flags:%ld\n", sauce.flags);
+            }
+            else {
+                NSLog(@"flags: none\n");
+            }
+        }
     }
 }
 
