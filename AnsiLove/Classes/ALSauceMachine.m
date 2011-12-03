@@ -16,14 +16,19 @@
 @implementation ALSauceMachine
 
 @synthesize ID, version, title, author, group, date, dataType, fileType, flags, 
-            tinfo1, tinfo2, tinfo3, tinfo4, comments, fileHasRecord;
+            tinfo1, tinfo2, tinfo3, tinfo4, comments, fileHasRecord, fileHasComments, 
+            fileHasFlags;
 
 # pragma -
 # pragma mark bridge methods (Cocoa)
 
 - (id)init
 {
-    if (self == [super init]) {}
+    if (self == [super init]) 
+    {
+        // Init the comments string property (absolutely necessary).
+        self.comments = @"";
+    }
     return self;
 }
 
@@ -43,7 +48,7 @@
     // Now that we have a C string, pass it typecasted.
     sauce *record = sauceReadFileName((char *)inputChar);
     
-    // No Sauce record inside the file? Stop here.
+    // No SAUCE record inside the file? Stop here.
     if (strcmp(record->ID, SAUCE_ID) != IDENTICAL) {
         self.fileHasRecord = NO;
         return;
@@ -52,34 +57,49 @@
         self.fileHasRecord = YES;
     }
     
-    // Assign values of the SAUCE record struct to our ObjC properties.
-    self.ID = [NSString stringWithFormat:@"%s", record->ID];
+    // Assign string values of the SAUCE record struct to our ObjC properties.
+    self.ID = [NSString stringWithFormat:@"%s", record->ID];  
+    self.version = [NSString stringWithFormat:@"%s", record->version];
+    self.title = [NSString stringWithFormat:@"%s", record->title];
+    self.author = [NSString stringWithFormat:@"%s", record->author];
+    self.group = [NSString stringWithFormat:@"%s", record->group];
+    self.date = [NSString stringWithFormat:@"%s", record->date];
     
+    // Primitive data types don't need conversion, we just refer a = b.
+    self.dataType = record->dataType;
+    self.fileType = record->fileType;
+    self.tinfo1 = record->tinfo1;
+    self.tinfo2 = record->tinfo2;
+    self.tinfo3 = record->tinfo3;
+    self.tinfo4 = record->tinfo4;
+    self.flags = record->flags;
     
-    // Let us admire the sauce record in NSLog.
-    // THIS IS JUST FOR TESTING - A BETTER IMPLEMENTATION IS ON THE WAY!
-    NSLog(@"%9s: %s\n", "id", record->ID);
-    NSLog(@"%9s: %s\n", "version", record->version);
-    NSLog(@"%9s: %s\n", "title", record->title);
-    NSLog(@"%9s: %s\n", "autor", record->author);
-    NSLog(@"%9s: %s\n", "group", record->group);
-    NSLog(@"%9s: %s\n", "date", record->date);
-    NSLog(@"%9s: %d\n", "fileSize", record->fileSize);
-    NSLog(@"%9s: %d\n", "dataType", record->dataType);
-    NSLog(@"%9s: %d\n", "fileType", record->fileType);
-    NSLog(@"%9s: %d\n", "tinfo1", record->tinfo1);
-    NSLog(@"%9s: %d\n", "tinfo2", record->tinfo2);
-    NSLog(@"%9s: %d\n", "tinfo3", record->tinfo3);
-    NSLog(@"%9s: %d\n", "tinfo4", record->tinfo4);
-    NSLog(@"%9s: %d\n", "comments", record->comments);
+    // Now append the record's comments (if existing) to an NSString instance.
     if (record->comments > 0) {
+        self.fileHasComments = YES;
         NSInteger i;
         for (i = 0; i < record->comments; i++) {
-            NSLog(@"%9s: %s\n", "", record->comment_lines[i]);
+            self.comments = [self.comments stringByAppendingString:
+                             [NSString stringWithFormat:@"%s\n", record->comment_lines[i]]];
         }
+        // After merging the comment lines, we should also remove the last
+        // newline occurence. JUST BECAUSE WE CAN.
+        NSMutableString *tempCommentString = [NSMutableString stringWithString:self.comments];
+        NSRange newLineRange = [tempCommentString rangeOfString:@"\n" options:NSBackwardsSearch];
+        [tempCommentString replaceCharactersInRange:newLineRange withString:@""];
+        self.comments = [NSString stringWithFormat:@"%@", tempCommentString];
     }
-    NSLog(@"%9s: %d\n", "flags", record->flags);
-    NSLog(@"%9s: %s\n", "filler", record->filler);
+    else {
+        self.fileHasComments = NO;
+    }    
+    
+    // Finally we should check if the file has flags.
+    if (self.flags > 0) {
+        self.fileHasFlags = YES;
+    }
+    else {
+        self.fileHasFlags = NO;
+    }
 }
 
 # pragma -
