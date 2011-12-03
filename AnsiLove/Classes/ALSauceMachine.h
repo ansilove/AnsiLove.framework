@@ -44,22 +44,26 @@ typedef struct {
 
 @interface ALSauceMachine : NSObject
 
-// sauce record properties
-@property (nonatomic, assign) BOOL      fileHasRecord;
+// SAUCE record properties
 @property (nonatomic, weak)   NSString  *ID;
 @property (nonatomic, weak)   NSString  *version;
 @property (nonatomic, weak)   NSString  *title;
 @property (nonatomic, weak)   NSString  *author;
 @property (nonatomic, weak)   NSString  *group;
 @property (nonatomic, weak)   NSString  *date;
-@property (nonatomic, weak)   NSString  *dataType;
-@property (nonatomic, weak)   NSString  *fileType;
-@property (nonatomic, weak)   NSString  *flags;
-@property (nonatomic, assign) NSInteger *tinfo1;
-@property (nonatomic, assign) NSInteger *tinfo2;
-@property (nonatomic, assign) NSInteger *tinfo3;
-@property (nonatomic, assign) NSInteger *tinfo4;
+@property (nonatomic, assign) NSInteger dataType;
+@property (nonatomic, assign) NSInteger fileType;
+@property (nonatomic, assign) NSInteger tinfo1;
+@property (nonatomic, assign) NSInteger tinfo2;
+@property (nonatomic, assign) NSInteger tinfo3;
+@property (nonatomic, assign) NSInteger tinfo4;
 @property (nonatomic, weak)   NSString  *comments;
+@property (nonatomic, assign) NSInteger flags;
+
+// SAUCE record BOOL properties
+@property (nonatomic, assign) BOOL fileHasRecord;
+@property (nonatomic, assign) BOOL fileHasComments;
+@property (nonatomic, assign) BOOL fileHasFlags;
 
 // bridge methods (Cocoa)
 - (void)readRecordFromFile:(NSString *)inputFile;
