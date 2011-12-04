@@ -4,9 +4,7 @@ This is Cocoa framework I consider as modern approach of bringing back the 'the 
 
 # Version info
 
-Current framework release: `1.4.0` 
-
-Rendering library forked from: [AnsiLove](http://ansilove.sourceforge.net) `1.09` 
+Current framework release: `1.4.0` | rendering library forked from: [AnsiLove](http://ansilove.sourceforge.net) `1.09`
 
 # Features
 
