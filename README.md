@@ -276,7 +276,7 @@ Implementation for writing and deleting SAUCE records.
 
 # Last words
 
-Even though the AnsiLove.framework works well, I suggest you visit this repository now and then. It's very likely I'm adding new stuff to it. New [AnsiLove](http://ansilove.sourceforge.net) releases will be forked into the codebase as well as any other ANSi related features I consider as useful addition. The AnsiLove.framwork was created with the vision of implementing it into one of my own apps, most of you know [Ascension](http://byteproject.net/ascension) already. You can imagine it's my goal to constantly improve this framework.
+Even though the AnsiLove.framework works well, I suggest you visit this repository now and then. It's very likely I'm adding new stuff to it. New [AnsiLove](http://ansilove.sourceforge.net) releases will be forked into the codebase as well as any other ANSi related features I consider as useful addition. The AnsiLove.framwork was created with the vision of implementing it into one of my own apps, most of you know [Ascension](http://byteproject.net/ascension) already. You can imagine it's my goal to constantly improve it.
 
 # Credits
 
