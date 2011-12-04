@@ -229,7 +229,7 @@ You may wonder how the rendered output looks like? You'll find an example [here]
 
 # Reading SAUCE records
 
-Let's head over to `ALSauceMachine`, the framework's class for dealing with SAUCE records. Before we continue, here's your opportunity to introduce yourself to the [SAUCE specifications](http://www.acid.org/info/sauce/s_spec.htm). Plenty values retrieved from SAUCE records can be passed as flags to `ALAnsiGenerator`, so it absolutely makes sense to check for a SAUCE record before you start rendering a file. However, this is just a hint of mine. It's convenient but by no means necessary to check for SAUCE before you start rendering. Anyway, many ANSi sources contain SAUCE records, [this file](http://sixteencolors.net/pack/acid-56/W7-R666.ANS) is a great example. Enough theory, I'm sure you want to know how to finally use the class. First we need to create an instance of `ALSauceMachine`:
+Let's head over to `ALSauceMachine`, the framework's class for dealing with SAUCE records. Before we continue, here's your opportunity to introduce yourself to the [SAUCE specifications](http://www.acid.org/info/sauce/s_spec.htm). Plenty values retrieved from SAUCE records can be passed as flags to `ALAnsiGenerator`, so it absolutely makes sense to check for a SAUCE record before you start rendering a file. However, this is just a hint of mine. It's convenient but by no means necessary to check for SAUCE before you start rendering. Enough theory, I'm sure you want to know how to finally use the class. First we need to create an instance of `ALSauceMachine`:
 
 	 ALSauceMachine *sauce = [[ALSauceMachine alloc] init];
 	 
@@ -237,7 +237,7 @@ Now you can call `readRecordFromFile:`, this should be self-explanatory:
 
 	[sauce readRecordFromFile:myInputFile];
 
-You probably guess that not all files contain SAUCE and you're right. Many ANSi files actually contain SAUCE but some just don't. But how do I know what's going on afterwards? I've implemented three handy BOOL values, an effective way for you to get all feedback you need concerning the file: 
+You probably guess that not all files contain SAUCE and you're right. Many ANSi files actually contain SAUCE (like [this file](http://sixteencolors.net/pack/acid-56/W7-R666.ANS)) and some just don't. But how do I know what's going on afterwards? I've implemented three handy BOOL values, an effective way for you to get all feedback you need concerning the file: 
 
 	BOOL fileHasRecord;
 	BOOL fileHasComments;
