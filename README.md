@@ -1,25 +1,31 @@
 # AnsiLove.framework
 
-This is a Cocoa framework for rendering ANSi art. It uses a modified version of [Frederic Cambus'](http://www.cambus.net) awesome [AnsiLove](http://ansilove.sourceforge.net) as library. Note that the AnsiLove.framework creates PNG images from ANSi source files, any generated output will be read-only. While the framework is pure Objective-C, the [AnsiLove](http://ansilove.sourceforge.net) library underneath is a PHP commandline utility. PHP CLI (installed by default on Mac OS X Lion) is used to process given files.
+This is Cocoa framework I consider as modern approach of bringing back the 'the good old days'(TM). It's capable of rendering ANSi art, interpreting SAUCE records and it consists of two Classes: `ALAnsiGenerator` and `ALSauceMachine`. As it's name implies, `ALAnsiGenerator` creates PNG images from ANSi source files by using a modified version of [Frederic Cambus'](http://www.cambus.net) awesome [AnsiLove](http://ansilove.sourceforge.net) as library. While `ALAnsiGenerator` is more likely a Cocoa layer, the [AnsiLove](http://ansilove.sourceforge.net) library under the surface is a PHP commandline utility. PHP CLI (installed by default on Mac OS X Lion) is used to process given files. What with one thing and another, PNG images are read-only. `ALSauceMachine` is retrieving SAUCE records from files and provides these values as Objective-C 2.0 properties. Being nearly a hundred percent Cocoa (with some C magic), I built `ALSauceMachine` on solid ground. It's foundation is based on [libsauce](https://github.com/bricas/libsauce) by [Brian Cassidy](http://blog.alternation.net/).
+
+# Version info
+
+Current framework release: `1.4.0`
+Rendering library forked from: [AnsiLove](http://ansilove.sourceforge.net) `1.09`
 
 # Features
 
 - Automatic Reference Counting (ARC)
 - Mac App Store conform
 - App Sandboxing support
-- ANSi (.ANS) format support
-- PCBOARD (.PCB) format support
-- BiNARY (.BIN) format support
-- ADF (.ADF) format support (Artworx)
-- iDF (.IDF) format support (iCE Draw)
-- TUNDRA (.TND) format support [details](http://sourceforge.net/projects/tundradraw)
-- XBiN (.XB) format support [details](http://www.acid.org/info/xbin/xbin.htm)
-- Small output file size (4-bit PNG)
-- SAUCE (Standard Architecture for Universal Comment Extentions)
-- 80x25 font support
-- 80x50 font support
-- Amiga font support
+- ANSi (.ANS) rendering
+- PCBOARD (.PCB) rendering
+- BiNARY (.BIN) rendering
+- ADF (.ADF) rendering (Artworx)
+- iDF (.IDF) rendering (iCE Draw)
+- TUNDRA (.TND) rendering [details](http://sourceforge.net/projects/tundradraw)
+- XBiN (.XB) rendering [details](http://www.acid.org/info/xbin/xbin.htm)
+- RELEASE info (.NFO/.DIZ) rendering
+- ASCII (.ASC) rendering
+- SAUCE records support
+- DOS fonts support
+- Amiga fonts support
 - iCE colors support
+- Small output file size (4-bit PNG)
 
 # Charsets
 
@@ -27,7 +33,7 @@ IBM PC (Code page 437), Baltic (Code page 775), Cyrillic (Code page 855), French
 
 # Documentation
 
-Let's talk about using this framework in your own projects. First of all, you have to download the sources and compile the framework. You need at least Mac OS X Lion and Xcode 4.2 for this purpose. The project contains two build targets, the framework itself and a test app `AnsiLoveGUI`, the latter is optional. Select `AnsiLoveGUI` from the Schemes dropdown in Xcode if you desire to compile that one too. The test app is a good example of implementing the AnsiLove.framework, it does not contain much code and what you find there is well commented. So `AnsiLoveGUI` might be your first place to play with the framework after studying this documentation. Basically this is an ARC framework. As far as I can estimate it will compile just fine with Garbage Collector enabled, though the test app is a pure ARC project. As mentioned on top of this page, AnsiLove.framework uses [AnsiLove](http://ansilove.sourceforge.net) as library, a special variant I modified to create what we got here on top of it. 
+Let's talk about using this framework in your own projects. First of all, you have to download the sources and compile the framework. You need at least Mac OS X Lion and Xcode 4.2 for this purpose. The project contains two build targets, the framework itself and a test app `AnsiLoveGUI`, the latter is optional. Select `AnsiLoveGUI` from the Schemes dropdown in Xcode if you desire to compile that one too. The test app is a good example of implementing the AnsiLove.framework, it does not contain much code and what you find there is well commented. So `AnsiLoveGUI` might be your first place to play with the framework after studying this documentation. Basically this is an ARC framework. As far as I can estimate it will compile just fine with Garbage Collector enabled, though the test app is a pure ARC project. 
 
 ## Adding the framework to your projects
 
@@ -68,7 +74,7 @@ You can call said method like this:
                                         bits:self.myBits 
                                    iceColors:self.myIceColors];
 
-That's basically it. Keep in mind that ALAnsiGenerator needs all it's flags as `NSString` instances. You can work internally with numeric types like `NSInteger` or `BOOL` but you need to convert them to strings before you pass these values to ALAnsiGenerator. For example, the `iceColors` flag (I'm going to explain all flags in detail below) can only be `0` or `1`, so it's perfect to have that as `BOOL` type in your app. I did this in `AnsiLoveGUI` as well. To pass this value to ALAnsiGenerator you can do it something like this:
+Keep in mind that ALAnsiGenerator needs all it's flags as `NSString` instances. You can work internally with numeric types like `NSInteger` or `BOOL` but you need to convert them to strings before you pass these values to ALAnsiGenerator. For example, the `iceColors` flag (I'm going to explain all flags in detail below) can only be `0` or `1`, so it's perfect to have that as `BOOL` type in your app. I did this in `AnsiLoveGUI` as well. To pass this value to ALAnsiGenerator you can do it something like this:
 
 	NSString *iceColors;
 	BOOL	 shouldUseIceColors;
@@ -174,7 +180,7 @@ Settings the bits to `transparent` will produce output files with transparent ba
 
 ## (NSString *)iceColors
 
-As I have already written above, `iceColors` can only be `0` or `1`. All other string values for `iceColors` will be silently consumed and thankfully ignored. Setting `iceColors` to `1` will enable them. On the opposite `0` means that that `iceColors` are disabled, which is the default value. So if you don't want to enable them, there's no need to pass a value to ALAnsiGenerator. To understand how to handle this flag you need to know more about iCE colors. So what IS iCE colors? Are we talking about something that renders my ANSi source in an alternative color scheme? Well, yes and no, but more no than yes. Huh? Okay, I'll explain. When an ANSi source was created using iCE color codes, it was done with a special mode where the blinking was disabled, and you had 16 background colors available. Basically, you had the same choice for background colors as for foreground colors, that's iCE colors. But now the important part: when the ANSi source does not make specific use of iCE colors, you should NOT set this flag. The file could look pretty weird in normal mode. So in most cases it's fine to leave this flag alone. 
+As I have already written above, `iceColors` can only be `0` or `1`. All other string values for `iceColors` will be silently consumed and thankfully ignored. Setting `iceColors` to `1` will enable them. On the opposite `0` means that that `iceColors` are disabled, which is the default value. So if you don't want to enable them, there's no need to pass a value to ALAnsiGenerator. To understand how to handle this flag you need to know more about iCE colors. So what is iCE colors? Are we talking about something that renders my ANSi source in an alternative color scheme? Well, yes and no, but more no than yes. Huh? Okay, I'll explain. When an ANSi source was created using iCE color codes, it was done with a special mode where the blinking was disabled, and you had 16 background colors available. Basically, you had the same choice for background colors as for foreground colors, that's iCE colors. But now the important part: when the ANSi source does not make specific use of iCE colors, you should NOT set this flag. The file could look pretty weird in normal mode. So in most cases it's fine to leave this flag alone. 
 
 ## Supported options for each file type
 
@@ -206,7 +212,7 @@ Now that you know about the different flags, you may also want to have a simple 
 	| XB  |         |       |       |           |
 	|_____|_________|_______|_______|___________|
 
-# Rendering Process Feedback
+## Rendering Process Feedback
 
 AnsiLove.framework will post a notification once processing of given source files is finished. In most cases it's pretty important to know when rendering is done. One might want to present an informal dialog or update the UI afterwards. For making your app listen to the `AnsiLoveFinishedRendering` note, all you need is adding this to the `init` method of the class you consider as relevant:
 
@@ -218,25 +224,66 @@ AnsiLove.framework will post a notification once processing of given source file
 
 The test app `AnsiLoveGUI` has a simple implementation that posts a message to NSLog as soon as the rendering is completed. 
 
+## Output file example
+
+You may wonder how the rendered output looks like? You'll find an example [here](http://cl.ly/1G2i2x3v2Z0n3u28433e/o).
+
+# Reading SAUCE records
+
+Let's head over to `ALSauceMachine`, the framework's class for dealing with SAUCE records. Before we continue, here's your opportunity to introduce yourself to the [SAUCE specifications](http://www.acid.org/info/sauce/s_spec.htm). Plenty values retrieved from SAUCE records can be passed as flags to `ALAnsiGenerator`, so it absolutely makes sense to check for a SAUCE record before you start rendering a file. However, this is just a hint of mine. It's convenient but by no means necessary to check for SAUCE before you start rendering. Anyway, many ANSi sources contain SAUCE records, [this file](http://sixteencolors.net/pack/acid-56/W7-R666.ANS) is a great example. Enough theory, I'm sure you want to know how to finally use the class. First we need to create an instance of `ALSauceMachine`:
+
+	 ALSauceMachine *sauce = [[ALSauceMachine alloc] init];
+	 
+Now you can call `readRecordFromFile:`, this should be self-explanatory:
+
+	[sauce readRecordFromFile:myInputFile];
+
+You probably guess that not all files contain SAUCE and you're right. Many ANSi files actually contain SAUCE but some just don't. But how do I know what's going on afterwards? I've implemented three handy BOOL values, an effective way for you to get all feedback you need concerning the file: 
+
+	BOOL fileHasRecord;
+	BOOL fileHasComments;
+	BOOL fileHasFlags;
+	
+The first property, `fileHasRecord` is above the others, which means if a given file doesn't have a SAUCE record at all, it's evident it doesn't have SAUCE comments and flags. My advice: don't check `fileHasComments` and `fileHasFlags` if you already know there is no SAUCE record. Don't get my wrong, nothing will explode if you do so. Anyway, we are talking about a pure waste of time because the answer will always be NO in that case. What if a file contains a SAUCE record on the other hand? It's nevertheless possible it doesn't have comments and flags. So if `fileHasRecord` is YES, you should try the other two BOOL values as well. Let's assume your class instance is still `*sauce` and you now checked for all three BOOL types, knowing the details. How to retrieve the SAUCE? Easy. `ALSauceMachine` stores the SAUCE record into properties, right at your feet:
+
+	NSString  *ID;
+	NSString  *version;
+	NSString  *title;
+	NSString  *author;
+	NSString  *group;
+	NSString  *date;
+	NSInteger dataType;
+	NSInteger fileType;
+	NSInteger tinfo1;
+	NSInteger tinfo2;
+	NSInteger tinfo3;
+	NSInteger tinfo4;
+	NSString  *comments;
+	NSInteger flags;
+
+Now imagine you want to print SAUCE title and author in NSLog:
+
+	NSLog(@"This is: %@ by %@.", sauce.title, sauce.author);
+	
+That's it. If you feel like this introduction to AnsiLove.framework's SAUCE implementation left some of your questions unanswered, I suggest you take a closer look at the sample app. `AnsiLoveGUI` contains a full featured yet simple example how to use `ALSauceMachine`. 
+
 # App Sandboxing
 
 Basically the framework works great in sandboxed apps. `AnsiLoveGUI` comes with App Sandboxing enabled and the interface is designed to aquire user selected read.write permission through NSOpenPanel and NSSavePanel instances. You may want to investigate the file `AnsiLoveGUI.entitlements` to see what kind of entitlements your app explicitly needs when using AnsiLove.framework. You should notice two temporary exceptions, these are not directly related to the framework. When invoking `/usr/bin/php` in sandboxed environments you get sandboxd violations for `/private/etc/protocols` and `/private/var/db/net-snmp`. This is caused by the PHP CLI and I filed rdar://10436809 regarding the issue.
 
-# Output file example
-
-You may wonder how the output looks like? You'll find an example [here](http://cl.ly/1G2i2x3v2Z0n3u28433e/o).
-
 # Todo
 
-Retrieving SAUCE informations as NSString.
+Implementation for writing and deleting SAUCE records.
 
 # Last words
 
-Even though the AnsiLove.framework works well, I suggest you visit this repo now and then. It's very likely I'm adding new stuff to it. The AnsiLove.framwork was created with the vision of implementing it into one of my own apps, most of you know [Ascension](http://byteproject.net/ascension) already. On the other hand, [AnsiLove](http://ansilove.sourceforge.net) itself is work in progress, too. So if [Frederic](http://www.cambus.net) adds new features to [AnsiLove](http://ansilove.sourceforge.net) I'm going to implement those changes to the underlying library of the AnsiLove.framework, is that fine with you? I know it is. 
+Even though the AnsiLove.framework works well, I suggest you visit this repository now and then. It's very likely I'm adding new stuff to it. New [AnsiLove](http://ansilove.sourceforge.net) releases will be forked into the codebase as well as any other ANSi related stuff I might consider as useful addition. The AnsiLove.framwork was created with the vision of implementing it into one of my own apps, most of you know [Ascension](http://byteproject.net/ascension) already. You can imagine it's my goal to constantly improve this framework.
 
 # Credits
 
 I bow to [Frederic Cambus](http://www.cambus.net). Without his passion and his work on [AnsiLove](http://ansilove.sourceforge.net) this framework would never have been possible. He spent countless hours and years with coding and testing. I, for one, adapted his work and created a Cocoa layer on top of it, which took me effectively three days in it's inital form. So first of all: don't thank me, please thank [Frederic](http://www.cambus.net) and if you find the AnsiLove.framework useful please consider making a donation to [AnsiLove](http://ansilove.sourceforge.net). 
+
+I also admire [Brian Cassidy](http://blog.alternation.net/) for his efforts, not only for his work on [libsauce](https://github.com/bricas/libsauce), which helped me a lot to understand how to handle SAUCE, but also for what he's doing over at [sixteencolors](http://sixteencolors.net).
 
 Thanks fly out to the all you people around the world that are downloading [Ascension](http://byteproject.net/ascension) more than hundred times a day since I released it. You guys are the reason I did this. 
 
