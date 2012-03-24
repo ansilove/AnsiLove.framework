@@ -2,7 +2,7 @@
 //  ALAnsiGenerator.m
 //  AnsiLove.framework
 //
-//  Copyright (c) 2011, Stefan Vogt. All rights reserved.
+//  Copyright (c) 2011-2012, Stefan Vogt. All rights reserved.
 //  http://byteproject.net
 //
 //  Use of this source code is governed by a MIT-style license.
@@ -21,10 +21,10 @@
 
 + (void)createPNGFromAnsiSource:(NSString *)inputFile 
                      outputFile:(NSString *)outputFile
-                        columns:(NSString *)columns
                            font:(NSString *)font 
                            bits:(NSString *)bits
                       iceColors:(NSString *)iceColors
+                        columns:(NSString *)columns
 {     
     if (inputFile == nil || inputFile == @"") {
         // No inputfile? This means we can't do anything. Get the hell outta here.
@@ -44,15 +44,16 @@
     // Initialize the arguments array.
     NSMutableArray *arguments = [[NSMutableArray alloc] init];
     
-    // Add the two most necessary arguments to the array.
+    // option flag for generating output in AnsiLove/C
+    NSString *optionFlag = @"-o";
+    
+    // Add the three most necessary arguments to the array.
     [arguments addObject:inputFile];
+    [arguments addObject:optionFlag];
     [arguments addObject:outputFile];
     
     // The following if statements check if a string is nil or empty. That way we can
     // be sure only strings with proper contents will be added to the arguments array.
-    if (columns && ![columns isEqualToString:@""]) {
-        [arguments addObject:columns];
-    }
     if (font && ![font isEqualToString:@""]) {
         [arguments addObject:font];
     }
@@ -61,6 +62,9 @@
     }
     if (iceColors && [iceColors isEqualToString:@"1"]) {
         [arguments addObject:iceColors];
+    }
+    if (columns && ![columns isEqualToString:@""]) {
+        [arguments addObject:columns];
     }
     
     // Finally start the task with the flags we gathered.
