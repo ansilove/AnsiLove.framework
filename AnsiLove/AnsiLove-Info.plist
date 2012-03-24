@@ -17,13 +17,13 @@
 	<key>CFBundlePackageType</key>
 	<string>FMWK</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.4.0</string>
+	<string>2.0.0</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>16</string>
+	<string>17</string>
 	<key>NSHumanReadableCopyright</key>
-	<string>Copyright (c) 2011 Stefan Vogt. All rights reserved.</string>
+	<string>Copyright © 2011-2012 Stefan Vogt. All rights reserved.</string>
 	<key>NSPrincipalClass</key>
 	<string></string>
 </dict>
