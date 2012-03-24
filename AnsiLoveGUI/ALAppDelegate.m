@@ -4,7 +4,7 @@
 //
 //  Test app for the AnsiLove.framework
 //
-//  Copyright (c) 2011, Stefan Vogt. All rights reserved.
+//  Copyright (c) 2011-2012, Stefan Vogt. All rights reserved.
 //  http://byteproject.net
 //
 //  Use of this source code is governed by a MIT-style license.
@@ -70,10 +70,10 @@
     // it's built-in default values for generating the output PNG.
     [ALAnsiGenerator createPNGFromAnsiSource:self.inputFile 
                                   outputFile:self.outputFile 
-                                     columns:self.columns 
                                         font:self.font 
                                         bits:self.bits 
-                                   iceColors:self.iceColors];
+                                   iceColors:self.iceColors
+                                     columns:self.columns];
 }
 
 - (void)postFinishedRenderingToLog:(NSNotification *)notification
