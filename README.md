@@ -35,7 +35,7 @@ Still not enough?
 - You can use custom objects for adjusting output results.
 - Built-in support for rendering Amiga ASCII.
 - Everything's Mac App Store conform and sandboxing compliant.
-- This is a Automatic Reference Counting (ARC) project.
+- This is an Automatic Reference Counting (ARC) project.
 
 # Documentation
 
@@ -230,7 +230,7 @@ You may wonder how the rendered output looks like? You'll find an example [here]
 
 # Reading SAUCE records
 
-The framework's class for dealing with SAUCE records is `ALSauceMachine`. But before we continue, here's your opportunity to introduce yourself to the [SAUCE specifications](http://www.acid.org/info/sauce/s_spec.htm). Plenty values retrieved from SAUCE records can be passed as objects to `ALAnsiGenerator`, it absolutely makes sense to check for a SAUCE record before you start rendering. Anyway, it's just a hint. Convenient yes, but by no means necessary to check for SAUCE before you start rendering. Enough theory, here is how to use the class. First we need to create an instance of `ALSauceMachine`:
+The framework's class for dealing with SAUCE records is `ALSauceMachine`. But before we continue, here's your opportunity to introduce yourself to the [SAUCE specifications](http://www.acid.org/info/sauce/s_spec.htm). Plenty values retrieved from SAUCE records can be passed as objects to `ALAnsiGenerator`, so it makes sense indeed to check for a SAUCE record before you start rendering. Anyway, it's just a hint. Convenient yes, but by no means necessary. Enough theory, here is how to use the class. First we need to create an instance of `ALSauceMachine`:
 
 	 ALSauceMachine *sauce = [[ALSauceMachine alloc] init];
 	 
@@ -273,7 +273,7 @@ The framework runs great in sandboxed apps. That is because I handcrafted it to 
 
 # Why?
 
-AnsiLove.framwork was created for my app [Ascension](http://byteproject.net/ascension).
+AnsiLove.framework was created for my app [Ascension](http://byteproject.net/ascension).
 
 # Credits
 
