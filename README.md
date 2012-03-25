@@ -2,8 +2,6 @@
 
 This is Cocoa framework I consider as modern approach of bringing back the good old days™. It's capable of rendering ANSi / ASCII art and it also handles SAUCE records. There are two classes responsible for all the magic: `ALAnsiGenerator` and `ALSauceMachine`. The former, `ALAnsiGenerator` creates PNG images from ANSi source files. What with one thing and another, PNG images are read-only. So if you're looking for something that generates output in real textmode, maybe as a NSAttributedString instance, you're wrong. However, if you're seeking the most complete and accurate rendering of ANSi art sources available these days, you came to the right place. While `ALAnsiGenerator` acts more like a Cocoa layer, there is a specifc library under the surface. It's called [AnsiLove/C](https://github.com/ByteProject/AnsiLove-C) and we spent countless hours developing it. The latter, `ALAnsiGenerator` is reading SAUCE records and returns these values as Objective-C 2.0 properties. 
 
-It's foundation is based on [libsauce](https://github.com/bricas/libsauce) by [Brian Cassidy](http://blog.alternation.net/).
-
 # Version info
 
 Current framework release: `2.0.0` - rendering library forked from: [AnsiLove/C](https://github.com/ByteProject/AnsiLove-C) `1.0.243`
@@ -279,7 +277,7 @@ AnsiLove.framwork was created for my app [Ascension](http://byteproject.net/asce
 
 # Credits
 
-I'd like to thank my friends [Frederic Cambus](http://www.cambus.net) and [Brian Cassidy](http://blog.alternation.net/) for their ongoing support. Both had a significant influence on [AnsiLove/C](https://github.com/ByteProject/AnsiLove-C), which is a major part of AnsiLove.framework. Thanks fly out to the all you people around the world, downloading [Ascension](http://byteproject.net/ascension) more than hundred times a day since I released it. You are the reason I did this. Finally I bow to all the great ANSi / ASCII artists and lovers around the world. You are the artscene. You keep alive what was not meant to die years ago. YOU ARE ROCKSTARS!
+I'd like to thank my friends [Frederic Cambus](http://www.cambus.net) and [Brian Cassidy](http://blog.alternation.net/) for their ongoing support. Both had a major impact on [AnsiLove/C](https://github.com/ByteProject/AnsiLove-C) and thus on AnsiLove.framework. While Fred is also responsible for [AnsiLove/C's](https://github.com/ByteProject/AnsiLove-C) well-known ancestor [AnsiLove/PHP](http://ansilove.sourceforge.net/), significant parts of Brian's [libsauce](https://github.com/bricas/libsauce) breathe life into `ALSauceMachine`. Thanks fly out to the all you people around the world, downloading [Ascension](http://byteproject.net/ascension) more than hundred times a day since I released it. You are the reason I did this. Finally I bow to all the great ANSi / ASCII lovers and artists around the world. You are the artscene. You keep alive what was not meant to die years ago. YOU ARE ROCKSTARS!
 
 # License
 
