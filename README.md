@@ -4,7 +4,7 @@ This is Cocoa framework I consider as modern approach of bringing back the good 
 
 # Version info
 
-Current framework release: `2.0.1` - rendering library: [AnsiLove/C](https://github.com/ByteProject/AnsiLove-C) `1.0.245`
+Current framework release: `2.0.2` - rendering library: [AnsiLove/C](https://github.com/ByteProject/AnsiLove-C) `1.0.248`
 
 # Features
 
