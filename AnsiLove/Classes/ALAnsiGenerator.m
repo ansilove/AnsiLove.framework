@@ -60,7 +60,7 @@
     if (bits && ![bits isEqualToString:@""]) {
         [arguments addObject:bits];
     }
-    if (iceColors && [iceColors isEqualToString:@"1"]) {
+    if (iceColors && ([iceColors isEqualToString:@"1"] || [iceColors isEqualToString:@"0"])) {
         [arguments addObject:iceColors];
     }
     if (columns && ![columns isEqualToString:@""]) {
