@@ -150,9 +150,9 @@ AnsiLove.framework comes with two font families both originating from the golden
 - `mosoul` (Original mO'sOul font)
 - `pot-noodle` (Original P0T-NOoDLE font)
 - `topaz` (Original Topaz Kickstart 2.x version)
-- `topazplus` (Modified Topaz Kickstart 2.x+ version)
+- `topaz+` (Modified Topaz Kickstart 2.x+ version)
 - `topaz500` (Original Topaz Kickstart 1.x version)
-- `topaz500plus` (Modified Topaz Kickstart 1.x version)
+- `topaz500+` (Modified Topaz Kickstart 1.x version)
 
 If you don't set a `font` object either passing `nil` or an empty string to ALAnsiGenerator, the AnsiLove.framework will generate the PNG with `80x25`, which is the default DOS font.
 
