@@ -235,7 +235,7 @@ The framework's class for dealing with SAUCE records is `ALSauceMachine`. But be
 
 	 ALSauceMachine *sauce = [ALSauceMachine new];
 
-Of course `[[ALSaucemachine alloc] init];` will work fine as well. Now call `readRecordFromFile:`, this should be self-explanatory:
+Of course `[[ALSauceMachine alloc] init];` will work fine as well. Now call `readRecordFromFile:`, this should be self-explanatory:
 
 	[sauce readRecordFromFile:myInputFile];
 
