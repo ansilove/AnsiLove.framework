@@ -13,12 +13,28 @@
 
 @interface ALAnsiGenerator : NSObject
 
-// class methods
-+ (void)createPNGFromAnsiSource:(NSString *)inputFile 
-                     outputFile:(NSString *)outputFile
-                           font:(NSString *)font 
-                           bits:(NSString *)bits
-                      iceColors:(NSString *)iceColors
-                        columns:(NSString *)columns;
+// Creates single PNG image from ANSi source.
++ (void)ansiFileToPNG:(NSString *)inputFile
+           outputFile:(NSString *)outputFile
+                 font:(NSString *)font
+                 bits:(NSString *)bits
+            iceColors:(NSString *)iceColors
+              columns:(NSString *)columns;
+
+// Creates regular and @2x Retina PNG image from ANSi source.
++ (void)ansiFileToRetinaPNG:(NSString *)inputFile
+                 outputFile:(NSString *)outputFile
+                       font:(NSString *)font
+                       bits:(NSString *)bits
+                  iceColors:(NSString *)iceColors
+                    columns:(NSString *)columns;
+
+// Creates single TIFF image from ANSi source, all sizes embedded.
++ (void)ansiFileToRetinaTIFF:(NSString *)inputFile
+                  outputFile:(NSString *)outputFile
+                        font:(NSString *)font
+                        bits:(NSString *)bits
+                   iceColors:(NSString *)iceColors
+                     columns:(NSString *)columns;
 
 @end
