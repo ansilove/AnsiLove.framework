@@ -20,12 +20,12 @@
 // outlets
 @property (strong) IBOutlet NSWindow *window;
 @property (strong) IBOutlet NSTextField *inputField;
-@property (strong) IBOutlet NSTextField *outputField;
 @property (strong) IBOutlet NSTextField *columnsField;
 @property (strong) IBOutlet NSTextField *fontsField;
 @property (strong) IBOutlet NSTextField *bitsField;
 @property (strong) IBOutlet NSButton *iceColorsCheck;
 @property (strong) IBOutlet NSButton *columnsCheck;
+@property (strong) IBOutlet NSMatrix *outputMatrix;
 
 // strings
 @property (strong) NSString *inputFile;
@@ -40,12 +40,11 @@
 @property (assign) BOOL enableColumnsField;
 
 // general actions and methods
-- (IBAction)createPNGfromANSi:(id)sender;
+- (IBAction)createImagefromANSi:(id)sender;
 - (IBAction)clearColumnsField:(id)sender;
 - (void)postFinishedRenderingToLog:(NSNotification *)notification;
 
 // sandboxing related actions
 - (IBAction)userDefinedInputFile:(id)sender;
-- (IBAction)userDefinedOutputFile:(id)sender;
 
 @end

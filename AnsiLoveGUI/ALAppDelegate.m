@@ -15,9 +15,9 @@
 
 @implementation ALAppDelegate
 
-@synthesize window = _window, inputField, outputField, columnsField, fontsField, bitsField,
-            iceColorsCheck, columnsCheck, inputFile, outputFile, columns, font, bits, iceColors,
-            shouldUseIceColors, enableColumnsField;
+@synthesize window = _window, inputField, columnsField, fontsField, bitsField, iceColorsCheck,
+            columnsCheck, inputFile, outputFile, columns, font, bits, iceColors, shouldUseIceColors,
+            enableColumnsField, outputMatrix;
 
 # pragma mark -
 # pragma mark initialization
@@ -53,7 +53,7 @@
 // entered into the text fields and calls the framework. The synthesized string values above
 // (inputFile, outputFile, columns, font and bits) are all bound to the corresponding 
 // value binding of the text field instances you can see in the UI.
-- (IBAction)createPNGfromANSi:(id)sender 
+- (IBAction)createImagefromANSi:(id)sender
 {
     if (shouldUseIceColors == NO) {
         // AnsiLove needs all flags as strings, that's why we can't pass the bool value 
@@ -64,16 +64,60 @@
         self.iceColors = @"1";
     }
     
+    // It's necessary to tell AnsiLove where to generate it's output. In this sample app
+    // all output will be thrown into the user's Downloads folder. We keep it simple by
+    // naming output after the input file. It's no problem to specify custom names/paths
+    // for output with the framework. There's just one thing you should take care of: don't
+    // add any .PNG or .TIFF suffix to the output file string as AnsiLove will handle that
+    // for you. Allright? Here we go!
+    
+    // Get the input file name without path components.
+    NSString *fileWithoutPath = [self.inputFile lastPathComponent];
+    
+    // Merge file name with destination path (Downloads folder).
+    NSString *fileMergedDLPath =[[NSString alloc]
+                                 initWithFormat:@"~/Downloads/%@", fileWithoutPath];
+    
+    // Voila, this is our outputFile string. Easy.
+    self.outputFile = [fileMergedDLPath stringByExpandingTildeInPath];
+    
     // Let's finally pass all we got to the AnsiLove.framework, it will do the rest.
     // If you don't want to set a specific flag, like the font flag for example, just
     // pass nil or an empty NSString like @"". Both will work and AnsiLove will use
-    // it's built-in default values for generating the output PNG.
-    [ALAnsiGenerator createPNGFromAnsiSource:self.inputFile 
-                                  outputFile:self.outputFile 
-                                        font:self.font 
-                                        bits:self.bits 
-                                   iceColors:self.iceColors
-                                     columns:self.columns];
+    // it's built-in default values for generating the output PNG. Note that we will
+    // use a switch method to find out which of ALAnsiGenerator's methods needs to be
+    // fired. Because we are rockstars, right?
+    switch ([self.outputMatrix selectedRow]) {
+        case 0:
+            // regular PNG image
+            [ALAnsiGenerator ansiFileToPNG:self.inputFile
+                                outputFile:self.outputFile
+                                      font:self.font
+                                      bits:self.bits
+                                 iceColors:self.iceColors
+                                   columns:self.columns];
+            break;
+        case 1:
+            // regular and Retina @2x.PNG image
+            [ALAnsiGenerator ansiFileToRetinaPNG:self.inputFile
+                                      outputFile:self.outputFile
+                                            font:self.font
+                                            bits:self.bits
+                                       iceColors:self.iceColors
+                                         columns:self.columns];
+            break;
+        case 2:
+            // merged TIFF containing regular and Retina image
+            [ALAnsiGenerator ansiFileToRetinaTIFF:self.inputFile
+                                       outputFile:self.outputFile
+                                             font:self.font
+                                             bits:self.bits
+                                        iceColors:self.iceColors
+                                          columns:self.columns];
+            break;
+        default:
+            break;
+    }
 }
 
 - (void)postFinishedRenderingToLog:(NSNotification *)notification
@@ -95,10 +139,20 @@
 # pragma mark sandboxing related actions
 
 // Sandboxed applications require user interaction for opening and saving specific files.
-// We register user-defined files via NSOpenPanel and NSSavePanel. Just entering a path
-// into the corresponding textfield won't work. That's why the textfields for input and
-// output are deactivated in AnsiLoveGUI. The user is forced to hit the button and thus 
-// authenticating the whole operation.
+// We register user-defined files via NSOpenPanel. Just entering a path into the corresponding
+// textfield won't work. That's why the textfield for input is deactivated in AnsiLoveGUI. The
+// user is forced to hit the button and thus authenticating the whole operation. For output,
+// I'm taking a simple approach by adding a read/write entitlement to the user's Downloads
+// folder. All generated output will be put in there. Note that in certain situations, AnsiLove
+// needs to gain access to additional files. For instance, if you decide to generate a regular
+// and a Retina PNG variant, your sandboxed app needs to be allowed to write both. The TIFF
+// method generates the PNG and the @2x.PNG and then uses them to create the .TIFF file. After
+// the resulting TIFF is created, it deletes the two PNG cache files. The most convenient
+// solution is a simple folder accesss. On the other hand: if you're creating output in your
+// sandox itself (e.g. Application Support), everything's fine as in your sandbox you are
+// the king and allowed to do whatever you want to. I know, dealing with sandboxing is a pain
+// in the ass. That's why I wanted this sample app to work outside it's app sandbox so you can
+// take a glimpse look and see it is definitely possible.
 
 - (IBAction)userDefinedInputFile:(id)sender
 {
@@ -136,7 +190,7 @@
         // retrieve from SAUCE records can be passed as flags to ALAnsiGenerator.
         
         // We create an instance of ALSauceMachine first.
-        ALSauceMachine *sauce = [[ALSauceMachine alloc] init];
+        ALSauceMachine *sauce = [ALSauceMachine new];
         
         // Now try read SAUCE information from our given file.
         [sauce readRecordFromFile:self.inputFile];
@@ -173,6 +227,7 @@
             NSLog(@"tinfo2: %ld\n", sauce.tinfo2);
             NSLog(@"tinfo3: %ld\n", sauce.tinfo3);
             NSLog(@"tinfo4: %ld\n", sauce.tinfo4);
+            
             if (sauce.fileHasComments == YES) {
                 NSLog(@"comments:%@\n", sauce.comments);
             }
@@ -186,34 +241,6 @@
                 NSLog(@"flags: none\n");
             }
         }
-    }
-}
-
-- (IBAction)userDefinedOutputFile:(id)sender
-{
-    NSSavePanel *savePanel = [NSSavePanel savePanel];
-    
-    // We want a custom 'Save' button.
-    [savePanel setPrompt:@"Set as Output"];
-    
-    // AnsiLove.framework generates PNG images from ANSi sources. The user should not
-    // be able to specify an extension other than PNG, hence we add a limitation.
-    NSArray *reqOutTypes = [NSArray arrayWithObjects:@"png", nil];
-    [savePanel setAllowedFileTypes:reqOutTypes];
-    [savePanel setAllowsOtherFileTypes:NO];
-    
-    // Let's optionally see the PNG extension in savePanel.
-    [savePanel setCanSelectHiddenExtension:YES];
-    
-    // There's some need for a better title (though not much better).
-    [savePanel setTitle:@"Save PNG"];
-    
-    if ([savePanel runModal] == NSOKButton)
-    {   
-        // We need a string, so get the path as string value from savepanel's URL.
-        // The string is now ready for passing to ALAnsiGenerator.
-        NSURL *outputURL = [savePanel URL];
-        self.outputFile = [outputURL path];
     }
 }
 
