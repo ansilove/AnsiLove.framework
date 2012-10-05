@@ -101,7 +101,7 @@ AnsiLove.framework will silently consume `nil` and empty string values but it wi
 
 ## (NSString *)inputFile
 
-The only necessary object you need to pass to ALAnsiGenerator. Well, that's logic. If there is no input file, what should be the output? I see you get it. Here is an example for a proper `inputFile` string:
+The only necessary object you need to pass to `ALAnsiGenerator. Well, that's logic. If there is no input file, what should be the output? I see you get it. Here is an example for a proper `inputFile` string:
 
 	/Users/Stefan/Desktop/MyAnsiArtwork.ans
 	
@@ -245,7 +245,7 @@ You probably guess that not all files contain SAUCE and you're right. Many ANSi 
 	BOOL fileHasComments;
 	BOOL fileHasFlags;
 	
-The first property, `fileHasRecord` stands above the others, which means if a file doesn't have a SAUCE record, it's evident it doesn't have SAUCE comments and objects. My advice: don't check `fileHasComments` and `fileHasFlags` if you already know there is no SAUCE record. Don't get my wrong, nothing will explode if you do so (not even the sun). But the answer will always be NO in that case so it's a waste of time. What if a file contains a SAUCE record on the other hand? It's nevertheless possible it doesn't have comments and objects. So if `fileHasRecord` is YES, you should try the other two BOOL values as well. Let's assume your class instance is still `*sauce` and you now checked for all three BOOL types, knowing the details. How to retrieve the SAUCE? Easy. `ALSauceMachine` stores the SAUCE record into properties, right at your fingertips:
+The first property, `fileHasRecord` stands above the others, which means if a file doesn't have a SAUCE record, it's evident it doesn't have SAUCE comments and objects. My advice: don't check `fileHasComments` and `fileHasFlags` if you already know there is no SAUCE record. Don't get my wrong, nothing will explode if you do so (not even the sun). But the answer will always be NO in that case so it's a waste of time. What if a file contains a SAUCE record on the other hand? It's nevertheless possible it doesn't have comments and flags. So if `fileHasRecord` is YES, you should try the other two BOOL values as well. Let's assume your class instance is still `*sauce` and you now checked for all three BOOL types, knowing the details. How to retrieve the SAUCE? Easy. `ALSauceMachine` stores the SAUCE record into properties, right at your fingertips:
 
 	NSString  *ID;
 	NSString  *version;
