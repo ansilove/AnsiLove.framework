@@ -235,7 +235,7 @@ The framework's class for dealing with SAUCE records is `ALSauceMachine`. But be
 
 	 ALSauceMachine *sauce = [ALSauceMachine new];
 
-Of course `[[ALSaucemachine alloc] init],` will work fine as well. Now call `readRecordFromFile:`, this should be self-explanatory:
+Of course `[[ALSaucemachine alloc] init];` will work fine as well. Now call `readRecordFromFile:`, this should be self-explanatory:
 
 	[sauce readRecordFromFile:myInputFile];
 
@@ -274,7 +274,7 @@ The framework runs great in sandboxed apps. That is because I handcrafted it to 
 
 # Retina support
 
-By investigating `ALAnsiGenerators` methods you already know this framework comes with full Retina support. Assuming you are familiar with Apple's [High Resolution Guidelines for OS X](http://developer.apple.com/library/mac/#documentation/GraphicsAnimation/Conceptual/HighResolutionOSX/Introduction/Introduction.html), there is not much more to say about the matter. Now it's up to you as developer.
+By investigating `ALAnsiGenerator` methods you already know this framework comes with full Retina support. Assuming you are familiar with Apple's [High Resolution Guidelines for OS X](http://developer.apple.com/library/mac/#documentation/GraphicsAnimation/Conceptual/HighResolutionOSX/Introduction/Introduction.html), there is not much more to say about the matter. Now it's up to you as developer.
 
 # Why?
 
