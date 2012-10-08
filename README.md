@@ -4,7 +4,7 @@ This is a Cocoa framework I consider as modern approach of bringing back the goo
 
 # Version info
 
-Current framework release: `3.0.0` - rendering library: [AnsiLove/C](https://github.com/ByteProject/AnsiLove-C) `2.0.1`
+Current framework release: `3.0.1` - rendering library: [AnsiLove/C](https://github.com/ByteProject/AnsiLove-C) `2.0.2`
 
 # Features
 
