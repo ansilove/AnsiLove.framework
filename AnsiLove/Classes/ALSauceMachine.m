@@ -34,7 +34,7 @@
 
 - (void)readRecordFromFile:(NSString *)inputFile 
 {
-    if (inputFile == nil || inputFile == @"") {
+    if (inputFile == nil || [inputFile isEqual:@""]) {
         // Y U NO have content? U get outta my method!
         return;
     }

@@ -26,12 +26,12 @@
             iceColors:(NSString *)iceColors
               columns:(NSString *)columns;
 {     
-    if (inputFile == nil || inputFile == @"") {
+    if (inputFile == nil || [inputFile isEqual: @""]) {
         // No inputfile? This means we can't do anything. Get the hell outta here.
         return;
     }
     
-    if (outputFile == nil || outputFile == @"") {
+    if (outputFile == nil || [outputFile isEqual: @""]) {
         // In case the user provided no output file / path, just use the file name and
         // path from the inputFile value. AnsiLove/C adds PNG suffix automatically.
         outputFile = inputFile;
@@ -94,12 +94,12 @@
                   iceColors:(NSString *)iceColors
                     columns:(NSString *)columns
 {
-    if (inputFile == nil || inputFile == @"") {
+    if (inputFile == nil || [inputFile isEqual:@""]) {
         // No inputfile? This means we can't do anything. Get the hell outta here.
         return;
     }
     
-    if (outputFile == nil || outputFile == @"") {
+    if (outputFile == nil || [outputFile isEqual:@""]) {
         // In case the user provided no output file / path, just use the file name and
         // path from the inputFile value. AnsiLove/C adds PNG suffix automatically.
         outputFile = inputFile;
@@ -162,12 +162,12 @@
                    iceColors:(NSString *)iceColors
                      columns:(NSString *)columns
 {
-    if (inputFile == nil || inputFile == @"") {
+    if (inputFile == nil || [inputFile isEqual:@""]) {
         // No inputfile? This means we can't do anything. Get the hell outta here.
         return;
     }
     
-    if (outputFile == nil || outputFile == @"") {
+    if (outputFile == nil || [outputFile isEqual:@""]) {
         // In case the user provided no output file / path, just use the file name and
         // path from the inputFile value. AnsiLove/C adds PNG suffix automatically.
         outputFile = inputFile;
