@@ -1,10 +1,14 @@
+# Important news: work in progress
+
+Right now this project is subject of a major rewrite. The goal is to not bundle a compiled variant of AnsiLove/C with the framework anymore. All AnsiLove/C code will be forked into the framework. With upcoming OS X Mavericks it will be hard to maintain the NSTask based approach, for the sake of performance it makes sense as well. Note that the bundled AnsiLove/C binary is not suitable for Mac App Store submission at this point. That's why I flagged the current framework release as alpha. As you are reading this, the documentation below is probably outdated. Hang on, I'm already working hard on it. You get an updated documentation once the all-new framework is done as well. Much love!
+
 # AnsiLove.framework
 
 This is a Cocoa framework I consider as modern approach of bringing back the good old days™. It's capable of rendering ANSi / ASCII art and it also handles SAUCE records. There are two classes responsible for all the magic: `ALAnsiGenerator` and `ALSauceMachine`. The former, `ALAnsiGenerator` creates Retina-ready PNG and TIFF images from ANSi source files. What with one thing and another, images are read-only. So if you're looking for something that generates output in real textmode, maybe as a NSAttributedString instance, you're wrong. However, if you're seeking the most complete and accurate rendering of ANSi art sources available these days, you came to the right place. While `ALAnsiGenerator` acts more like a Cocoa layer, there is a specifc library under the surface. It's called [AnsiLove/C](https://github.com/ByteProject/AnsiLove-C) and we spent countless hours developing it. The latter, `ALSauceMachine` is reading SAUCE records and returns these values as Objective-C properties. 
 
 # Version info
 
-Current framework release: `3.0.1` - rendering library: [AnsiLove/C](https://github.com/ByteProject/AnsiLove-C) `2.0.2`
+Current framework release: `4.0.0 alpha` - rendering library: [AnsiLove/C](https://github.com/ByteProject/AnsiLove-C) `2.1.0`
 
 # Features
 
