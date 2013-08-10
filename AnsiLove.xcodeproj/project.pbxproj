@@ -15,6 +15,8 @@
 		F82D6A581450045C00FD228B /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = F82D6A561450045C00FD228B /* MainMenu.xib */; };
 		F82D6A5F1450053B00FD228B /* AnsiLove.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8F0C93E144910340031E777 /* AnsiLove.framework */; };
 		F82D6A611450054B00FD228B /* AnsiLove.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = F8F0C93E144910340031E777 /* AnsiLove.framework */; };
+		F888339117B6FD15006F6778 /* ALAnsiGenerator+PrivateMethods.h in Headers */ = {isa = PBXBuildFile; fileRef = F888338F17B6FD15006F6778 /* ALAnsiGenerator+PrivateMethods.h */; };
+		F888339217B6FD15006F6778 /* ALAnsiGenerator+PrivateMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = F888339017B6FD15006F6778 /* ALAnsiGenerator+PrivateMethods.m */; };
 		F8E082BC144996C300E30142 /* ALAnsiGenerator.h in Headers */ = {isa = PBXBuildFile; fileRef = F8E082B9144996C300E30142 /* ALAnsiGenerator.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F8E082BD144996C300E30142 /* ALAnsiGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = F8E082BA144996C300E30142 /* ALAnsiGenerator.m */; };
 		F8E082BE144996C300E30142 /* AnsiLove.h in Headers */ = {isa = PBXBuildFile; fileRef = F8E082BB144996C300E30142 /* AnsiLove.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -102,6 +104,8 @@
 		F82D6A571450045C00FD228B /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		F85CB754151A89E10034B6CD /* libgd.2.0.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libgd.2.0.0.dylib; path = AnsiLove/Library/libgd.2.0.0.dylib; sourceTree = "<group>"; };
 		F85CB755151A89E10034B6CD /* libjpeg.8.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libjpeg.8.dylib; path = AnsiLove/Library/libjpeg.8.dylib; sourceTree = "<group>"; };
+		F888338F17B6FD15006F6778 /* ALAnsiGenerator+PrivateMethods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ALAnsiGenerator+PrivateMethods.h"; sourceTree = "<group>"; };
+		F888339017B6FD15006F6778 /* ALAnsiGenerator+PrivateMethods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ALAnsiGenerator+PrivateMethods.m"; sourceTree = "<group>"; };
 		F8A0C741151D3673005ED47C /* libfontconfig.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libfontconfig.1.dylib; path = AnsiLove/Library/libfontconfig.1.dylib; sourceTree = "<group>"; };
 		F8A0C742151D3673005ED47C /* libfreetype.6.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libfreetype.6.dylib; path = AnsiLove/Library/libfreetype.6.dylib; sourceTree = "<group>"; };
 		F8A0C743151D3673005ED47C /* libpng15.15.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libpng15.15.dylib; path = AnsiLove/Library/libpng15.15.dylib; sourceTree = "<group>"; };
@@ -200,6 +204,8 @@
 			children = (
 				F8E082B9144996C300E30142 /* ALAnsiGenerator.h */,
 				F8E082BA144996C300E30142 /* ALAnsiGenerator.m */,
+				F888338F17B6FD15006F6778 /* ALAnsiGenerator+PrivateMethods.h */,
+				F888339017B6FD15006F6778 /* ALAnsiGenerator+PrivateMethods.m */,
 				F8EAE720147E4E6E005BA3A1 /* ALSauceMachine.h */,
 				F8EAE721147E4E6E005BA3A1 /* ALSauceMachine.m */,
 				F8E082BB144996C300E30142 /* AnsiLove.h */,
@@ -302,6 +308,7 @@
 				F8F1395917AEEEA600B8553A /* ALConfig.h in Headers */,
 				F8F1395C17AEEEA600B8553A /* ALFileSize.h in Headers */,
 				F8F1395517AEEEA600B8553A /* ALAnsiLove.h in Headers */,
+				F888339117B6FD15006F6778 /* ALAnsiGenerator+PrivateMethods.h in Headers */,
 				F8E082BE144996C300E30142 /* AnsiLove.h in Headers */,
 				F8F1395F17AEEEA600B8553A /* ALStrToLower.h in Headers */,
 				F8F1395A17AEEEA600B8553A /* ALExplode.h in Headers */,
@@ -423,6 +430,7 @@
 				F8F1396017AEEEA600B8553A /* ALStrToLower.m in Sources */,
 				F8F1395617AEEEA600B8553A /* ALAnsiLove.m in Sources */,
 				F8F1396217AEEEA600B8553A /* ALSubStr.m in Sources */,
+				F888339217B6FD15006F6778 /* ALAnsiGenerator+PrivateMethods.m in Sources */,
 				F8EAE723147E4E6E005BA3A1 /* ALSauceMachine.m in Sources */,
 				F8F1395B17AEEEA600B8553A /* ALExplode.m in Sources */,
 				F8F1395817AEEEA600B8553A /* ALBinFonts.m in Sources */,
