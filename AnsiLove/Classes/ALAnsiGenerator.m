@@ -19,7 +19,7 @@
     return self;
 }
 
-+ (void)ansiFileToPNG:(NSString *)inputFile
+- (void)ansiFileToPNG:(NSString *)inputFile
            outputFile:(NSString *)outputFile
                  font:(NSString *)font
                  bits:(NSString *)bits
@@ -87,7 +87,7 @@
 	[nc postNotificationName:@"AnsiLoveFinishedRendering" object:self];
 }
 
-+ (void)ansiFileToRetinaPNG:(NSString *)inputFile
+- (void)ansiFileToRetinaPNG:(NSString *)inputFile
                  outputFile:(NSString *)outputFile
                        font:(NSString *)font
                        bits:(NSString *)bits
@@ -155,7 +155,7 @@
 	[nc postNotificationName:@"AnsiLoveFinishedRendering" object:self];
 }
 
-+ (void)ansiFileToRetinaTIFF:(NSString *)inputFile
+- (void)ansiFileToRetinaTIFF:(NSString *)inputFile
                   outputFile:(NSString *)outputFile
                         font:(NSString *)font
                         bits:(NSString *)bits
