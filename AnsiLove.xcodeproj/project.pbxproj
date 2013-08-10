@@ -15,24 +15,47 @@
 		F82D6A581450045C00FD228B /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = F82D6A561450045C00FD228B /* MainMenu.xib */; };
 		F82D6A5F1450053B00FD228B /* AnsiLove.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8F0C93E144910340031E777 /* AnsiLove.framework */; };
 		F82D6A611450054B00FD228B /* AnsiLove.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = F8F0C93E144910340031E777 /* AnsiLove.framework */; };
-		F85CB756151A8A670034B6CD /* libgd.2.0.0.dylib in Resources */ = {isa = PBXBuildFile; fileRef = F85CB754151A89E10034B6CD /* libgd.2.0.0.dylib */; };
-		F85CB757151A8A670034B6CD /* libjpeg.8.dylib in Resources */ = {isa = PBXBuildFile; fileRef = F85CB755151A89E10034B6CD /* libjpeg.8.dylib */; };
-		F8A0C74A151D36D1005ED47C /* libpng15.15.dylib in Resources */ = {isa = PBXBuildFile; fileRef = F8A0C743151D3673005ED47C /* libpng15.15.dylib */; };
-		F8A0C74B151D36D1005ED47C /* libfontconfig.1.dylib in Resources */ = {isa = PBXBuildFile; fileRef = F8A0C741151D3673005ED47C /* libfontconfig.1.dylib */; };
-		F8A0C74C151D36D1005ED47C /* libfreetype.6.dylib in Resources */ = {isa = PBXBuildFile; fileRef = F8A0C742151D3673005ED47C /* libfreetype.6.dylib */; };
-		F8A0C74D151D36D1005ED47C /* libX11.6.dylib in Resources */ = {isa = PBXBuildFile; fileRef = F8A0C744151D3673005ED47C /* libX11.6.dylib */; };
-		F8A0C74E151D36D1005ED47C /* libXau.6.dylib in Resources */ = {isa = PBXBuildFile; fileRef = F8A0C745151D3673005ED47C /* libXau.6.dylib */; };
-		F8A0C74F151D36D1005ED47C /* libxcb.1.dylib in Resources */ = {isa = PBXBuildFile; fileRef = F8A0C746151D3673005ED47C /* libxcb.1.dylib */; };
-		F8A0C750151D36D1005ED47C /* libXdmcp.6.dylib in Resources */ = {isa = PBXBuildFile; fileRef = F8A0C747151D3673005ED47C /* libXdmcp.6.dylib */; };
-		F8A0C751151D36D1005ED47C /* libXpm.4.dylib in Resources */ = {isa = PBXBuildFile; fileRef = F8A0C748151D3673005ED47C /* libXpm.4.dylib */; };
 		F8E082BC144996C300E30142 /* ALAnsiGenerator.h in Headers */ = {isa = PBXBuildFile; fileRef = F8E082B9144996C300E30142 /* ALAnsiGenerator.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F8E082BD144996C300E30142 /* ALAnsiGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = F8E082BA144996C300E30142 /* ALAnsiGenerator.m */; };
 		F8E082BE144996C300E30142 /* AnsiLove.h in Headers */ = {isa = PBXBuildFile; fileRef = F8E082BB144996C300E30142 /* AnsiLove.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F8E082E71449984700E30142 /* ansilove in Resources */ = {isa = PBXBuildFile; fileRef = F8E082C01449984700E30142 /* ansilove */; };
 		F8EAE722147E4E6E005BA3A1 /* ALSauceMachine.h in Headers */ = {isa = PBXBuildFile; fileRef = F8EAE720147E4E6E005BA3A1 /* ALSauceMachine.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F8EAE723147E4E6E005BA3A1 /* ALSauceMachine.m in Sources */ = {isa = PBXBuildFile; fileRef = F8EAE721147E4E6E005BA3A1 /* ALSauceMachine.m */; };
 		F8F0C942144910340031E777 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8F0C941144910340031E777 /* Cocoa.framework */; };
 		F8F0C94C144910340031E777 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F8F0C94A144910340031E777 /* InfoPlist.strings */; };
+		F8F1390B17AEE62500B8553A /* libfontconfig.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F8A0C741151D3673005ED47C /* libfontconfig.1.dylib */; };
+		F8F1390C17AEE62500B8553A /* libfreetype.6.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F8A0C742151D3673005ED47C /* libfreetype.6.dylib */; };
+		F8F1390D17AEE62500B8553A /* libgd.2.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F85CB754151A89E10034B6CD /* libgd.2.0.0.dylib */; };
+		F8F1390E17AEE62500B8553A /* libjpeg.8.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F85CB755151A89E10034B6CD /* libjpeg.8.dylib */; };
+		F8F1390F17AEE62500B8553A /* libpng15.15.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F8A0C743151D3673005ED47C /* libpng15.15.dylib */; };
+		F8F1391017AEE62500B8553A /* libX11.6.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F8A0C744151D3673005ED47C /* libX11.6.dylib */; };
+		F8F1391117AEE62500B8553A /* libXau.6.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F8A0C745151D3673005ED47C /* libXau.6.dylib */; };
+		F8F1391217AEE62500B8553A /* libxcb.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F8A0C746151D3673005ED47C /* libxcb.1.dylib */; };
+		F8F1391317AEE62500B8553A /* libXdmcp.6.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F8A0C747151D3673005ED47C /* libXdmcp.6.dylib */; };
+		F8F1391417AEE62500B8553A /* libXpm.4.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F8A0C748151D3673005ED47C /* libXpm.4.dylib */; };
+		F8F1393C17AEEC5400B8553A /* libgd.2.0.0.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = F85CB754151A89E10034B6CD /* libgd.2.0.0.dylib */; };
+		F8F1393D17AEEC5400B8553A /* libpng15.15.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = F8A0C743151D3673005ED47C /* libpng15.15.dylib */; };
+		F8F1393E17AEEC5400B8553A /* libjpeg.8.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = F85CB755151A89E10034B6CD /* libjpeg.8.dylib */; };
+		F8F1393F17AEEC5400B8553A /* libfontconfig.1.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = F8A0C741151D3673005ED47C /* libfontconfig.1.dylib */; };
+		F8F1394017AEEC5400B8553A /* libfreetype.6.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = F8A0C742151D3673005ED47C /* libfreetype.6.dylib */; };
+		F8F1394117AEEC5400B8553A /* libX11.6.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = F8A0C744151D3673005ED47C /* libX11.6.dylib */; };
+		F8F1394217AEEC5400B8553A /* libXau.6.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = F8A0C745151D3673005ED47C /* libXau.6.dylib */; };
+		F8F1394317AEEC5400B8553A /* libxcb.1.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = F8A0C746151D3673005ED47C /* libxcb.1.dylib */; };
+		F8F1394417AEEC5400B8553A /* libXdmcp.6.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = F8A0C747151D3673005ED47C /* libXdmcp.6.dylib */; };
+		F8F1394517AEEC5400B8553A /* libXpm.4.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = F8A0C748151D3673005ED47C /* libXpm.4.dylib */; };
+		F8F1395517AEEEA600B8553A /* ALAnsiLove.h in Headers */ = {isa = PBXBuildFile; fileRef = F8F1394717AEEEA600B8553A /* ALAnsiLove.h */; };
+		F8F1395617AEEEA600B8553A /* ALAnsiLove.m in Sources */ = {isa = PBXBuildFile; fileRef = F8F1394817AEEEA600B8553A /* ALAnsiLove.m */; };
+		F8F1395717AEEEA600B8553A /* ALBinFonts.h in Headers */ = {isa = PBXBuildFile; fileRef = F8F1394917AEEEA600B8553A /* ALBinFonts.h */; };
+		F8F1395817AEEEA600B8553A /* ALBinFonts.m in Sources */ = {isa = PBXBuildFile; fileRef = F8F1394A17AEEEA600B8553A /* ALBinFonts.m */; };
+		F8F1395917AEEEA600B8553A /* ALConfig.h in Headers */ = {isa = PBXBuildFile; fileRef = F8F1394B17AEEEA600B8553A /* ALConfig.h */; };
+		F8F1395A17AEEEA600B8553A /* ALExplode.h in Headers */ = {isa = PBXBuildFile; fileRef = F8F1394C17AEEEA600B8553A /* ALExplode.h */; };
+		F8F1395B17AEEEA600B8553A /* ALExplode.m in Sources */ = {isa = PBXBuildFile; fileRef = F8F1394D17AEEEA600B8553A /* ALExplode.m */; };
+		F8F1395C17AEEEA600B8553A /* ALFileSize.h in Headers */ = {isa = PBXBuildFile; fileRef = F8F1394E17AEEEA600B8553A /* ALFileSize.h */; };
+		F8F1395D17AEEEA600B8553A /* ALFileSize.m in Sources */ = {isa = PBXBuildFile; fileRef = F8F1394F17AEEEA600B8553A /* ALFileSize.m */; };
+		F8F1395E17AEEEA600B8553A /* ALMain.m in Sources */ = {isa = PBXBuildFile; fileRef = F8F1395017AEEEA600B8553A /* ALMain.m */; };
+		F8F1395F17AEEEA600B8553A /* ALStrToLower.h in Headers */ = {isa = PBXBuildFile; fileRef = F8F1395117AEEEA600B8553A /* ALStrToLower.h */; };
+		F8F1396017AEEEA600B8553A /* ALStrToLower.m in Sources */ = {isa = PBXBuildFile; fileRef = F8F1395217AEEEA600B8553A /* ALStrToLower.m */; };
+		F8F1396117AEEEA600B8553A /* ALSubStr.h in Headers */ = {isa = PBXBuildFile; fileRef = F8F1395317AEEEA600B8553A /* ALSubStr.h */; };
+		F8F1396217AEEEA600B8553A /* ALSubStr.m in Sources */ = {isa = PBXBuildFile; fileRef = F8F1395417AEEEA600B8553A /* ALSubStr.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -43,6 +66,25 @@
 			dstSubfolderSpec = 10;
 			files = (
 				F82D6A611450054B00FD228B /* AnsiLove.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F8F1393117AEEBB800B8553A /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = Library;
+			dstSubfolderSpec = 16;
+			files = (
+				F8F1393C17AEEC5400B8553A /* libgd.2.0.0.dylib in CopyFiles */,
+				F8F1393D17AEEC5400B8553A /* libpng15.15.dylib in CopyFiles */,
+				F8F1393E17AEEC5400B8553A /* libjpeg.8.dylib in CopyFiles */,
+				F8F1393F17AEEC5400B8553A /* libfontconfig.1.dylib in CopyFiles */,
+				F8F1394017AEEC5400B8553A /* libfreetype.6.dylib in CopyFiles */,
+				F8F1394117AEEC5400B8553A /* libX11.6.dylib in CopyFiles */,
+				F8F1394217AEEC5400B8553A /* libXau.6.dylib in CopyFiles */,
+				F8F1394317AEEC5400B8553A /* libxcb.1.dylib in CopyFiles */,
+				F8F1394417AEEC5400B8553A /* libXdmcp.6.dylib in CopyFiles */,
+				F8F1394517AEEC5400B8553A /* libXpm.4.dylib in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -58,21 +100,20 @@
 		F82D6A531450045C00FD228B /* ALAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ALAppDelegate.h; sourceTree = "<group>"; };
 		F82D6A541450045C00FD228B /* ALAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ALAppDelegate.m; sourceTree = "<group>"; };
 		F82D6A571450045C00FD228B /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
-		F85CB754151A89E10034B6CD /* libgd.2.0.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libgd.2.0.0.dylib; sourceTree = "<group>"; };
-		F85CB755151A89E10034B6CD /* libjpeg.8.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libjpeg.8.dylib; sourceTree = "<group>"; };
-		F8A0C741151D3673005ED47C /* libfontconfig.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libfontconfig.1.dylib; sourceTree = "<group>"; };
-		F8A0C742151D3673005ED47C /* libfreetype.6.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libfreetype.6.dylib; sourceTree = "<group>"; };
-		F8A0C743151D3673005ED47C /* libpng15.15.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libpng15.15.dylib; sourceTree = "<group>"; };
-		F8A0C744151D3673005ED47C /* libX11.6.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libX11.6.dylib; sourceTree = "<group>"; };
-		F8A0C745151D3673005ED47C /* libXau.6.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libXau.6.dylib; sourceTree = "<group>"; };
-		F8A0C746151D3673005ED47C /* libxcb.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libxcb.1.dylib; sourceTree = "<group>"; };
-		F8A0C747151D3673005ED47C /* libXdmcp.6.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libXdmcp.6.dylib; sourceTree = "<group>"; };
-		F8A0C748151D3673005ED47C /* libXpm.4.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libXpm.4.dylib; sourceTree = "<group>"; };
+		F85CB754151A89E10034B6CD /* libgd.2.0.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libgd.2.0.0.dylib; path = AnsiLove/Library/libgd.2.0.0.dylib; sourceTree = "<group>"; };
+		F85CB755151A89E10034B6CD /* libjpeg.8.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libjpeg.8.dylib; path = AnsiLove/Library/libjpeg.8.dylib; sourceTree = "<group>"; };
+		F8A0C741151D3673005ED47C /* libfontconfig.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libfontconfig.1.dylib; path = AnsiLove/Library/libfontconfig.1.dylib; sourceTree = "<group>"; };
+		F8A0C742151D3673005ED47C /* libfreetype.6.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libfreetype.6.dylib; path = AnsiLove/Library/libfreetype.6.dylib; sourceTree = "<group>"; };
+		F8A0C743151D3673005ED47C /* libpng15.15.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libpng15.15.dylib; path = AnsiLove/Library/libpng15.15.dylib; sourceTree = "<group>"; };
+		F8A0C744151D3673005ED47C /* libX11.6.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libX11.6.dylib; path = AnsiLove/Library/libX11.6.dylib; sourceTree = "<group>"; };
+		F8A0C745151D3673005ED47C /* libXau.6.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libXau.6.dylib; path = AnsiLove/Library/libXau.6.dylib; sourceTree = "<group>"; };
+		F8A0C746151D3673005ED47C /* libxcb.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxcb.1.dylib; path = AnsiLove/Library/libxcb.1.dylib; sourceTree = "<group>"; };
+		F8A0C747151D3673005ED47C /* libXdmcp.6.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libXdmcp.6.dylib; path = AnsiLove/Library/libXdmcp.6.dylib; sourceTree = "<group>"; };
+		F8A0C748151D3673005ED47C /* libXpm.4.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libXpm.4.dylib; path = AnsiLove/Library/libXpm.4.dylib; sourceTree = "<group>"; };
 		F8D7EFD9146BCE9900059707 /* AnsiLoveGUI.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = AnsiLoveGUI.entitlements; path = AnsiLoveGUI/AnsiLoveGUI.entitlements; sourceTree = "<group>"; };
 		F8E082B9144996C300E30142 /* ALAnsiGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ALAnsiGenerator.h; sourceTree = "<group>"; };
 		F8E082BA144996C300E30142 /* ALAnsiGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ALAnsiGenerator.m; sourceTree = "<group>"; };
 		F8E082BB144996C300E30142 /* AnsiLove.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnsiLove.h; sourceTree = "<group>"; };
-		F8E082C01449984700E30142 /* ansilove */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ansilove; sourceTree = "<group>"; };
 		F8EAE720147E4E6E005BA3A1 /* ALSauceMachine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ALSauceMachine.h; sourceTree = "<group>"; };
 		F8EAE721147E4E6E005BA3A1 /* ALSauceMachine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ALSauceMachine.m; sourceTree = "<group>"; };
 		F8F0C93E144910340031E777 /* AnsiLove.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AnsiLove.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -83,6 +124,20 @@
 		F8F0C949144910340031E777 /* AnsiLove-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "AnsiLove-Info.plist"; sourceTree = "<group>"; };
 		F8F0C94B144910340031E777 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		F8F0C94D144910340031E777 /* AnsiLove-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AnsiLove-Prefix.pch"; sourceTree = "<group>"; };
+		F8F1394717AEEEA600B8553A /* ALAnsiLove.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ALAnsiLove.h; path = AnsiLove/Classes/ALAnsiLove.h; sourceTree = "<group>"; };
+		F8F1394817AEEEA600B8553A /* ALAnsiLove.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ALAnsiLove.m; path = AnsiLove/Classes/ALAnsiLove.m; sourceTree = "<group>"; };
+		F8F1394917AEEEA600B8553A /* ALBinFonts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ALBinFonts.h; path = AnsiLove/Classes/ALBinFonts.h; sourceTree = "<group>"; };
+		F8F1394A17AEEEA600B8553A /* ALBinFonts.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ALBinFonts.m; path = AnsiLove/Classes/ALBinFonts.m; sourceTree = "<group>"; };
+		F8F1394B17AEEEA600B8553A /* ALConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ALConfig.h; path = AnsiLove/Classes/ALConfig.h; sourceTree = "<group>"; };
+		F8F1394C17AEEEA600B8553A /* ALExplode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ALExplode.h; path = AnsiLove/Classes/ALExplode.h; sourceTree = "<group>"; };
+		F8F1394D17AEEEA600B8553A /* ALExplode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ALExplode.m; path = AnsiLove/Classes/ALExplode.m; sourceTree = "<group>"; };
+		F8F1394E17AEEEA600B8553A /* ALFileSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ALFileSize.h; path = AnsiLove/Classes/ALFileSize.h; sourceTree = "<group>"; };
+		F8F1394F17AEEEA600B8553A /* ALFileSize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ALFileSize.m; path = AnsiLove/Classes/ALFileSize.m; sourceTree = "<group>"; };
+		F8F1395017AEEEA600B8553A /* ALMain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ALMain.m; path = AnsiLove/Classes/ALMain.m; sourceTree = "<group>"; };
+		F8F1395117AEEEA600B8553A /* ALStrToLower.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ALStrToLower.h; path = AnsiLove/Classes/ALStrToLower.h; sourceTree = "<group>"; };
+		F8F1395217AEEEA600B8553A /* ALStrToLower.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ALStrToLower.m; path = AnsiLove/Classes/ALStrToLower.m; sourceTree = "<group>"; };
+		F8F1395317AEEEA600B8553A /* ALSubStr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ALSubStr.h; path = AnsiLove/Classes/ALSubStr.h; sourceTree = "<group>"; };
+		F8F1395417AEEEA600B8553A /* ALSubStr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ALSubStr.m; path = AnsiLove/Classes/ALSubStr.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +155,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				F8F0C942144910340031E777 /* Cocoa.framework in Frameworks */,
+				F8F1390D17AEE62500B8553A /* libgd.2.0.0.dylib in Frameworks */,
+				F8F1390F17AEE62500B8553A /* libpng15.15.dylib in Frameworks */,
+				F8F1390E17AEE62500B8553A /* libjpeg.8.dylib in Frameworks */,
+				F8F1390B17AEE62500B8553A /* libfontconfig.1.dylib in Frameworks */,
+				F8F1390C17AEE62500B8553A /* libfreetype.6.dylib in Frameworks */,
+				F8F1391017AEE62500B8553A /* libX11.6.dylib in Frameworks */,
+				F8F1391117AEE62500B8553A /* libXau.6.dylib in Frameworks */,
+				F8F1391217AEE62500B8553A /* libxcb.1.dylib in Frameworks */,
+				F8F1391317AEE62500B8553A /* libXdmcp.6.dylib in Frameworks */,
+				F8F1391417AEE62500B8553A /* libXpm.4.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -143,31 +208,12 @@
 			path = AnsiLove/Classes;
 			sourceTree = "<group>";
 		};
-		F8E082BF1449984700E30142 /* Library */ = {
-			isa = PBXGroup;
-			children = (
-				F8E082C01449984700E30142 /* ansilove */,
-				F85CB754151A89E10034B6CD /* libgd.2.0.0.dylib */,
-				F8A0C743151D3673005ED47C /* libpng15.15.dylib */,
-				F85CB755151A89E10034B6CD /* libjpeg.8.dylib */,
-				F8A0C741151D3673005ED47C /* libfontconfig.1.dylib */,
-				F8A0C742151D3673005ED47C /* libfreetype.6.dylib */,
-				F8A0C744151D3673005ED47C /* libX11.6.dylib */,
-				F8A0C745151D3673005ED47C /* libXau.6.dylib */,
-				F8A0C746151D3673005ED47C /* libxcb.1.dylib */,
-				F8A0C747151D3673005ED47C /* libXdmcp.6.dylib */,
-				F8A0C748151D3673005ED47C /* libXpm.4.dylib */,
-			);
-			name = Library;
-			path = AnsiLove/Library;
-			sourceTree = "<group>";
-		};
 		F8F0C932144910340031E777 = {
 			isa = PBXGroup;
 			children = (
 				F8D7EFD9146BCE9900059707 /* AnsiLoveGUI.entitlements */,
 				F8E082B8144996C300E30142 /* Classes */,
-				F8E082BF1449984700E30142 /* Library */,
+				F8F1394617AEEE8700B8553A /* External */,
 				F8F0C948144910340031E777 /* Supporting Files */,
 				F82D6A471450045C00FD228B /* AnsiLoveGUI (TestApp) */,
 				F8F0C940144910340031E777 /* Frameworks */,
@@ -189,6 +235,16 @@
 			children = (
 				F8F0C941144910340031E777 /* Cocoa.framework */,
 				F8F0C943144910340031E777 /* Other Frameworks */,
+				F85CB754151A89E10034B6CD /* libgd.2.0.0.dylib */,
+				F8A0C743151D3673005ED47C /* libpng15.15.dylib */,
+				F85CB755151A89E10034B6CD /* libjpeg.8.dylib */,
+				F8A0C741151D3673005ED47C /* libfontconfig.1.dylib */,
+				F8A0C742151D3673005ED47C /* libfreetype.6.dylib */,
+				F8A0C744151D3673005ED47C /* libX11.6.dylib */,
+				F8A0C745151D3673005ED47C /* libXau.6.dylib */,
+				F8A0C746151D3673005ED47C /* libxcb.1.dylib */,
+				F8A0C747151D3673005ED47C /* libXdmcp.6.dylib */,
+				F8A0C748151D3673005ED47C /* libXpm.4.dylib */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -214,6 +270,27 @@
 			path = AnsiLove;
 			sourceTree = "<group>";
 		};
+		F8F1394617AEEE8700B8553A /* External */ = {
+			isa = PBXGroup;
+			children = (
+				F8F1395017AEEEA600B8553A /* ALMain.m */,
+				F8F1394717AEEEA600B8553A /* ALAnsiLove.h */,
+				F8F1394817AEEEA600B8553A /* ALAnsiLove.m */,
+				F8F1394917AEEEA600B8553A /* ALBinFonts.h */,
+				F8F1394A17AEEEA600B8553A /* ALBinFonts.m */,
+				F8F1394C17AEEEA600B8553A /* ALExplode.h */,
+				F8F1394D17AEEEA600B8553A /* ALExplode.m */,
+				F8F1394E17AEEEA600B8553A /* ALFileSize.h */,
+				F8F1394F17AEEEA600B8553A /* ALFileSize.m */,
+				F8F1395117AEEEA600B8553A /* ALStrToLower.h */,
+				F8F1395217AEEEA600B8553A /* ALStrToLower.m */,
+				F8F1395317AEEEA600B8553A /* ALSubStr.h */,
+				F8F1395417AEEEA600B8553A /* ALSubStr.m */,
+				F8F1394B17AEEEA600B8553A /* ALConfig.h */,
+			);
+			name = External;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -221,8 +298,15 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F8F1395717AEEEA600B8553A /* ALBinFonts.h in Headers */,
+				F8F1395917AEEEA600B8553A /* ALConfig.h in Headers */,
+				F8F1395C17AEEEA600B8553A /* ALFileSize.h in Headers */,
+				F8F1395517AEEEA600B8553A /* ALAnsiLove.h in Headers */,
 				F8E082BE144996C300E30142 /* AnsiLove.h in Headers */,
+				F8F1395F17AEEEA600B8553A /* ALStrToLower.h in Headers */,
+				F8F1395A17AEEEA600B8553A /* ALExplode.h in Headers */,
 				F8E082BC144996C300E30142 /* ALAnsiGenerator.h in Headers */,
+				F8F1396117AEEEA600B8553A /* ALSubStr.h in Headers */,
 				F8EAE722147E4E6E005BA3A1 /* ALSauceMachine.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -256,6 +340,7 @@
 				F8F0C93A144910340031E777 /* Frameworks */,
 				F8F0C93B144910340031E777 /* Headers */,
 				F8F0C93C144910340031E777 /* Resources */,
+				F8F1393117AEEBB800B8553A /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -312,17 +397,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F8E082E71449984700E30142 /* ansilove in Resources */,
-				F85CB756151A8A670034B6CD /* libgd.2.0.0.dylib in Resources */,
-				F8A0C74A151D36D1005ED47C /* libpng15.15.dylib in Resources */,
-				F85CB757151A8A670034B6CD /* libjpeg.8.dylib in Resources */,
-				F8A0C74B151D36D1005ED47C /* libfontconfig.1.dylib in Resources */,
-				F8A0C74C151D36D1005ED47C /* libfreetype.6.dylib in Resources */,
-				F8A0C74D151D36D1005ED47C /* libX11.6.dylib in Resources */,
-				F8A0C74E151D36D1005ED47C /* libXau.6.dylib in Resources */,
-				F8A0C74F151D36D1005ED47C /* libxcb.1.dylib in Resources */,
-				F8A0C750151D36D1005ED47C /* libXdmcp.6.dylib in Resources */,
-				F8A0C751151D36D1005ED47C /* libXpm.4.dylib in Resources */,
 				F8F0C94C144910340031E777 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -343,8 +417,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F8F1395E17AEEEA600B8553A /* ALMain.m in Sources */,
 				F8E082BD144996C300E30142 /* ALAnsiGenerator.m in Sources */,
+				F8F1395D17AEEEA600B8553A /* ALFileSize.m in Sources */,
+				F8F1396017AEEEA600B8553A /* ALStrToLower.m in Sources */,
+				F8F1395617AEEEA600B8553A /* ALAnsiLove.m in Sources */,
+				F8F1396217AEEEA600B8553A /* ALSubStr.m in Sources */,
 				F8EAE723147E4E6E005BA3A1 /* ALSauceMachine.m in Sources */,
+				F8F1395B17AEEEA600B8553A /* ALExplode.m in Sources */,
+				F8F1395817AEEEA600B8553A /* ALBinFonts.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -422,7 +503,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD)";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
@@ -451,7 +531,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = macosx10.8;
+				SDKROOT = macosx;
 			};
 			name = Debug;
 		};
@@ -459,7 +539,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD)";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
@@ -481,7 +560,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
-				SDKROOT = macosx10.8;
+				SDKROOT = macosx;
 			};
 			name = Release;
 		};
@@ -494,11 +573,15 @@
 				FRAMEWORK_VERSION = A;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AnsiLove/AnsiLove-Prefix.pch";
-				HEADER_SEARCH_PATHS = "";
+				HEADER_SEARCH_PATHS = "\"/Users/Stefan/Projekte/Programmierung/Frameworks/AnsiLove/AnsiLove/Include\"";
 				INFOPLIST_FILE = "AnsiLove/AnsiLove-Info.plist";
 				INSTALL_PATH = "@executable_path/../Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/Stefan/Projekte/Programmierung/Frameworks/AnsiLove/AnsiLove/Library,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx10.8;
+				SDKROOT = macosx;
 				WRAPPER_EXTENSION = framework;
 			};
 			name = Debug;
@@ -512,11 +595,15 @@
 				FRAMEWORK_VERSION = A;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AnsiLove/AnsiLove-Prefix.pch";
-				HEADER_SEARCH_PATHS = "";
+				HEADER_SEARCH_PATHS = "\"/Users/Stefan/Projekte/Programmierung/Frameworks/AnsiLove/AnsiLove/Include\"";
 				INFOPLIST_FILE = "AnsiLove/AnsiLove-Info.plist";
 				INSTALL_PATH = "@executable_path/../Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/Stefan/Projekte/Programmierung/Frameworks/AnsiLove/AnsiLove/Library,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx10.8;
+				SDKROOT = macosx;
 				WRAPPER_EXTENSION = framework;
 			};
 			name = Release;
