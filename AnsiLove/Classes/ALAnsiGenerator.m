@@ -97,9 +97,24 @@
         self.mergesOutputToTIFF = YES;
     }
     
-    // GCD stuff goes here (probably).
+    // Let's abuse Grand Central Dispatch for asynchronous wonders.
+    dispatch_group_t render_group = dispatch_group_create();
+    dispatch_queue_t lib_queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     
-    // Post a notification so any listener will know rendering has finished now.
+    // Fire in order. We know the preceding block is complete before the next block executes.
+    dispatch_group_async(render_group, lib_queue, ^{
+        [self ALPRIVATE_invokeLibAndCreateOutput];
+    });
+    if (self.mergesOutputToTIFF == YES) {
+        dispatch_group_async(render_group, lib_queue, ^{
+            [self ALPRIVATE_createTIFFimageFromOutput];
+        });
+    }
+    
+    // Wait until GCD queue operations are finished.
+    dispatch_group_wait(render_group, DISPATCH_TIME_FOREVER);
+    
+    // Finally post rendering finished notification.
     [self ALPRIVATE_postAnsiRenderingFinishedNote];
 }
 
