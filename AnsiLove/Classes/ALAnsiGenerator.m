@@ -13,217 +13,119 @@
 
 @implementation ALAnsiGenerator
 
+# pragma mark -
+# pragma mark initialization
+
 - (id)init
 {
     if (self = [super init]) {}
     return self;
 }
 
-- (void)ansiFileToPNG:(NSString *)inputFile
-           outputFile:(NSString *)outputFile
-                 font:(NSString *)font
-                 bits:(NSString *)bits
-            iceColors:(NSString *)iceColors
-              columns:(NSString *)columns;
-{     
-    if (inputFile == nil || [inputFile isEqual: @""]) {
+# pragma mark -
+# pragma mark public
+
+- (void)renderAnsiFile:(NSString *)inputFile
+            outputFile:(NSString *)outputFile
+                  font:(NSString *)font
+                  bits:(NSString *)bits
+             iceColors:(BOOL      )iceColors
+               columns:(NSString *)columns
+                retina:(BOOL      )generateRetina
+                  TIFF:(BOOL      )mergeToTIFF
+{
+    if (inputFile == nil || [inputFile isEqual: @""]){
         // No inputfile? This means we can't do anything. Get the hell outta here.
         return;
+    }
+    else {
+        self.ansi_inputFile = inputFile;
     }
     
     if (outputFile == nil || [outputFile isEqual: @""]) {
         // In case the user provided no output file / path, just use the file name and
-        // path from the inputFile value. AnsiLove/C adds PNG suffix automatically.
+        // path from the inputFile value. AnsiLove adds a PNG suffix automatically.
         outputFile = inputFile;
     }
+    self.ansi_outputFile = outputFile;
     
-    // We need to resolve any tilde in path before passing this argument to NSTask.
-    inputFile = [inputFile stringByExpandingTildeInPath];
-    outputFile = [outputFile stringByExpandingTildeInPath];
+    // Resolve any tilde in path. The world could explode if we wouldn't do this.
+    self.ansi_inputFile = [self.ansi_inputFile stringByExpandingTildeInPath];
+    self.ansi_outputFile = [self.ansi_outputFile stringByExpandingTildeInPath];
     
-    // Initialize the arguments array.
-    NSMutableArray *arguments = [NSMutableArray new];
-    
-    // Option flag for generating a single, regular-sized PNG with AnsiLove/C.
-    NSString *optionFlag = @"-o";
-    
-    // Add the three most necessary arguments to the array.
-    [arguments addObject:inputFile];
-    [arguments addObject:optionFlag];
-    [arguments addObject:outputFile];
-    
-    // The following if statements check if a string is nil or empty. That way we can
-    // be sure only strings with proper contents will be added to the arguments array.
+    // Override the default font?
     if (font && ![font isEqualToString:@""]) {
-        [arguments addObject:font];
+        self.ansi_font = font;
+        self.usesDefaultFont = NO;
     }
+    else {
+        self.usesDefaultFont = YES;
+    }
+    
+    // Override bits?
     if (bits && ![bits isEqualToString:@""]) {
-        [arguments addObject:bits];
+        self.ansi_bits = bits;
+        self.usesDefaultBits = NO;
     }
-    if (iceColors && ([iceColors isEqualToString:@"1"] || [iceColors isEqualToString:@"0"])) {
-        [arguments addObject:iceColors];
+    else {
+        self.usesDefaultBits = YES;
     }
+    
+    // Make use of iCEColors?
+    self.ansi_iceColors = NO;
+    if (iceColors == YES) {
+        self.ansi_iceColors = YES;
+    }
+
+    // Columns are generally relevant (and used) for .BIN files only.
     if (columns && ![columns isEqualToString:@""]) {
-        [arguments addObject:columns];
+        self.ansi_columns = columns;
+    }
+    else {
+        self.usesDefaultColumns = YES;
     }
     
-    // Finally start the task with the flags we gathered.
-    NSPipe *libPipe;
-    libPipe = [NSPipe pipe];
+    // Define if the Framework should generate a proper @2x retina image additionally.
+    self.generatesRetinaFile = NO;
+    if (generateRetina == YES) {
+        self.generatesRetinaFile = YES;
+    }
     
-    NSTask *libTask = [NSTask new];
-    [libTask setLaunchPath:[[NSBundle bundleForClass:[self class]] pathForResource:@"ansilove" ofType:nil]];
-    [libTask setArguments:arguments];
-    [libTask setStandardOutput:libPipe];
+    // Needless to say: we are only able to merge a TIFF if a retina file is created.
+    self.mergesOutputToTIFF = NO;
+    if (mergeToTIFF == YES && self.generatesRetinaFile == YES) {
+        self.mergesOutputToTIFF = YES;
+    }
     
-    // Ready for launch in 3... 2... 1...
-    [libTask launch];
+    // GCD stuff goes here (probably).
     
-    // Stay in limbo until rendering is finished.
-    [libTask waitUntilExit];
-    
+    // Post a notification so any listener will know rendering has finished now.
+    [self ALPRIVATE_postAnsiRenderingFinishedNote];
+}
+
+# pragma mark -
+# pragma mark private
+
+- (void)ALPRIVATE_postAnsiRenderingFinishedNote
+{
     // Post a notification so any listener will know rendering has finished now.
     NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
 	[nc postNotificationName:@"AnsiLoveFinishedRendering" object:self];
 }
 
-- (void)ansiFileToRetinaPNG:(NSString *)inputFile
-                 outputFile:(NSString *)outputFile
-                       font:(NSString *)font
-                       bits:(NSString *)bits
-                  iceColors:(NSString *)iceColors
-                    columns:(NSString *)columns
+- (void)ALPRIVATE_invokeLibAndCreateOutput
 {
-    if (inputFile == nil || [inputFile isEqual:@""]) {
-        // No inputfile? This means we can't do anything. Get the hell outta here.
-        return;
-    }
-    
-    if (outputFile == nil || [outputFile isEqual:@""]) {
-        // In case the user provided no output file / path, just use the file name and
-        // path from the inputFile value. AnsiLove/C adds PNG suffix automatically.
-        outputFile = inputFile;
-    }
-    
-    // We need to resolve any tilde in path before passing this argument to NSTask.
-    inputFile = [inputFile stringByExpandingTildeInPath];
-    outputFile = [outputFile stringByExpandingTildeInPath];
-    
-    // Initialize the arguments array.
-    NSMutableArray *arguments = [NSMutableArray new];
-    
-    // Option flag for generating additional @2x.PNG output with AnsiLove/C.
-    NSString *optionFlag = @"-or";
-    
-    // Add the three most necessary arguments to the array.
-    [arguments addObject:inputFile];
-    [arguments addObject:optionFlag];
-    [arguments addObject:outputFile];
-    
-    // The following if statements check if a string is nil or empty. That way we can
-    // be sure only strings with proper contents will be added to the arguments array.
-    if (font && ![font isEqualToString:@""]) {
-        [arguments addObject:font];
-    }
-    if (bits && ![bits isEqualToString:@""]) {
-        [arguments addObject:bits];
-    }
-    if (iceColors && ([iceColors isEqualToString:@"1"] || [iceColors isEqualToString:@"0"])) {
-        [arguments addObject:iceColors];
-    }
-    if (columns && ![columns isEqualToString:@""]) {
-        [arguments addObject:columns];
-    }
-    
-    // Finally start the task with the flags we gathered.
-    NSPipe *libPipe;
-    libPipe = [NSPipe pipe];
-    
-    NSTask *libTask = [NSTask new];
-    [libTask setLaunchPath:[[NSBundle bundleForClass:[self class]] pathForResource:@"ansilove" ofType:nil]];
-    [libTask setArguments:arguments];
-    [libTask setStandardOutput:libPipe];
-    
-    // Ready for launch in 3... 2... 1...
-    [libTask launch];
-    
-    // Stay in limbo until rendering is finished.
-    [libTask waitUntilExit];
-    
-    // Post a notification so any listener will know rendering has finished now.
-    NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
-	[nc postNotificationName:@"AnsiLoveFinishedRendering" object:self];
+    // Your Mom.
 }
 
-- (void)ansiFileToRetinaTIFF:(NSString *)inputFile
-                  outputFile:(NSString *)outputFile
-                        font:(NSString *)font
-                        bits:(NSString *)bits
-                   iceColors:(NSString *)iceColors
-                     columns:(NSString *)columns
+- (void)ALPRIVATE_createTIFFimageFromOutput
 {
-    if (inputFile == nil || [inputFile isEqual:@""]) {
-        // No inputfile? This means we can't do anything. Get the hell outta here.
-        return;
-    }
-    
-    if (outputFile == nil || [outputFile isEqual:@""]) {
-        // In case the user provided no output file / path, just use the file name and
-        // path from the inputFile value. AnsiLove/C adds PNG suffix automatically.
-        outputFile = inputFile;
-    }
-    
-    // We need to resolve any tilde in path before passing this argument to NSTask.
-    inputFile = [inputFile stringByExpandingTildeInPath];
-    outputFile = [outputFile stringByExpandingTildeInPath];
-    
-    // Initialize the arguments array.
-    NSMutableArray *arguments = [NSMutableArray new];
-    
-    // Option flag for generating additional @2x.PNG output with AnsiLove/C.
-    NSString *optionFlag = @"-or";
-    
-    // Add the three most necessary arguments to the array.
-    [arguments addObject:inputFile];
-    [arguments addObject:optionFlag];
-    [arguments addObject:outputFile];
-    
-    // The following if statements check if a string is nil or empty. That way we can
-    // be sure only strings with proper contents will be added to the arguments array.
-    if (font && ![font isEqualToString:@""]) {
-        [arguments addObject:font];
-    }
-    if (bits && ![bits isEqualToString:@""]) {
-        [arguments addObject:bits];
-    }
-    if (iceColors && ([iceColors isEqualToString:@"1"] || [iceColors isEqualToString:@"0"])) {
-        [arguments addObject:iceColors];
-    }
-    if (columns && ![columns isEqualToString:@""]) {
-        [arguments addObject:columns];
-    }
-    
-    // Finally start the task with the flags we gathered.
-    NSPipe *libPipe;
-    libPipe = [NSPipe pipe];
-    
-    NSTask *libTask = [NSTask new];
-    [libTask setLaunchPath:[[NSBundle bundleForClass:[self class]] pathForResource:@"ansilove" ofType:nil]];
-    [libTask setArguments:arguments];
-    [libTask setStandardOutput:libPipe];
-    
-    // Ready for launch in 3... 2... 1...
-    [libTask launch];
-    
-    // Stay in limbo until rendering is finished.
-    [libTask waitUntilExit];
-    
     // Generate path / suffix strings for all files involved.
-    NSString *outputPNG = [[NSString alloc] initWithFormat:@"%@.png", outputFile];
-    NSString *retinaOutputPNG = [[NSString alloc] initWithFormat:@"%@@2x.png", outputFile];
-    NSString *retinaOutputTIFF = [[NSString alloc] initWithFormat:@"%@.tiff", outputFile];
+    NSString *outputPNG = [[NSString alloc] initWithFormat:@"%@.png", self.ansi_outputFile];
+    NSString *retinaOutputPNG = [[NSString alloc] initWithFormat:@"%@@2x.png", self.ansi_outputFile];
+    NSString *retinaOutputTIFF = [[NSString alloc] initWithFormat:@"%@.tiff", self.ansi_outputFile];
     
-    // We use tiffutil, there are two more strings needed for this purpose. 
+    // We use tiffutil, there are two more strings needed for this purpose.
     NSString *dpiFlag = @"-cathidpicheck";
     NSString *outFlag = @"-out";
     
@@ -262,9 +164,6 @@
         [fileManager removeItemAtPath:retinaOutputPNG error:nil];
     }
     
-    // Post a notification so any listener will know rendering has finished now.
-    NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
-	[nc postNotificationName:@"AnsiLoveFinishedRendering" object:self];
 }
 
 @end
