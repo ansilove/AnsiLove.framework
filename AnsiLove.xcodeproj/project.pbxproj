@@ -52,8 +52,6 @@
 		F8F1395C17AEEEA600B8553A /* ALFileSize.h in Headers */ = {isa = PBXBuildFile; fileRef = F8F1394E17AEEEA600B8553A /* ALFileSize.h */; };
 		F8F1395D17AEEEA600B8553A /* ALFileSize.m in Sources */ = {isa = PBXBuildFile; fileRef = F8F1394F17AEEEA600B8553A /* ALFileSize.m */; };
 		F8F1395E17AEEEA600B8553A /* ALMain.m in Sources */ = {isa = PBXBuildFile; fileRef = F8F1395017AEEEA600B8553A /* ALMain.m */; };
-		F8F1395F17AEEEA600B8553A /* ALStrToLower.h in Headers */ = {isa = PBXBuildFile; fileRef = F8F1395117AEEEA600B8553A /* ALStrToLower.h */; };
-		F8F1396017AEEEA600B8553A /* ALStrToLower.m in Sources */ = {isa = PBXBuildFile; fileRef = F8F1395217AEEEA600B8553A /* ALStrToLower.m */; };
 		F8F1396117AEEEA600B8553A /* ALSubStr.h in Headers */ = {isa = PBXBuildFile; fileRef = F8F1395317AEEEA600B8553A /* ALSubStr.h */; };
 		F8F1396217AEEEA600B8553A /* ALSubStr.m in Sources */ = {isa = PBXBuildFile; fileRef = F8F1395417AEEEA600B8553A /* ALSubStr.m */; };
 /* End PBXBuildFile section */
@@ -134,8 +132,6 @@
 		F8F1394E17AEEEA600B8553A /* ALFileSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ALFileSize.h; path = AnsiLove/Classes/ALFileSize.h; sourceTree = "<group>"; };
 		F8F1394F17AEEEA600B8553A /* ALFileSize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ALFileSize.m; path = AnsiLove/Classes/ALFileSize.m; sourceTree = "<group>"; };
 		F8F1395017AEEEA600B8553A /* ALMain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ALMain.m; path = AnsiLove/Classes/ALMain.m; sourceTree = "<group>"; };
-		F8F1395117AEEEA600B8553A /* ALStrToLower.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ALStrToLower.h; path = AnsiLove/Classes/ALStrToLower.h; sourceTree = "<group>"; };
-		F8F1395217AEEEA600B8553A /* ALStrToLower.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ALStrToLower.m; path = AnsiLove/Classes/ALStrToLower.m; sourceTree = "<group>"; };
 		F8F1395317AEEEA600B8553A /* ALSubStr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ALSubStr.h; path = AnsiLove/Classes/ALSubStr.h; sourceTree = "<group>"; };
 		F8F1395417AEEEA600B8553A /* ALSubStr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ALSubStr.m; path = AnsiLove/Classes/ALSubStr.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -282,8 +278,6 @@
 				F8F1394D17AEEEA600B8553A /* ALExplode.m */,
 				F8F1394E17AEEEA600B8553A /* ALFileSize.h */,
 				F8F1394F17AEEEA600B8553A /* ALFileSize.m */,
-				F8F1395117AEEEA600B8553A /* ALStrToLower.h */,
-				F8F1395217AEEEA600B8553A /* ALStrToLower.m */,
 				F8F1395317AEEEA600B8553A /* ALSubStr.h */,
 				F8F1395417AEEEA600B8553A /* ALSubStr.m */,
 				F8F1394B17AEEEA600B8553A /* ALConfig.h */,
@@ -303,7 +297,6 @@
 				F8F1395C17AEEEA600B8553A /* ALFileSize.h in Headers */,
 				F8F1395517AEEEA600B8553A /* ALAnsiLove.h in Headers */,
 				F8E082BE144996C300E30142 /* AnsiLove.h in Headers */,
-				F8F1395F17AEEEA600B8553A /* ALStrToLower.h in Headers */,
 				F8F1395A17AEEEA600B8553A /* ALExplode.h in Headers */,
 				F8E082BC144996C300E30142 /* ALAnsiGenerator.h in Headers */,
 				F8F1396117AEEEA600B8553A /* ALSubStr.h in Headers */,
@@ -420,7 +413,6 @@
 				F8F1395E17AEEEA600B8553A /* ALMain.m in Sources */,
 				F8E082BD144996C300E30142 /* ALAnsiGenerator.m in Sources */,
 				F8F1395D17AEEEA600B8553A /* ALFileSize.m in Sources */,
-				F8F1396017AEEEA600B8553A /* ALStrToLower.m in Sources */,
 				F8F1395617AEEEA600B8553A /* ALAnsiLove.m in Sources */,
 				F8F1396217AEEEA600B8553A /* ALSubStr.m in Sources */,
 				F8EAE723147E4E6E005BA3A1 /* ALSauceMachine.m in Sources */,
