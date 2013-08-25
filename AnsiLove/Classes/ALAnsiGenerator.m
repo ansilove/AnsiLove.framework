@@ -10,6 +10,9 @@
 //
 
 #import "ALAnsiGenerator.h"
+#import "ALConfig.h"
+#import "ALSubStr.h"
+#import "ALAnsiLove.h"
 
 @implementation ALAnsiGenerator
 
@@ -97,6 +100,17 @@
         self.mergesOutputToTIFF = YES;
     }
     
+    // We possibly have to set some default values?
+    if (self.usesDefaultFont == YES) {
+        self.ansi_font = @"80x25";
+    }
+    if (self.usesDefaultBits == YES) {
+        self.ansi_bits = @"8";
+    }
+    if (self.usesDefaultColumns == YES) {
+        self.ansi_columns = @"160";
+    }
+    
     // Let's abuse Grand Central Dispatch for asynchronous wonders.
     dispatch_group_t render_group = dispatch_group_create();
     dispatch_queue_t lib_queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
@@ -105,6 +119,7 @@
     dispatch_group_async(render_group, lib_queue, ^{
         [self ALPRIVATE_invokeLibAndCreateOutput];
     });
+    
     if (self.mergesOutputToTIFF == YES) {
         dispatch_group_async(render_group, lib_queue, ^{
             [self ALPRIVATE_createTIFFimageFromOutput];
@@ -130,7 +145,39 @@
 
 - (void)ALPRIVATE_invokeLibAndCreateOutput
 {
-    // Your Mom.
+    // Get the current file extension and make it lowercase.
+    NSString *currentPathExtension = [self.ansi_inputFile pathExtension];
+    NSString *fileExtension = [currentPathExtension lowercaseString];
+    
+    // Define path for @2x PNG image.
+    NSString *ansi_retinaOutputFile = [[NSString alloc] initWithFormat:@"%@@2x.png", self.ansi_outputFile];
+    
+    // Create NSString from self.iceColors BOOL value.
+    NSString *ansi_iceColorsString = (self.ansi_iceColors) ? @"1" : @"0";
+    
+    // Use determined file extension to fire appropiate lib method.
+    if ([fileExtension isEqualToString:@"pcb"])
+    {
+        // PCBOARD
+        alPcBoardLoader((char *)[self.ansi_inputFile UTF8String],
+                        (char *)[self.ansi_outputFile UTF8String],
+                        (char *)[ansi_retinaOutputFile UTF8String],
+                        (char *)[self.ansi_font UTF8String],
+                        (char *)[self.ansi_bits UTF8String],
+                        self.generatesRetinaFile);
+    }
+    if ([fileExtension isEqualToString:@"bin"])
+    {
+        // BINARY
+        alBinaryLoader((char *)[self.ansi_inputFile UTF8String],
+                       (char *)[self.ansi_outputFile UTF8String],
+                       (char *)[ansi_retinaOutputFile UTF8String],
+                       (char *)[self.ansi_columns UTF8String],
+                       (char *)[self.ansi_font UTF8String],
+                       (char *)[self.ansi_bits UTF8String],
+                       (char *)[ansi_iceColorsString UTF8String],
+                       self.generatesRetinaFile);
+    }
 }
 
 - (void)ALPRIVATE_createTIFFimageFromOutput
@@ -178,7 +225,6 @@
     if ([fileManager fileExistsAtPath:retinaOutputPNG]) {
         [fileManager removeItemAtPath:retinaOutputPNG error:nil];
     }
-    
 }
 
 @end
