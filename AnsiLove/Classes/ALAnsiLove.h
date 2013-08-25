@@ -13,7 +13,6 @@
 #import <gd.h>
 #import "ALConfig.h"
 #import "ALBinFonts.h"
-#import "ALStrToLower.h"
 #import "ALSubStr.h"
 #import "ALExplode.h"
 #import "ALFileSize.h"
