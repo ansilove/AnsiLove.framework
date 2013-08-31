@@ -51,7 +51,6 @@
 		F8F1395B17AEEEA600B8553A /* ALExplode.m in Sources */ = {isa = PBXBuildFile; fileRef = F8F1394D17AEEEA600B8553A /* ALExplode.m */; };
 		F8F1395C17AEEEA600B8553A /* ALFileSize.h in Headers */ = {isa = PBXBuildFile; fileRef = F8F1394E17AEEEA600B8553A /* ALFileSize.h */; };
 		F8F1395D17AEEEA600B8553A /* ALFileSize.m in Sources */ = {isa = PBXBuildFile; fileRef = F8F1394F17AEEEA600B8553A /* ALFileSize.m */; };
-		F8F1395E17AEEEA600B8553A /* ALMain.m in Sources */ = {isa = PBXBuildFile; fileRef = F8F1395017AEEEA600B8553A /* ALMain.m */; };
 		F8F1396117AEEEA600B8553A /* ALSubStr.h in Headers */ = {isa = PBXBuildFile; fileRef = F8F1395317AEEEA600B8553A /* ALSubStr.h */; };
 		F8F1396217AEEEA600B8553A /* ALSubStr.m in Sources */ = {isa = PBXBuildFile; fileRef = F8F1395417AEEEA600B8553A /* ALSubStr.m */; };
 /* End PBXBuildFile section */
@@ -69,9 +68,9 @@
 		};
 		F8F1393117AEEBB800B8553A /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = Library;
-			dstSubfolderSpec = 16;
+			buildActionMask = 12;
+			dstPath = ..;
+			dstSubfolderSpec = 7;
 			files = (
 				F8F1393C17AEEC5400B8553A /* libgd.2.0.0.dylib in CopyFiles */,
 				F8F1393D17AEEC5400B8553A /* libpng15.15.dylib in CopyFiles */,
@@ -131,7 +130,6 @@
 		F8F1394D17AEEEA600B8553A /* ALExplode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ALExplode.m; path = AnsiLove/Classes/ALExplode.m; sourceTree = "<group>"; };
 		F8F1394E17AEEEA600B8553A /* ALFileSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ALFileSize.h; path = AnsiLove/Classes/ALFileSize.h; sourceTree = "<group>"; };
 		F8F1394F17AEEEA600B8553A /* ALFileSize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ALFileSize.m; path = AnsiLove/Classes/ALFileSize.m; sourceTree = "<group>"; };
-		F8F1395017AEEEA600B8553A /* ALMain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ALMain.m; path = AnsiLove/Classes/ALMain.m; sourceTree = "<group>"; };
 		F8F1395317AEEEA600B8553A /* ALSubStr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ALSubStr.h; path = AnsiLove/Classes/ALSubStr.h; sourceTree = "<group>"; };
 		F8F1395417AEEEA600B8553A /* ALSubStr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ALSubStr.m; path = AnsiLove/Classes/ALSubStr.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -269,7 +267,6 @@
 		F8F1394617AEEE8700B8553A /* External */ = {
 			isa = PBXGroup;
 			children = (
-				F8F1395017AEEEA600B8553A /* ALMain.m */,
 				F8F1394717AEEEA600B8553A /* ALAnsiLove.h */,
 				F8F1394817AEEEA600B8553A /* ALAnsiLove.m */,
 				F8F1394917AEEEA600B8553A /* ALBinFonts.h */,
@@ -410,7 +407,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F8F1395E17AEEEA600B8553A /* ALMain.m in Sources */,
 				F8E082BD144996C300E30142 /* ALAnsiGenerator.m in Sources */,
 				F8F1395D17AEEEA600B8553A /* ALFileSize.m in Sources */,
 				F8F1395617AEEEA600B8553A /* ALAnsiLove.m in Sources */,
@@ -513,7 +509,7 @@
 					"$(inherited)",
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_VERSION = "";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -523,7 +519,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = macosx;
+				SDKROOT = macosx10.8;
 			};
 			name = Debug;
 		};
@@ -543,7 +539,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_VERSION = "";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -552,7 +548,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
-				SDKROOT = macosx;
+				SDKROOT = macosx10.8;
 			};
 			name = Release;
 		};
@@ -572,8 +568,9 @@
 					"$(inherited)",
 					/Users/Stefan/Projekte/Programmierung/Frameworks/AnsiLove/AnsiLove/Library,
 				);
+				OTHER_CODE_SIGN_FLAGS = "--deep";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
+				SDKROOT = macosx10.8;
 				WRAPPER_EXTENSION = framework;
 			};
 			name = Debug;
@@ -594,8 +591,9 @@
 					"$(inherited)",
 					/Users/Stefan/Projekte/Programmierung/Frameworks/AnsiLove/AnsiLove/Library,
 				);
+				OTHER_CODE_SIGN_FLAGS = "--deep";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
+				SDKROOT = macosx10.8;
 				WRAPPER_EXTENSION = framework;
 			};
 			name = Release;
