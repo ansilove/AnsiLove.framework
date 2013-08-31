@@ -87,6 +87,7 @@
     // Columns are generally relevant (and used) for .BIN files only.
     if (columns && ![columns isEqualToString:@""]) {
         self.ansi_columns = columns;
+        self.usesDefaultColumns = NO;
     }
     else {
         self.usesDefaultColumns = YES;
