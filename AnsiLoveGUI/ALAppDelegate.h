@@ -17,6 +17,9 @@
 
 @interface ALAppDelegate : NSObject <NSApplicationDelegate>
 
+// Instances
+@property (strong) ALAnsiGenerator *ansigen;
+
 // outlets
 @property (strong) IBOutlet NSWindow *window;
 @property (strong) IBOutlet NSTextField *inputField;
@@ -33,7 +36,6 @@
 @property (strong) NSString *columns;
 @property (strong) NSString *font;
 @property (strong) NSString *bits;
-@property (strong) NSString *iceColors;
 
 // integer and float values
 @property (assign) BOOL shouldUseIceColors;
