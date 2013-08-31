@@ -1,14 +1,14 @@
-# Important news: work in progress
-
-Right now this project is subject of a major rewrite. The goal is to not bundle a compiled variant of AnsiLove/C with the framework anymore. All AnsiLove/C code will be forked into the framework. With upcoming OS X Mavericks it will be hard to maintain the NSTask based approach, for the sake of performance it makes sense as well. Note that the bundled AnsiLove/C binary is not suitable for Mac App Store submission at this point. That's why I flagged the current framework release as alpha. As you are reading this, the documentation below is probably outdated. Hang on, I'm already working hard on it. You get an updated documentation once the all-new framework is done as well. Much love!
-
 # AnsiLove.framework
 
-This is a Cocoa framework I consider as modern approach of bringing back the good old days™. It's capable of rendering ANSi / ASCII art and it also handles SAUCE records. There are two classes responsible for all the magic: `ALAnsiGenerator` and `ALSauceMachine`. The former, `ALAnsiGenerator` creates Retina-ready PNG and TIFF images from ANSi source files. What with one thing and another, images are read-only. So if you're looking for something that generates output in real textmode, maybe as a NSAttributedString instance, you're wrong. However, if you're seeking the most complete and accurate rendering of ANSi art sources available these days, you came to the right place. While `ALAnsiGenerator` acts more like a Cocoa layer, there is a specifc library under the surface. It's called [AnsiLove/C](https://github.com/ByteProject/AnsiLove-C) and we spent countless hours developing it. The latter, `ALSauceMachine` is reading SAUCE records and returns these values as Objective-C properties. 
+This is a Cocoa framework I consider as tribute to the good old days™. It's capable of rendering ANSi / ASCII art and it also handles SAUCE records. 
+
+# Tell me more
+
+There are two classes responsible for all the magic: `ALAnsiGenerator` and `ALSauceMachine`. The former, `ALAnsiGenerator` creates Retina-ready PNG images from ANSi source files. What with one thing and another, images are read-only. So if you're looking for something that generates output in real textmode, maybe as a NSAttributedString instance, you're wrong. However, if you're seeking the most complete and accurate rendering of ANSi art sources available these days, you came to the right place. The latter, `ALSauceMachine` is reading SAUCE records and returns these values as Objective-C properties. 
 
 # Version info
 
-Current framework release: `4.0.0 alpha` - rendering library: [AnsiLove/C](https://github.com/ByteProject/AnsiLove-C) `2.1.0`
+Current framework release: `5.0.1` - based on: [AnsiLove/C](https://github.com/ByteProject/AnsiLove-C) `2.1.0`
 
 # Features
 
@@ -37,71 +37,41 @@ Still not enough?
 
 - Output files are highly optimized 4-bit images.
 - Optionally generate proper Retina @2x.PNG files.
-- Merge output as TIFF, containing regular and Retina resolutions. 
 - Use custom objects for adjusting output results.
 - Built-in support for rendering Amiga ASCII.
 - Everything's Mac App Store conform and sandboxing compliant.
-- This is an Automatic Reference Counting (ARC) project.
+- ARC / Automatic Reference Counting roject.
 
 # Documentation
 
-Let's talk about using the framework in your own projects. First of all, AnsiLove.framework is intended to run on `OS X`, it won't work on `iOS`. Yeah, sorry for that. Not even my fault, it's simply not possible at this point. You have to download the sources and compile the framework. At least OS X Mountain Lion and Xcode 4.x are necessary for compiling the framework `as is`. Generally, targeting older SDKs is supported, but for said purpose you will also have to recompile all contents in the `Library` folder, including [AnsiLove/C](https://github.com/ByteProject/AnsiLove-C). While [AnsiLove/C](https://github.com/ByteProject/AnsiLove-C) sources are up in a separate repository here on GitHub (just follow the link), sources for contained dylibs are not provided. Well, I never said it's easy to target older systems, at least it's possible. The project file contains two build targets, the framework itself and a test app `AnsiLoveGUI`, the latter is optional. Select `AnsiLoveGUI` from the Schemes dropdown in Xcode if you desire to compile that one too. The test app is a good example of implementing AnsiLove.framework, it does not contain much code and what you find there is well commented. So `AnsiLoveGUI` might be your first place to play with the framework after reading this documentation. Being an ARC framework, the test app is a pure ARC project as well. What else. 
-
-## Adding the framework to your projects
-
-Place the compiled framework in a folder inside your project, I recommend creating a `Frameworks` folder, if not existing. In Xcode go to the File menu and select `Add Files to "MyProject"`, select the AnsiLove.framework you just dropped in the `Frameworks` folder and then drag the framework to the other frameworks in your project hierarchy. The last steps are pretty easy:
-
-- In the project navigator, select your project
-- Select your target
-- Select the `Build Phases` tab
-- Open `Link Binaries With Libraries` expander
-- Click the `+` button and select AnsiLove.framework
-- Hit `Add Build Phase` at the bottom
-- Add a `Copy Files` build phase with `Frameworks` as destination
-- Once again select AnsiLove.framework
-
-Now AnsiLove.framework is properly linked to your target and will be added to compiled binaries.
+Let's talk about using the framework in your own projects. First of all, AnsiLove.framework is intended to run on `OS X`, it won't work for `iOS`. You have to download the sources and compile the framework. At least OS X Mountain Lion and Xcode 5.x are necessary for compiling `as is`. The project file contains two build targets, the framework itself and a test app `AnsiLoveGUI`, the latter is optional. Select `AnsiLoveGUI` from the Schemes dropdown in Xcode if you desire to compile that one too. The test app is a good example of implementing AnsiLove.framework, it does not contain much code and what you find there is well commented. So `AnsiLoveGUI` might be your first place to play with the framework after reading this documentation. Being an ARC framework, the test app is a pure ARC project as well. Makes sense, right?
 
 ## Implementing the framework in your own sources
+
+I assume you know how to add a framework to your own projects, so we just skip that step now.
 
 Go to the header of the class you want to use the framework with. Import the framework like this:
 
 	#import <Ansilove/AnsiLove.h>
 
-To transform ANSi source files into a beautiful images, `ALAnsiGenerator` comes with three methods you should know:
+Create an instance of `ALAnsiGenerator`:
 
-	+ (void)ansiFileToPNG:
-	+ (void)ansiFileToRetinaPNG:
-	+ (void)ansiFileToRetinaTIFF:
+		 ALSauceMachine *ansiGen = [ALAnsiGenerator new];
 
-Method `ansiFileToPNG:` creates a single PNG image in regular resolution from any given ANSi source. `ansiFileToRetinaPNG:` generates the regular PNG and additionally creates a properly named (and sized) Retina @2x.PNG variant. `ansiFileToRetinaTIFF:` generates the two PNGs and merges them to a Retina-ready TIFF, containing both resolutions. The PNG cache files will be automatically deleted after TIFF output is done.
 
-You can call said methods like this:
+To transform ANSi source files into a beautiful images, `ALAnsiGenerator` comes with just one method you should know:
 
-	[ALAnsiGenerator ansiFileToRetinaTIFF:self.myInputFile 
-                               outputFile:self.myOutputFile 
-                                     font:self.myFont 
-                                     bits:self.myBits 
-                                iceColors:self.myIceColors
-                                  columns:self.myColumns];
+	(void)renderAnsiFile:(NSString *)inputFile
+			  outputFile:(NSString *)outputFile
+			  		font:(NSString *)font
+					bits:(NSString *)bits
+			   iceColors:(BOOL      )iceColors
+			   	 columns:(NSString *)columns
+				  retina:(BOOL      )generateRetina;
 
-Keep in mind that `ALAnsiGenerator` needs all it's objects as `NSString` instances. You can work internally with numeric types like `NSInteger` or `BOOL` but you need to convert them to strings before you pass these values to `ALAnsiGenerator`. For example, `iceColors` (I'm going to explain all objects in detail below) can only be `0` or `1`, so it's perfect to have that as `BOOL` type in your app. I did this in `AnsiLoveGUI` as well. To pass this value to ALAnsiGenerator you can do it something like this:
+Setting retina to `YES` forces the Framework to generate the regular PNG and a properly named (and sized) Retina @2x.PNG image additionallay.
 
-	NSString *iceColors;
-	BOOL	 shouldUseIceColors;
-
-	if (shouldUseIceColors == NO) {
-        	self.iceColors = @"0";
-    	}
-    	else {
-        	self.iceColors = @"1";
-    	}
-
-Note that generally all objects except `inputFile` are optional. You can either decide to pass `nil` (AnsiLove.framework will then work with it's default values) or pass empty strings like:
-
-	self.myFontString = @"";
-	
-AnsiLove.framework will silently consume `nil` and empty string values but it will rely on it's built-in defaults in both cases. Clever? Sure. So much for the basics, let's head over to the details. The three methods seem pretty simple, but in fact they're so damn powerful if you know how to deal with objects you pass and that is what I'm going to teach you now.
+Note that generally all objects except `inputFile` are optional. AnsiLove.framework will silently consume `nil` and empty string values and will rely on it's built-in defaults in both cases.
 
 ## (NSString *)inputFile
 
@@ -109,20 +79,16 @@ The only necessary object you need to pass to `ALAnsiGenerator. Well, that's log
 
 	/Users/Stefan/Desktop/MyAnsiArtwork.ans
 	
-I recommend treating this string case-sensitive.  As you can see, that string explicitly needs to contain the path and the file name. That's pretty cool because it means you can work either with `NSStrings` or `NSURLs` internally. Just keep in mind that any `NSURL` needs to be converted to a string before passing to ALAnsiGenerator. NSURL has a method called `absoluteString` that can be used for easy conversion.
-	
+I recommend treating this string case-sensitive.  As you can see, that string explicitly needs to contain the path and the file name. Keep in mind that any `NSURL` needs to be converted to a string before passing to ALAnsiGenerator. NSURL has a method called `absoluteString` that can be used for easy conversion.
+
 	NSURL 	 *myURL;
 	NSString *urlString = [myURL absoluteString];
 
-But AnsiLove.framework is even more flexible and it will automatically resolve any tilde in `inputFile` string instances. Now you know that this is a proper `inputFile` string, too:
-
-	~/Desktop/MyAnsiArtwork.ans
-
-Simple, elegant, comfortable, just working? You decide.
+Note that AnsiLove.framework will resolve any tilde in path for you.
 
 ## (NSString *)outputFile
 
-Formatting of string `outputFile` is identical to string `inputFile`. Only one difference: `outputFile` is optional. If you don't set this object, the framework will use the same path / file name you passed as `inputFile` string, but it adds .PNG or .TIFF as suffix, depending on what method you fired. However, if you plan to write your images into a different directory and / or under a different filename, go ahead and customize this object. Just keep in mind that for custom paths the suffix will be added automatically as well.
+Formatting of string `outputFile` is identical to string `inputFile`. If you don't set this object, the framework will use the same path / file name you passed as `inputFile` string, addding .PNG suffix automatically. However, if you plan to write your images into a different directory and / or under a different filename, go ahead and customize this object. Just keep in mind that for custom paths the suffix will be added automatically as well.
 
 ## (NSString *)font
 
@@ -179,13 +145,17 @@ Setting the bits to `workbench` will cause the input file to be rendered using A
 
 Settings the bits to `transparent` will produce output files with transparent background (only available for `.ans` files).
 
-## (NSString *)iceColors
+## (BOOL)iceColors
 
-Setting `iceColors` to `1` will enable iCE color codes. On the opposite `0` means that that `iceColors` are disabled, which is the default value. When an ANSi source was created using iCE colors, it was done with a special mode where the blinking was disabled, and you had 16 background colors available. Basically, you had the same choice for background colors as for foreground colors, that's iCE colors. But now the important part: when the ANSi source does not make specific use of iCE colors, you should NOT enable them. The file could look pretty weird in normal mode. So in most cases it's fine to turn iCE colors off. 
+Setting `iceColors` to `YES` will enable iCE color codes. On the opposite `NO` means that that `iceColors` are disabled, which is the default value. When an ANSi source was created using iCE colors, it was done with a special mode where the blinking was disabled, and you had 16 background colors available. Basically, you had the same choice for background colors as for foreground colors, that's iCE colors. But now the important part: when the ANSi source does not make specific use of iCE colors, you should NOT enable them. The file could look pretty weird in normal mode. So in most cases it's fine to turn iCE colors off. 
 
 ## (NSString *)columns
 
 `columns` is only relevant for ANSi source files with `.BIN` extension and even for those files optional. In most cases conversion will work fine if you don't set this flag, the default value is `160` then. So please pass `columns` only to `.BIN` files and only if you exactly know what you're doing. The sun could explode or even worse: A KITTEN MAY DIE SOMEWHERE.
+
+## (BOOL)retina
+
+If you set this to `YES` the Framework creates two output images, the regular file and a properly named and sized @2x.PNG image to the same location.
 
 ## Supported options for each file type
 
@@ -235,7 +205,7 @@ You may wonder how the rendered output looks like? You'll find an example in reg
 
 # Reading SAUCE records
 
-The framework's class for dealing with SAUCE records is `ALSauceMachine`. But before we continue, here's your opportunity to introduce yourself to the [SAUCE specifications](http://www.acid.org/info/sauce/s_spec.htm). Plenty values retrieved from SAUCE records can be passed as objects to `ALAnsiGenerator`, so it makes sense indeed to check for a SAUCE record before you start rendering. Anyway, it's just a hint. Convenient yes, but by no means necessary. Enough theory, here is how to use the class. First we need to create an instance of `ALSauceMachine`:
+The framework's class for dealing with SAUCE records is `ALSauceMachine`. But before we continue, here's your opportunity to introduce yourself to the [SAUCE specifications](http://www.acid.org/info/sauce/s_spec.htm). Plenty values retrieved from SAUCE records can be passed as objects to `ALAnsiGenerator`, so it makes sense indeed to check for a SAUCE record before you start rendering. So, how to use the class? First, we need to create an instance of `ALSauceMachine`:
 
 	 ALSauceMachine *sauce = [ALSauceMachine new];
 
@@ -248,8 +218,8 @@ You probably guess that not all files contain SAUCE and you're right. Many ANSi 
 	BOOL fileHasRecord;
 	BOOL fileHasComments;
 	BOOL fileHasFlags;
-	
-The first property, `fileHasRecord` stands above the others, which means if a file doesn't have a SAUCE record, it's evident it doesn't have SAUCE comments and flags. My advice: don't check `fileHasComments` and `fileHasFlags` if you already know there is no SAUCE record. Don't get my wrong, nothing will explode if you do so (not even the sun). But the answer will always be NO in that case so it's a waste of time. What if a file contains a SAUCE record on the other hand? It's nevertheless possible it doesn't have comments and flags. So if `fileHasRecord` is YES, you should try the other two BOOL values as well. Let's assume your class instance is still `*sauce` and you now checked for all three BOOL types, knowing the details. How to retrieve the SAUCE? Easy. `ALSauceMachine` stores the SAUCE record into properties, right at your fingertips:
+
+The first property, `fileHasRecord` is kinda superior, which means if a file doesn't have a SAUCE record, it's evident it doesn't have SAUCE comments and flags. My advice: don't check `fileHasComments` and `fileHasFlags` if you already know there is no SAUCE record. What if a file contains a SAUCE record on the other hand? It's nevertheless possible it doesn't have comments and flags. So if `fileHasRecord` is YES, you should try the other two BOOL values as well. Let's assume your class instance is still `*sauce` and you now checked for all three BOOL types, knowing the details. How to retrieve the SAUCE? Easy. `ALSauceMachine` stores the SAUCE record into properties, right at your fingertips:
 
 	NSString  *ID;
 	NSString  *version;
@@ -269,7 +239,7 @@ The first property, `fileHasRecord` stands above the others, which means if a fi
 Now imagine you want to print SAUCE title and author in NSLog:
 
 	NSLog(@"This is: %@ by %@.", sauce.title, sauce.author);
-	
+
 That's it. If you feel like this introduction to AnsiLove.framework's SAUCE implementation left some of your questions unanswered, I suggest you take a closer look at `AnsiLoveGUI` (the sample app). It contains a full featured yet simple example how to use `ALSauceMachine`. 
 
 # App Sandboxing
@@ -278,7 +248,7 @@ The framework runs great in sandboxed apps. That is because I handcrafted it to 
 
 # Retina support
 
-By investigating `ALAnsiGenerator` methods you already know this framework comes with full Retina support. Assuming you are familiar with Apple's [High Resolution Guidelines for OS X](http://developer.apple.com/library/mac/#documentation/GraphicsAnimation/Conceptual/HighResolutionOSX/Introduction/Introduction.html), there is not much more to say about the matter. Now it's up to you as developer.
+You already know this framework comes with full Retina support. Assuming you are familiar with Apple's [High Resolution Guidelines for OS X](http://developer.apple.com/library/mac/#documentation/GraphicsAnimation/Conceptual/HighResolutionOSX/Introduction/Introduction.html), there is not much more to say about the matter. Now it's up to you as developer.
 
 # Why?
 
