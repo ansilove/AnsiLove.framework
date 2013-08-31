@@ -10,8 +10,8 @@
 //
 
 #import "ALAnsiGenerator.h"
+#import "ALSauceMachine.h"
 #import "ALConfig.h"
-#import "ALSubStr.h"
 #import "ALAnsiLove.h"
 
 @implementation ALAnsiGenerator
@@ -35,7 +35,6 @@
              iceColors:(BOOL      )iceColors
                columns:(NSString *)columns
                 retina:(BOOL      )generateRetina
-                  TIFF:(BOOL      )mergeToTIFF
 {
     if (inputFile == nil || [inputFile isEqual: @""]){
         // No inputfile? This means we can't do anything. Get the hell outta here.
@@ -50,7 +49,12 @@
         // path from the inputFile value. AnsiLove adds a PNG suffix automatically.
         outputFile = inputFile;
     }
-    self.ansi_outputFile = outputFile;
+    
+    // Keep our raw ANSi output string in mind. We need it later.
+    self.rawOutputString = outputFile;
+    
+    // We need to keep our promise of adding a PNG suffix automatically.
+    self.ansi_outputFile = [NSString stringWithFormat:@"%@.png", outputFile];
     
     // Resolve any tilde in path. The world could explode if we wouldn't do this.
     self.ansi_inputFile = [self.ansi_inputFile stringByExpandingTildeInPath];
@@ -94,12 +98,6 @@
         self.generatesRetinaFile = YES;
     }
     
-    // Needless to say: we are only able to merge a TIFF if a retina file is created.
-    self.mergesOutputToTIFF = NO;
-    if (mergeToTIFF == YES && self.generatesRetinaFile == YES) {
-        self.mergesOutputToTIFF = YES;
-    }
-    
     // We possibly have to set some default values?
     if (self.usesDefaultFont == YES) {
         self.ansi_font = @"80x25";
@@ -111,6 +109,9 @@
         self.ansi_columns = @"160";
     }
     
+    // SAUCE will be relevant for IDF files, we set that to NO for now.
+    self.hasSauceRecord = NO;
+    
     // Let's abuse Grand Central Dispatch for asynchronous wonders.
     dispatch_group_t render_group = dispatch_group_create();
     dispatch_queue_t lib_queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
@@ -119,12 +120,6 @@
     dispatch_group_async(render_group, lib_queue, ^{
         [self ALPRIVATE_invokeLibAndCreateOutput];
     });
-    
-    if (self.mergesOutputToTIFF == YES) {
-        dispatch_group_async(render_group, lib_queue, ^{
-            [self ALPRIVATE_createTIFFimageFromOutput];
-        });
-    }
     
     // Wait until GCD queue operations are finished.
     dispatch_group_wait(render_group, DISPATCH_TIME_FOREVER);
@@ -150,81 +145,121 @@
     NSString *fileExtension = [currentPathExtension lowercaseString];
     
     // Define path for @2x PNG image.
-    NSString *ansi_retinaOutputFile = [[NSString alloc] initWithFormat:@"%@@2x.png", self.ansi_outputFile];
+    self.ansi_retinaOutputFile = [NSString stringWithFormat:@"%@@2x.png", self.rawOutputString];
     
     // Create NSString from self.iceColors BOOL value.
     NSString *ansi_iceColorsString = (self.ansi_iceColors) ? @"1" : @"0";
     
-    // Use determined file extension to fire appropiate lib method.
+    // Parsing and generating output via blocks.
+    dispatch_group_t private_render_group = dispatch_group_create();
+    dispatch_queue_t private_lib_queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    
+    // Fire private lib methods based on the file extension string.
     if ([fileExtension isEqualToString:@"pcb"])
     {
         // PCBOARD
-        alPcBoardLoader((char *)[self.ansi_inputFile UTF8String],
-                        (char *)[self.ansi_outputFile UTF8String],
-                        (char *)[ansi_retinaOutputFile UTF8String],
-                        (char *)[self.ansi_font UTF8String],
-                        (char *)[self.ansi_bits UTF8String],
-                        self.generatesRetinaFile);
+        dispatch_group_async(private_render_group, private_lib_queue, ^{
+            alPcBoardLoader((char *)[self.ansi_inputFile UTF8String],
+                            (char *)[self.ansi_outputFile UTF8String],
+                            (char *)[self.ansi_retinaOutputFile UTF8String],
+                            (char *)[self.ansi_font UTF8String],
+                            (char *)[self.ansi_bits UTF8String],
+                            self.generatesRetinaFile);
+        });
     }
-    if ([fileExtension isEqualToString:@"bin"])
+    
+    else if ([fileExtension isEqualToString:@"bin"])
     {
-        // BINARY
-        alBinaryLoader((char *)[self.ansi_inputFile UTF8String],
-                       (char *)[self.ansi_outputFile UTF8String],
-                       (char *)[ansi_retinaOutputFile UTF8String],
-                       (char *)[self.ansi_columns UTF8String],
-                       (char *)[self.ansi_font UTF8String],
-                       (char *)[self.ansi_bits UTF8String],
-                       (char *)[ansi_iceColorsString UTF8String],
-                       self.generatesRetinaFile);
+        // BiNARY
+        dispatch_group_async(private_render_group, private_lib_queue, ^{
+            alBinaryLoader((char *)[self.ansi_inputFile UTF8String],
+                           (char *)[self.ansi_outputFile UTF8String],
+                           (char *)[self.ansi_retinaOutputFile UTF8String],
+                           (char *)[self.ansi_columns UTF8String],
+                           (char *)[self.ansi_font UTF8String],
+                           (char *)[self.ansi_bits UTF8String],
+                           (char *)[ansi_iceColorsString UTF8String],
+                           self.generatesRetinaFile);
+        });
     }
-}
-
-- (void)ALPRIVATE_createTIFFimageFromOutput
-{
-    // Generate path / suffix strings for all files involved.
-    NSString *outputPNG = [[NSString alloc] initWithFormat:@"%@.png", self.ansi_outputFile];
-    NSString *retinaOutputPNG = [[NSString alloc] initWithFormat:@"%@@2x.png", self.ansi_outputFile];
-    NSString *retinaOutputTIFF = [[NSString alloc] initWithFormat:@"%@.tiff", self.ansi_outputFile];
     
-    // We use tiffutil, there are two more strings needed for this purpose.
-    NSString *dpiFlag = @"-cathidpicheck";
-    NSString *outFlag = @"-out";
-    
-    // Create an array for flags we pass.
-    NSMutableArray *tiffutilFlags = [NSMutableArray new];
-    
-    // This will be the hell of an argument array.
-    [tiffutilFlags addObject:dpiFlag];
-    [tiffutilFlags addObject:outputPNG];
-    [tiffutilFlags addObject:retinaOutputPNG];
-    [tiffutilFlags addObject:outFlag];
-    [tiffutilFlags addObject:retinaOutputTIFF];
-    
-    // Note that tiffutil is outside any sandboxed environment.
-    NSPipe *extPipe;
-    extPipe = [NSPipe pipe];
-    
-    NSTask *extTask = [NSTask new];
-    [extTask setLaunchPath:@"/usr/bin/tiffutil"];
-    [extTask setArguments:tiffutilFlags];
-    [extTask setStandardOutput:extPipe];
-    
-    // OMG lasergun, phew phew!
-    [extTask launch];
-    
-    // Time stands still.
-    [extTask waitUntilExit];
-    
-    // Remove temporary PNG files.
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    
-    if ([fileManager fileExistsAtPath:outputPNG]) {
-        [fileManager removeItemAtPath:outputPNG error:nil];
+    else if ([fileExtension isEqualToString:@"adf"])
+    {
+        // ARTWORX
+        dispatch_group_async(private_render_group, private_lib_queue, ^{
+             alArtworxLoader((char *)[self.ansi_inputFile UTF8String],
+                             (char *)[self.ansi_outputFile UTF8String],
+                             (char *)[self.ansi_retinaOutputFile UTF8String],
+                             (char *)[self.ansi_bits UTF8String],
+                             self.generatesRetinaFile);
+        });
     }
-    if ([fileManager fileExistsAtPath:retinaOutputPNG]) {
-        [fileManager removeItemAtPath:retinaOutputPNG error:nil];
+    
+    else if ([fileExtension isEqualToString:@"idf"])
+    {
+        // iCEDRAW
+        sauce *record = sauceReadFileName((char *)[self.ansi_inputFile UTF8String]);
+        // ...this is checking the file war a valid SAUCE record, needed for IDF.
+        
+        // Update our property in case we found a SAUCE record.
+        if (strcmp(record->ID, SAUCE_ID) == 0) {
+            self.hasSauceRecord = YES;
+        }
+        
+        dispatch_group_async(private_render_group, private_lib_queue, ^{
+            alIcedrawLoader((char *)[self.ansi_inputFile UTF8String],
+                            (char *)[self.ansi_outputFile UTF8String],
+                            (char *)[self.ansi_retinaOutputFile UTF8String],
+                            (char *)[self.ansi_bits UTF8String],
+                            self.hasSauceRecord,
+                            self.generatesRetinaFile);
+        });
     }
+    
+    else if ([fileExtension isEqualToString:@"tnd"])
+    {
+        // TUNDRA
+        dispatch_group_async(private_render_group, private_lib_queue, ^{
+            alTundraLoader((char *)[self.ansi_inputFile UTF8String],
+                           (char *)[self.ansi_outputFile UTF8String],
+                           (char *)[self.ansi_retinaOutputFile UTF8String],
+                           (char *)[self.ansi_font UTF8String],
+                           (char *)[self.ansi_bits UTF8String],
+                           self.generatesRetinaFile);
+        });
+    }
+    
+    else if ([fileExtension isEqualToString:@"xb"])
+    {
+        // XBiN
+        dispatch_group_async(private_render_group, private_lib_queue, ^{
+            alXbinLoader((char *)[self.ansi_inputFile UTF8String],
+                         (char *)[self.ansi_outputFile UTF8String],
+                         (char *)[self.ansi_retinaOutputFile UTF8String],
+                         (char *)[self.ansi_bits UTF8String],
+                         self.generatesRetinaFile);
+        });
+    }
+    
+    else {
+        // ANSi
+        NSString *fext = [[NSString alloc] initWithFormat:@".%@", fileExtension];
+        // ...transforms the file extension into readable format for our sublib.
+        
+        dispatch_group_async(private_render_group, private_lib_queue, ^{
+            alAnsiLoader((char *)[self.ansi_inputFile UTF8String],
+                         (char *)[self.ansi_outputFile UTF8String],
+                         (char *)[self.ansi_retinaOutputFile UTF8String],
+                         (char *)[self.ansi_font UTF8String],
+                         (char *)[self.ansi_bits UTF8String],
+                         (char *)[ansi_iceColorsString UTF8String],
+                         (char *)[fext UTF8String],
+                         self.generatesRetinaFile);
+        });
+    }
+    
+    // Wait until file is parsed and PNG images are generated.
+    dispatch_group_wait(private_render_group, DISPATCH_TIME_FOREVER);
 }
 
 @end
