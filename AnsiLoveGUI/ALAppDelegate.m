@@ -16,8 +16,8 @@
 @implementation ALAppDelegate
 
 @synthesize window = _window, inputField, columnsField, fontsField, bitsField, iceColorsCheck,
-            columnsCheck, inputFile, outputFile, columns, font, bits, iceColors, shouldUseIceColors,
-            enableColumnsField, outputMatrix;
+            columnsCheck, inputFile, outputFile, columns, font, bits, shouldUseIceColors,
+            enableColumnsField, outputMatrix, ansigen;
 
 # pragma mark -
 # pragma mark initialization
@@ -33,6 +33,9 @@
     // Note that this has NO educational purpose for the AnsiLove.framework, it's
     // just a nice feature I recommend as the columns flag is only needed for .bin files.
     self.enableColumnsField = NO;
+    
+    // For using ALAnisGenerator, you need to create an instance of it like this.
+    self.ansigen = [ALAnsiGenerator new];
     
     // AnsiLove.framework fires a notification once rendering of given ANSi source files
     // completed. If this is relevant for your app (e.g. you can't load an instance of an
@@ -55,15 +58,6 @@
 // value binding of the text field instances you can see in the UI.
 - (IBAction)createImagefromANSi:(id)sender
 {
-    if (shouldUseIceColors == NO) {
-        // AnsiLove needs all flags as strings, that's why we can't pass the bool value 
-        // (or any other integer) directly. You can do something like I did below.
-        self.iceColors = @"0";
-    }
-    else {
-        self.iceColors = @"1";
-    }
-    
     // It's necessary to tell AnsiLove where to generate it's output. In this sample app
     // all output will be thrown into the user's Downloads folder. We keep it simple by
     // naming output after the input file. It's no problem to specify custom names/paths
@@ -81,39 +75,30 @@
     // Voila, this is our outputFile string. Easy.
     self.outputFile = [fileMergedDLPath stringByExpandingTildeInPath];
     
-    // Let's finally pass all we got to the AnsiLove.framework, it will do the rest.
+    // Let's finally pass all we got to AnsiLove.framework, it will do the rest.
     // If you don't want to set a specific flag, like the font flag for example, just
     // pass nil or an empty NSString like @"". Both will work and AnsiLove will use
-    // it's built-in default values for generating the output PNG. Note that we will
-    // use a switch method to find out which of ALAnsiGenerator's methods needs to be
-    // fired. Because we are rockstars, right?
+    // it's built-in default values for generating the output PNG.
     switch ([self.outputMatrix selectedRow]) {
         case 0:
             // regular PNG image
-            [ALAnsiGenerator ansiFileToPNG:self.inputFile
-                                outputFile:self.outputFile
-                                      font:self.font
-                                      bits:self.bits
-                                 iceColors:self.iceColors
-                                   columns:self.columns];
+            [ansigen renderAnsiFile:self.inputFile
+                         outputFile:self.outputFile
+                               font:self.font
+                               bits:self.bits
+                          iceColors:self.shouldUseIceColors
+                            columns:self.columns
+                             retina:NO];
             break;
         case 1:
             // regular and Retina @2x.PNG image
-            [ALAnsiGenerator ansiFileToRetinaPNG:self.inputFile
-                                      outputFile:self.outputFile
-                                            font:self.font
-                                            bits:self.bits
-                                       iceColors:self.iceColors
-                                         columns:self.columns];
-            break;
-        case 2:
-            // merged TIFF containing regular and Retina image
-            [ALAnsiGenerator ansiFileToRetinaTIFF:self.inputFile
-                                       outputFile:self.outputFile
-                                             font:self.font
-                                             bits:self.bits
-                                        iceColors:self.iceColors
-                                          columns:self.columns];
+            [ansigen renderAnsiFile:self.inputFile
+                         outputFile:self.outputFile
+                               font:self.font
+                               bits:self.bits
+                          iceColors:self.shouldUseIceColors
+                            columns:self.columns
+                             retina:YES];
             break;
         default:
             break;
@@ -123,13 +108,13 @@
 - (void)postFinishedRenderingToLog:(NSNotification *)notification
 {
     // This selector gets invoked once the AnsiLove.framework finished rendering.
-    NSLog(@"Rendering of the ANSi source file has finished.");
+    NSLog(@"Rendering of the ANSi source file has finished. Yay!");
 }
 
 - (IBAction)clearColumnsField:(id)sender 
 {
-    // The method clears the columns field as soon as it get's disabled. That way
-    // we make sure that no content is passed when the columns flag is not needed.
+    // The method clears the columns field as soon as it get's disabled. That's how
+    // we make sure no content is passed when the columns flag is not needed.
     if ([columnsField isEnabled] == NO) {
         self.columns = @"";
     }
@@ -145,14 +130,11 @@
 // I'm taking a simple approach by adding a read/write entitlement to the user's Downloads
 // folder. All generated output will be put in there. Note that in certain situations, AnsiLove
 // needs to gain access to additional files. For instance, if you decide to generate a regular
-// and a Retina PNG variant, your sandboxed app needs to be allowed to write both. The TIFF
-// method generates the PNG and the @2x.PNG and then uses them to create the .TIFF file. After
-// the resulting TIFF is created, it deletes the two PNG cache files. The most convenient
-// solution is a simple folder accesss. On the other hand: if you're creating output in your
-// sandox itself (e.g. Application Support), everything's fine as in your sandbox you are
-// the king and allowed to do whatever you want to. I know, dealing with sandboxing is a pain
-// in the ass. That's why I wanted this sample app to work outside it's app sandbox so you can
-// take a glimpse look and see it is definitely possible.
+// and a Retina PNG variant, your sandboxed app needs to be allowed to write both. If you're
+// creating output in yoursandox itself (e.g. Application Support), everything's fine as in
+// your sandbox you are the master and allowed to do whatever you want to. I know, dealing
+// with sandboxing is a pain in the ass. That's why I wanted this sample app to work outside
+// it's app sandbox so you can take a glimpse look and see it is definitely possible.
 
 - (IBAction)userDefinedInputFile:(id)sender
 {
