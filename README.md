@@ -56,7 +56,7 @@ Go to the header of the class you want to use the framework with. Import the fra
 
 Create an instance of `ALAnsiGenerator`:
 
-		 ALSauceMachine *ansiGen = [ALAnsiGenerator new];
+		 ALAnsiGenerator *ansiGen = [ALAnsiGenerator new];
 
 
 To transform ANSi source files into a beautiful images, `ALAnsiGenerator` comes with just one method you should know:
@@ -69,13 +69,11 @@ To transform ANSi source files into a beautiful images, `ALAnsiGenerator` comes 
 			   	 columns:(NSString *)columns
 				  retina:(BOOL      )generateRetina;
 
-Setting retina to `YES` forces the Framework to generate the regular PNG and a properly named (and sized) Retina @2x.PNG image additionallay.
-
 Note that generally all objects except `inputFile` are optional. AnsiLove.framework will silently consume `nil` and empty string values and will rely on it's built-in defaults in both cases.
 
 ## (NSString *)inputFile
 
-The only necessary object you need to pass to `ALAnsiGenerator. Well, that's logic. If there is no input file, what should be the output? I see you get it. Here is an example for a proper `inputFile` string:
+The only necessary object you need to pass to `ALAnsiGenerator`. Well, that's logic. If there is no input file, what should be the output? I see you get it. Here is an example for a proper `inputFile` string:
 
 	/Users/Stefan/Desktop/MyAnsiArtwork.ans
 	
@@ -153,7 +151,7 @@ Setting `iceColors` to `YES` will enable iCE color codes. On the opposite `NO` m
 
 `columns` is only relevant for ANSi source files with `.BIN` extension and even for those files optional. In most cases conversion will work fine if you don't set this flag, the default value is `160` then. So please pass `columns` only to `.BIN` files and only if you exactly know what you're doing. The sun could explode or even worse: A KITTEN MAY DIE SOMEWHERE.
 
-## (BOOL)retina
+## (BOOL)generateRetina
 
 If you set this to `YES` the Framework creates two output images, the regular file and a properly named and sized @2x.PNG image to the same location.
 
