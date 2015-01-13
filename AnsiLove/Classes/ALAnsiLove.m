@@ -2,10 +2,10 @@
 //  ALAnsiLove.m
 //  AnsiLove.framework
 //
-//  Copyright (c) 2011-2013, Stefan Vogt. All rights reserved.
-//  http://byteproject.net
+//  Copyright (C) 2011-2015 Stefan Vogt.
+//  All rights reserved.
 //
-//  Use of this source code is governed by a MIT-style license.
+//  This source code is licensed under the BSD 3-Clause License.
 //  See the file LICENSE for details.
 //
 
@@ -902,7 +902,7 @@ void alAnsiLoader(char *input, char output[], char retinaout[], char font[], cha
                             character * font_size_x, color_foreground * font_size_y + 14, int_bits, 2);
             }
             
-            if (bold == true && italics == false)
+            if (bold == true && italics == false && (ced == true || workbench == true))
             {
                 gdImageCopy(im_ANSi, im_Font, 1 + position_x * int_bits, position_y * font_size_y, 
                             character * font_size_x, color_foreground * font_size_y, int_bits, font_size_y);
@@ -2227,27 +2227,33 @@ void alTundraLoader(char *input, char output[], char retinaout[], char font[], c
             
             loop+=8;
         }
-        
+
         if (character == 2)
         {
+            character = input_file_buffer[loop + 1];
+
             loop+=5;
         }
-        
+
         if (character == 4)
         {
+            character = input_file_buffer[loop + 1];
+
             loop+=5;
         }
-        
+
         if (character == 6)
         {
+            character = input_file_buffer[loop + 1];
+
             loop+=9;
         }
-        
+
         if (character !=1 && character !=2 && character !=4 && character != 6)
         {
             position_x++;
         }
-        
+
         loop++;
     }    
     
