@@ -2155,7 +2155,7 @@ void alTundraLoader(char *input, char output[], char retinaout[], char font[], c
     
     // load input file
     FILE *input_file = fopen(input, "r");
-    if (input_file == NULL) { 
+    if (input_file == NULL) {
         fputs("\nFile error.\n\n", stderr); exit (1);
     }
     
@@ -2179,8 +2179,16 @@ void alTundraLoader(char *input, char output[], char retinaout[], char font[], c
         fputs ("\nReading error.\n\n", stderr); exit (3);
     } // whole file is now loaded into input_file_buffer
     
-    // close input file, we don't need it anymore
+    // rewind the input file
     rewind(input_file);
+    
+    // exclude SAUCE record from file buffer
+    if(fileHasSAUCE == true) {
+        sauce *saucerec = sauceReadFile(input_file);
+        input_file_size -= 129 - ( saucerec->comments > 0 ? 5 + 64 * saucerec->comments : 0);
+        rewind(input_file);
+    }
+    // close input file, we don't need it anymore
     fclose(input_file);
     
     // libgd image pointers
@@ -2188,93 +2196,26 @@ void alTundraLoader(char *input, char output[], char retinaout[], char font[], c
     
     // convert numeric command line flags to integer values
     int32_t int_bits = atoi(bits);
-
+    
     // extract tundra header
     tundra_version = input_file_buffer[0];
     memcpy(&tundra_header,input_file_buffer+1,8);
-
+    
     // need to add check for "TUNDRA24" string in the header
     if (tundra_version != 24)
     {
         fputs ("\nInput file is not a TUNDRA file.\n\n", stderr); exit (4);
-    }    
-        
+    }
+    
     // read tundra file a first time to find the image size
-    int32_t character, color_background, color_foreground;
+    int32_t character, color_background = 0, color_foreground = 0;
     int32_t loop = 0, position_x = 0, position_y = 0;
     
     loop=9;
     
     while (loop < input_file_size)
     {
-        if (position_x == 80) 
-        {
-            position_x = 0;
-            position_y++;
-        }
-        
-        character = input_file_buffer[loop];
-        
-        if (character == 1)
-        {
-            position_y = 
-            (input_file_buffer[loop + 1] << 24) + (input_file_buffer[loop + 2] << 16) + 
-            (input_file_buffer[loop + 3] << 8) + input_file_buffer[loop+4];
-            
-            position_x =
-            (input_file_buffer[loop + 5] << 24) + (input_file_buffer[loop + 6] << 16) + 
-            (input_file_buffer[loop + 7] << 8) + input_file_buffer[loop+8];
-            
-            loop+=8;
-        }
-
-        if (character == 2)
-        {
-            character = input_file_buffer[loop + 1];
-
-            loop+=5;
-        }
-
-        if (character == 4)
-        {
-            character = input_file_buffer[loop + 1];
-
-            loop+=5;
-        }
-
-        if (character == 6)
-        {
-            character = input_file_buffer[loop + 1];
-
-            loop+=9;
-        }
-
-        if (character !=1 && character !=2 && character !=4 && character != 6)
-        {
-            position_x++;
-        }
-
-        loop++;
-    }    
-    
-    position_y++;
-    
-    // allocate buffer image memory
-    im_Tundra = gdImageCreateTrueColor(columns*int_bits, position_y*font_size_y);
-    
-    if (!im_Tundra) {
-        fputs ("\nError, can't allocate buffer image memory.\n\n", stderr); exit (6);
-    }
-    
-    // process tundra
-    position_x = 0;
-    position_y = 0;
-    
-    loop = 9;    
-    
-    while (loop < input_file_size)
-    {
-        if (position_x == 80) 
+        if (position_x == 80)
         {
             position_x = 0;
             position_y++;
@@ -2285,22 +2226,87 @@ void alTundraLoader(char *input, char output[], char retinaout[], char font[], c
         if (character == 1)
         {
             position_y =
-            (input_file_buffer[loop + 1] << 24) + (input_file_buffer[loop + 2] << 16) + 
+            (input_file_buffer[loop + 1] << 24) + (input_file_buffer[loop + 2] << 16) +
             (input_file_buffer[loop + 3] << 8) + input_file_buffer[loop+4];
             
             position_x =
-            (input_file_buffer[loop + 5] << 24) + (input_file_buffer[loop + 6] << 16) + 
+            (input_file_buffer[loop + 5] << 24) + (input_file_buffer[loop + 6] << 16) +
             (input_file_buffer[loop + 7] << 8) + input_file_buffer[loop+8];
-            
             
             loop+=8;
         }
         
         if (character == 2)
         {
-            color_foreground = 
-            (input_file_buffer[loop + 2] << 24) + (input_file_buffer[loop + 3] << 16) + 
-            (input_file_buffer[loop + 4] << 8) + input_file_buffer[loop+5];
+            character = input_file_buffer[loop + 1];
+            
+            loop+=5;
+        }
+        
+        if (character == 4)
+        {
+            character = input_file_buffer[loop + 1];
+            
+            loop+=5;
+        }
+        
+        if (character == 6)
+        {
+            character = input_file_buffer[loop + 1];
+            
+            loop+=9;
+        }
+        
+        if (character !=1 && character !=2 && character !=4 && character != 6)
+        {
+            position_x++;
+        }
+        
+        loop++;
+    }
+    position_y++;
+    
+    // allocate buffer image memory
+    im_Tundra = gdImageCreateTrueColor(columns * int_bits , (position_y) * font_size_y);
+    
+    if (!im_Tundra) {
+        fputs ("\nError, can't allocate buffer image memory.\n\n", stderr); exit (6);
+    }
+    
+    // process tundra
+    position_x = 0;
+    position_y = 0;
+    
+    loop = 9;
+    
+    while (loop < input_file_size)
+    {
+        if (position_x == 80)
+        {
+            position_x = 0;
+            position_y++;
+        }
+        
+        character = input_file_buffer[loop];
+        
+        if (character == 1)
+        {
+            position_y =
+            (input_file_buffer[loop + 1] << 24) + (input_file_buffer[loop + 2] << 16) +
+            (input_file_buffer[loop + 3] << 8) + input_file_buffer[loop + 4];
+            
+            position_x =
+            (input_file_buffer[loop + 5] << 24) + (input_file_buffer[loop + 6] << 16) +
+            (input_file_buffer[loop + 7] << 8) + input_file_buffer[loop + 8];
+            
+            loop+=8;
+        }
+        
+        if (character == 2)
+        {
+            color_foreground =
+            (input_file_buffer[loop + 3] << 16) + (input_file_buffer[loop + 4] << 8) +
+            input_file_buffer[loop + 5];
             
             character = input_file_buffer[loop+1];
             
@@ -2309,9 +2315,8 @@ void alTundraLoader(char *input, char output[], char retinaout[], char font[], c
         
         if (character == 4)
         {
-            color_background = 
-            (input_file_buffer[loop + 2] << 24) + (input_file_buffer[loop + 3] << 16) + 
-            (input_file_buffer[loop + 4] << 8) + input_file_buffer[loop+5];
+            color_background = (input_file_buffer[loop + 3] << 16) + (input_file_buffer[loop + 4] << 8) +
+            input_file_buffer[loop+5];
             
             character = input_file_buffer[loop+1];
             
@@ -2320,13 +2325,13 @@ void alTundraLoader(char *input, char output[], char retinaout[], char font[], c
         
         if (character==6)
         {
-            color_foreground = 
-            (input_file_buffer[loop + 2] << 24) + (input_file_buffer[loop + 3] << 16) + 
-            (input_file_buffer[loop + 4] << 8) + input_file_buffer[loop+5];
+            color_foreground =
+            (input_file_buffer[loop + 3] << 16) + (input_file_buffer[loop + 4] << 8) +
+            input_file_buffer[loop+5];
             
-            color_background = 
-            (input_file_buffer[loop + 6] << 24) + (input_file_buffer[loop + 7] << 16) + 
-            (input_file_buffer[loop + 8] << 8) + input_file_buffer[loop+9];
+            color_background =
+            (input_file_buffer[loop + 7] << 16) + (input_file_buffer[loop + 8] << 8) +
+            input_file_buffer[loop+9];
             
             character = input_file_buffer[loop+1];
             
@@ -2334,16 +2339,16 @@ void alTundraLoader(char *input, char output[], char retinaout[], char font[], c
         }
         
         if (character !=1 && character !=2 && character !=4 && character !=6)
-        {            
-            alDrawChar(im_Tundra, font_data, int_bits, font_size_x, font_size_y, 
+        {
+            alDrawChar(im_Tundra, font_data, int_bits, font_size_x, font_size_y,
                        position_x, position_y, color_background, color_foreground, character);
             
-            position_x++;            
+            position_x++;
         }
         
         loop++;
-    }      
-
+    }
+    
     // create output image
     FILE *file_Out = fopen(output, "wb");
     gdImagePng(im_Tundra, file_Out);
@@ -2370,7 +2375,7 @@ void alTundraLoader(char *input, char output[], char retinaout[], char font[], c
     }
     
     // free memory
-    gdImageDestroy(im_Tundra);    
+    gdImageDestroy(im_Tundra);
 }
 
 // XBIN
