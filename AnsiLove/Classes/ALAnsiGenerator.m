@@ -220,12 +220,23 @@
     else if ([fileExtension isEqualToString:@"tnd"])
     {
         // TUNDRA
+        sauce *record = sauceReadFileName((char *)[self.ansi_inputFile UTF8String]);
+        // Tundra and SAUCE are no friends. If a file has a SAUCE record it becomes
+        // invaldid for Tundra Draw. We will render it anyway by stripping the SAUCE
+        // record from buffer before we begin parsing.
+        
+        // Update our property in case we found a SAUCE record.
+        if (strcmp(record->ID, SAUCE_ID) == 0) {
+            self.hasSauceRecord = YES;
+        }
+        
         dispatch_group_async(private_render_group, private_lib_queue, ^{
             alTundraLoader((char *)[self.ansi_inputFile UTF8String],
                            (char *)[self.ansi_outputFile UTF8String],
                            (char *)[self.ansi_retinaOutputFile UTF8String],
                            (char *)[self.ansi_font UTF8String],
                            (char *)[self.ansi_bits UTF8String],
+                           self.hasSauceRecord,
                            self.generatesRetinaFile);
         });
     }

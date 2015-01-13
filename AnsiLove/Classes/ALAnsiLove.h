@@ -32,7 +32,7 @@ void alPcBoardLoader(char *input, char output[], char retinaout[], char font[], 
 void alBinaryLoader(char *input, char output[], char retinaout[], char columns[], char font[], char bits[], char icecolors[], bool createRetinaRep);
 void alArtworxLoader(char *input, char output[], char retinaout[], char bits[], bool createRetinaRep);
 void alIcedrawLoader(char *input, char output[], char retinaout[], char bits[], bool fileHasSAUCE, bool createRetinaRep);
-void alTundraLoader(char *input, char output[], char retinaout[], char font[], char bits[], bool createRetinaRep);
+void alTundraLoader(char *input, char output[], char retinaout[], char font[], char bits[], bool fileHasSAUCE, bool createRetinaRep);
 void alXbinLoader(char *input, char output[], char retinaout[], char bits[], bool createRetinaRep);
 
 // helper functions

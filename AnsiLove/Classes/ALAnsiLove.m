@@ -2006,7 +2006,7 @@ void alIcedrawLoader(char *input, char output[], char retinaout[], char bits[], 
 }
 
 // TUNDRA
-void alTundraLoader(char *input, char output[], char retinaout[], char font[], char bits[], bool createRetinaRep)
+void alTundraLoader(char *input, char output[], char retinaout[], char font[], char bits[], bool fileHasSAUCE, bool createRetinaRep)
 {
     int32_t columns = 80;
     int32_t font_size_x;
