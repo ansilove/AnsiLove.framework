@@ -8,7 +8,7 @@ There are two classes responsible for all the magic: `ALAnsiGenerator` and `ALSa
 
 # Version info
 
-Current framework release: `5.0.2` - based on: [AnsiLove/C](https://github.com/ByteProject/AnsiLove-C) `2.1.0`
+Current framework release: `6.0.0` - based on: [AnsiLove/C](https://github.com/AnsiLove/AnsiLove-C) `2.1.3`
 
 # Features
 
@@ -40,11 +40,11 @@ Still not enough?
 - Use custom objects for adjusting output results.
 - Built-in support for rendering Amiga ASCII.
 - Everything's Mac App Store conform and sandboxing compliant.
-- ARC / Automatic Reference Counting roject.
+- ARC / Automatic Reference Counting
 
 # Documentation
 
-Let's talk about using the framework in your own projects. First of all, AnsiLove.framework is intended to run on `OS X`, it won't work for `iOS`. You have to download the sources and compile the framework. At least OS X Mountain Lion and Xcode 5.x are necessary for compiling `as is`. The project file contains two build targets, the framework itself and a test app `AnsiLoveGUI`, the latter is optional. Select `AnsiLoveGUI` from the Schemes dropdown in Xcode if you desire to compile that one too. The test app is a good example of implementing AnsiLove.framework, it does not contain much code and what you find there is well commented. So `AnsiLoveGUI` might be your first place to play with the framework after reading this documentation. Being an ARC framework, the test app is a pure ARC project as well. Makes sense, right?
+Let's talk about using the framework in your own projects. First of all, AnsiLove.framework is intended to run on `OS X`, it won't work for `iOS`. You have to download the sources and compile the framework. The Xcode project file contains two build targets, the framework itself and a test app `AnsiLoveGUI`, the latter is optional. Select `AnsiLoveGUI` from the Schemes dropdown in Xcode if you desire to compile that one too. The test app is a good example of implementing AnsiLove.framework, it does not contain much code and what you find there is well commented. So `AnsiLoveGUI` might be your first place to play with the framework after reading this documentation. Being an ARC framework, the test app is a pure ARC project as well. Makes sense, right?
 
 ## Implementing the framework in your own sources
 
@@ -199,7 +199,11 @@ The test app `AnsiLoveGUI` has a simple implementation that posts a message to N
 
 ## Output file example
 
-You may wonder how the rendered output looks like? You'll find an example in regular resolution [here](http://cl.ly/1D0o1M2t2Y190v33462F/o).
+You may wonder how the rendered output looks like? You'll find an example [here](http://cl.ly/1D0o1M2t2Y190v33462F/o).
+
+## Image Resolution
+
+Since this project moved to libgd2, output images are 96 DPI. Your NSImage instance needs to take care of the code that makes output files render with the correct aspect ratio on screen. Which is 72 DPI in regular resolution on OS X. 
 
 # Reading SAUCE records
 
@@ -244,13 +248,9 @@ That's it. If you feel like this introduction to AnsiLove.framework's SAUCE impl
 
 The framework runs great in sandboxed apps. That is because I handcrafted it to be like that. No temporary exceptions, no hocus-pocus, just you on your lonely island. AnsiLove.framework comes with it's own tiny subsystem to achieve sandboxing compliance. Sounds like no big deal? Go sit on a tack. Actually that was the hardest part of the whole framework.
 
-# Retina support
-
-You already know this framework comes with full Retina support. Assuming you are familiar with Apple's [High Resolution Guidelines for OS X](http://developer.apple.com/library/mac/#documentation/GraphicsAnimation/Conceptual/HighResolutionOSX/Introduction/Introduction.html), there is not much more to say about the matter. Now it's up to you as developer.
-
 # Why?
 
-AnsiLove.framework was created for my app [Escapes](http://escapes.byteproject.net).
+AnsiLove.framework was created for my app [Ascension](https://github.com/AnsiLove/Ascension).
 
 # Credits
 
@@ -258,4 +258,4 @@ I'd like to thank my friends [Frederic Cambus](http://www.cambus.net) and [Brian
 
 # License
 
-Ascension is released under a MIT-style license. See the file `LICENSE` for details.
+AnsiLove.framework is released under the BSD 3-Clause License. See the file `LICENSE` for details.
