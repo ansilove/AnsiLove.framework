@@ -15,10 +15,10 @@
 		F82D6A581450045C00FD228B /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = F82D6A561450045C00FD228B /* MainMenu.xib */; };
 		F82D6A5F1450053B00FD228B /* AnsiLove.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8F0C93E144910340031E777 /* AnsiLove.framework */; };
 		F82D6A611450054B00FD228B /* AnsiLove.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = F8F0C93E144910340031E777 /* AnsiLove.framework */; };
-		F83CAA541A65B66B00B93707 /* libjpeg.8.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F85CB755151A89E10034B6CD /* libjpeg.8.dylib */; };
-		F83CAA551A65B66B00B93707 /* libpng15.15.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F8A0C743151D3673005ED47C /* libpng15.15.dylib */; };
 		F83CAA571A65B66B00B93707 /* libgd.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F83CAA561A65B66B00B93707 /* libgd.3.dylib */; };
 		F83CAA581A65B73100B93707 /* libgd.3.dylib in Copy Files */ = {isa = PBXBuildFile; fileRef = F83CAA561A65B66B00B93707 /* libgd.3.dylib */; };
+		F84C8B4C1A7FC98900DAB192 /* libpng16.16.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F84C8B4B1A7FC98900DAB192 /* libpng16.16.dylib */; };
+		F84C8B4D1A7FC9F900DAB192 /* libpng16.16.dylib in Copy Files */ = {isa = PBXBuildFile; fileRef = F84C8B4B1A7FC98900DAB192 /* libpng16.16.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		F8E082BC144996C300E30142 /* ALAnsiGenerator.h in Headers */ = {isa = PBXBuildFile; fileRef = F8E082B9144996C300E30142 /* ALAnsiGenerator.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F8E082BD144996C300E30142 /* ALAnsiGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = F8E082BA144996C300E30142 /* ALAnsiGenerator.m */; };
 		F8E082BE144996C300E30142 /* AnsiLove.h in Headers */ = {isa = PBXBuildFile; fileRef = F8E082BB144996C300E30142 /* AnsiLove.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -26,8 +26,6 @@
 		F8EAE723147E4E6E005BA3A1 /* ALSauceMachine.m in Sources */ = {isa = PBXBuildFile; fileRef = F8EAE721147E4E6E005BA3A1 /* ALSauceMachine.m */; };
 		F8F0C942144910340031E777 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8F0C941144910340031E777 /* Cocoa.framework */; };
 		F8F0C94C144910340031E777 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F8F0C94A144910340031E777 /* InfoPlist.strings */; };
-		F8F1393D17AEEC5400B8553A /* libpng15.15.dylib in Copy Files */ = {isa = PBXBuildFile; fileRef = F8A0C743151D3673005ED47C /* libpng15.15.dylib */; };
-		F8F1393E17AEEC5400B8553A /* libjpeg.8.dylib in Copy Files */ = {isa = PBXBuildFile; fileRef = F85CB755151A89E10034B6CD /* libjpeg.8.dylib */; };
 		F8F1395517AEEEA600B8553A /* ALAnsiLove.h in Headers */ = {isa = PBXBuildFile; fileRef = F8F1394717AEEEA600B8553A /* ALAnsiLove.h */; };
 		F8F1395617AEEEA600B8553A /* ALAnsiLove.m in Sources */ = {isa = PBXBuildFile; fileRef = F8F1394817AEEEA600B8553A /* ALAnsiLove.m */; };
 		F8F1395717AEEEA600B8553A /* ALBinFonts.h in Headers */ = {isa = PBXBuildFile; fileRef = F8F1394917AEEEA600B8553A /* ALBinFonts.h */; };
@@ -59,8 +57,7 @@
 			dstSubfolderSpec = 7;
 			files = (
 				F83CAA581A65B73100B93707 /* libgd.3.dylib in Copy Files */,
-				F8F1393D17AEEC5400B8553A /* libpng15.15.dylib in Copy Files */,
-				F8F1393E17AEEC5400B8553A /* libjpeg.8.dylib in Copy Files */,
+				F84C8B4D1A7FC9F900DAB192 /* libpng16.16.dylib in Copy Files */,
 			);
 			name = "Copy Files";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -78,8 +75,7 @@
 		F82D6A541450045C00FD228B /* ALAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ALAppDelegate.m; sourceTree = "<group>"; };
 		F82D6A571450045C00FD228B /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		F83CAA561A65B66B00B93707 /* libgd.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libgd.3.dylib; path = AnsiLove/Library/libgd.3.dylib; sourceTree = "<group>"; };
-		F85CB755151A89E10034B6CD /* libjpeg.8.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libjpeg.8.dylib; path = AnsiLove/Library/libjpeg.8.dylib; sourceTree = "<group>"; };
-		F8A0C743151D3673005ED47C /* libpng15.15.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libpng15.15.dylib; path = AnsiLove/Library/libpng15.15.dylib; sourceTree = "<group>"; };
+		F84C8B4B1A7FC98900DAB192 /* libpng16.16.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libpng16.16.dylib; path = AnsiLove/Library/libpng16.16.dylib; sourceTree = "<group>"; };
 		F8E082B9144996C300E30142 /* ALAnsiGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ALAnsiGenerator.h; sourceTree = "<group>"; };
 		F8E082BA144996C300E30142 /* ALAnsiGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ALAnsiGenerator.m; sourceTree = "<group>"; };
 		F8E082BB144996C300E30142 /* AnsiLove.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnsiLove.h; sourceTree = "<group>"; };
@@ -122,8 +118,7 @@
 			files = (
 				F8F0C942144910340031E777 /* Cocoa.framework in Frameworks */,
 				F83CAA571A65B66B00B93707 /* libgd.3.dylib in Frameworks */,
-				F83CAA551A65B66B00B93707 /* libpng15.15.dylib in Frameworks */,
-				F83CAA541A65B66B00B93707 /* libjpeg.8.dylib in Frameworks */,
+				F84C8B4C1A7FC98900DAB192 /* libpng16.16.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -193,8 +188,7 @@
 			children = (
 				F8F0C941144910340031E777 /* Cocoa.framework */,
 				F83CAA561A65B66B00B93707 /* libgd.3.dylib */,
-				F8A0C743151D3673005ED47C /* libpng15.15.dylib */,
-				F85CB755151A89E10034B6CD /* libjpeg.8.dylib */,
+				F84C8B4B1A7FC98900DAB192 /* libpng16.16.dylib */,
 				F8F0C943144910340031E777 /* Other Frameworks */,
 			);
 			name = Frameworks;
@@ -304,7 +298,7 @@
 		F8F0C934144910340031E777 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0610;
+				LastUpgradeCheck = 0640;
 				TargetAttributes = {
 					F82D6A431450045C00FD228B = {
 						DevelopmentTeam = H2S6SCAYTT;
@@ -518,13 +512,12 @@
 				FRAMEWORK_VERSION = 6;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AnsiLove/AnsiLove-Prefix.pch";
-				HEADER_SEARCH_PATHS = "\"/Users/Stefan/Projekte/Programmierung/Frameworks/AnsiLove/AnsiLove/Include\"";
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/AnsiLove/Include";
 				INFOPLIST_FILE = "AnsiLove/AnsiLove-Info.plist";
 				INSTALL_PATH = "@executable_path/../Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					/Users/Stefan/Projekte/Programmierung/Frameworks/AnsiLove/AnsiLove/Library,
-					"$(PROJECT_DIR)/AnsiLove/Library",
+					"$(SRCROOT)/AnsiLove/Library",
 				);
 				OTHER_CODE_SIGN_FLAGS = "--deep";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -542,13 +535,12 @@
 				FRAMEWORK_VERSION = 6;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AnsiLove/AnsiLove-Prefix.pch";
-				HEADER_SEARCH_PATHS = "\"/Users/Stefan/Projekte/Programmierung/Frameworks/AnsiLove/AnsiLove/Include\"";
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/AnsiLove/Include";
 				INFOPLIST_FILE = "AnsiLove/AnsiLove-Info.plist";
 				INSTALL_PATH = "@executable_path/../Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					/Users/Stefan/Projekte/Programmierung/Frameworks/AnsiLove/AnsiLove/Library,
-					"$(PROJECT_DIR)/AnsiLove/Library",
+					"$(SRCROOT)/AnsiLove/Library",
 				);
 				OTHER_CODE_SIGN_FLAGS = "--deep";
 				PRODUCT_NAME = "$(TARGET_NAME)";
