@@ -8,7 +8,7 @@ There are two classes responsible for all the magic: `ALAnsiGenerator` and `ALSa
 
 # Version info
 
-Current framework release: `6.0.0` - based on: [AnsiLove/C](https://github.com/AnsiLove/AnsiLove-C) `2.1.3`
+Current framework release: `6.1.0` - based on: [AnsiLove/C](https://github.com/AnsiLove/AnsiLove-C) `2.2.1`
 
 # Features
 

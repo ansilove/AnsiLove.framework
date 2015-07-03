@@ -12,26 +12,26 @@
 #import "ALAnsiLove.h"
 
 // shared method for drawing characters
-void alDrawChar(gdImagePtr im, const unsigned char *font_data, int32_t int_bits, 
-                int32_t font_size_x, int32_t font_size_y, int32_t position_x, int32_t position_y, 
+void alDrawChar(gdImagePtr im, const unsigned char *font_data, int32_t int_bits,
+                int32_t font_size_x, int32_t font_size_y, int32_t position_x, int32_t position_y,
                 int32_t color_background, int32_t color_foreground, unsigned char character)
 {
     int32_t column, line;
-
-    gdImageFilledRectangle(im, position_x * int_bits, position_y*font_size_y, position_x * int_bits + 
+    
+    gdImageFilledRectangle(im, position_x * int_bits, position_y*font_size_y, position_x * int_bits +
                            int_bits - 1, position_y * font_size_y + font_size_y - 1, color_background);
-
+    
     for (line = 0; line < font_size_y; line++) {
         for (column = 0; column < int_bits; column++) {
-
+            
             if ((font_data[line+character*font_size_y] & (0x80 >> column)) != 0) {
                 gdImageSetPixel(im, position_x * int_bits + column, position_y*font_size_y + line, color_foreground);
                 
                 if (int_bits==9 && column==7 && character > 191 && character < 224)
                 {
-                    gdImageSetPixel(im, position_x * int_bits + 8, position_y * font_size_y + line, color_foreground);                    
+                    gdImageSetPixel(im, position_x * int_bits + 8, position_y * font_size_y + line, color_foreground);
                 }
-                    
+                
             }
         }
     }
@@ -41,7 +41,7 @@ void alDrawChar(gdImagePtr im, const unsigned char *font_data, int32_t int_bits,
 void alAnsiLoader(char *input, char output[], char retinaout[], char font[], char bits[], char icecolors[], char *fext, bool createRetinaRep)
 {
     const unsigned char *font_data;
-
+    
     // ladies and gentlemen, it's type declaration time
     int32_t columns = 80;
     int32_t font_size_x;
@@ -117,7 +117,7 @@ void alAnsiLoader(char *input, char output[], char retinaout[], char font[], cha
     else if (strcmp(font, "nordic") == 0) {
         font_data = font_pc_nordic;
         font_size_x = 9;
-        font_size_y = 16; 
+        font_size_y = 16;
     }
     else if (strcmp(font, "portuguese") == 0) {
         font_data = font_pc_portuguese;
@@ -168,7 +168,7 @@ void alAnsiLoader(char *input, char output[], char retinaout[], char font[], cha
         isAmigaFont = true;
         font_data = font_amiga_topaz_1200;
         font_size_x = 8;
-        font_size_y = 16;   
+        font_size_y = 16;
     }
     else if (strcmp(font, "topaz+") == 0) {
         isAmigaFont = true;
@@ -195,7 +195,7 @@ void alAnsiLoader(char *input, char output[], char retinaout[], char font[], cha
         font_size_y = 16;
     }
     
-    // to deal with the bits flag, we declared handy bool types   
+    // to deal with the bits flag, we declared handy bool types
     if (strcmp(bits, "ced") == 0) {
         ced = true;
     }
@@ -210,14 +210,14 @@ void alAnsiLoader(char *input, char output[], char retinaout[], char font[], cha
         transparent = true;
     }
     
-    // force defaults if necessary
-    if ((strcmp(bits, "8") != 0 && strcmp(bits, "9") != 0) || isAmigaFont == true) {
+    // force defaults... exactly now!
+    if (strcmp(bits, "8") != 0 && strcmp(bits, "9") != 0) {
         sprintf(bits, "%s", "8");
     }
     
     // load input file
     FILE *input_file = fopen(input, "r");
-    if (input_file == NULL) { 
+    if (input_file == NULL) {
         fputs("\nFile error.\n\n", stderr); exit (1);
     }
     
@@ -255,10 +255,10 @@ void alAnsiLoader(char *input, char output[], char retinaout[], char font[], cha
     for (i = 0; i < dizCount; i++) {
         if (strcmp(fext, dizArray[i]) == 0) {
             isDizFile = true;
-        }            
+        }
     }
     // in case we got a DIZ file here, do specific optimizations
-    if (isDizFile == true) 
+    if (isDizFile == true)
     {
         char *stripped_file_buffer;
         stripped_file_buffer = str_replace((const char *)input_file_buffer, "\r\n", "");
@@ -270,7 +270,7 @@ void alAnsiLoader(char *input, char output[], char retinaout[], char font[], cha
     gdImagePtr im_ANSi, im_Backgrnd, im_Font;
     
     im_Backgrnd = gdImageCreate(9*16,16);
-
+    
     // Allocate font image buffer
     im_Font = gdImageCreate(font_size_x*256,font_size_y*16);
     
@@ -280,16 +280,16 @@ void alAnsiLoader(char *input, char output[], char retinaout[], char font[], cha
     // convert numeric command line flags to integer values
     int32_t int_bits = atoi(bits);
     int32_t int_icecolors = atoi(icecolors);
-
+    
     // ANSi processing loops
-    int32_t loop = 0, ansi_sequence_loop, seq_graphics_loop; 
+    int32_t loop = 0, ansi_sequence_loop, seq_graphics_loop;
     
     // character definitions
-    int32_t current_character, next_character, character; 
+    int32_t current_character, next_character, character;
     unsigned char ansi_sequence_character;
     
     // default color values
-    int32_t color_background = 0, color_foreground = 7; 
+    int32_t color_background = 0, color_foreground = 7;
     
     // text attributes
     bool bold, underline, italics, blink;
@@ -360,7 +360,7 @@ void alAnsiLoader(char *input, char output[], char retinaout[], char font[], cha
         
         // ANSi sequence
         if (current_character == 27 && next_character == 91)
-        {            
+        {
             for (ansi_sequence_loop = 0; ansi_sequence_loop < 12; ansi_sequence_loop++)
             {
                 ansi_sequence_character = input_file_buffer[loop + 2 + ansi_sequence_loop];
@@ -425,17 +425,17 @@ void alAnsiLoader(char *input, char output[], char retinaout[], char font[], cha
                     }
                     
                     position_y = position_y + seq_line;
-                     
+                    
                     loop+=ansi_sequence_loop+2;
                     break;
                 }
-
+                
                 // cursor forward
                 if (ansi_sequence_character=='C')
                 {
-                    // create substring from the sequence's content                    
+                    // create substring from the sequence's content
                     seqGrab = substr((char *)input_file_buffer, loop+2, ansi_sequence_loop);
-
+                    
                     // now get escape sequence's position value
                     int32_t seq_column = atoi(seqGrab);
                     
@@ -457,9 +457,9 @@ void alAnsiLoader(char *input, char output[], char retinaout[], char font[], cha
                 // cursor backward
                 if (ansi_sequence_character=='D')
                 {
-                    // create substring from the sequence's content                    
+                    // create substring from the sequence's content
                     seqGrab = substr((char *)input_file_buffer, loop+2, ansi_sequence_loop);
-
+                    
                     // now get escape sequence's content length
                     int32_t seq_column = atoi(seqGrab);
                     
@@ -501,17 +501,17 @@ void alAnsiLoader(char *input, char output[], char retinaout[], char font[], cha
                 // erase display
                 if (ansi_sequence_character=='J')
                 {
-                    // create substring from the sequence's content                    
+                    // create substring from the sequence's content
                     seqGrab = substr((char *)input_file_buffer, loop+2, ansi_sequence_loop);
-                        
+                    
                     // convert grab to an integer
                     int32_t eraseDisplayInt = atoi(seqGrab);
-                        
+                    
                     if (eraseDisplayInt == 2)
-                    {    
+                    {
                         position_x=0;
                         position_y=0;
-                            
+                        
                         position_x_max=0;
                         position_y_max=0;
                         
@@ -526,77 +526,77 @@ void alAnsiLoader(char *input, char output[], char retinaout[], char font[], cha
                 
                 // set graphics mode
                 if (ansi_sequence_character=='m')
-                {                    
-                        // create substring from the sequence's content
-                        seqGrab = substr((char *)input_file_buffer, loop+2, ansi_sequence_loop);
+                {
+                    // create substring from the sequence's content
+                    seqGrab = substr((char *)input_file_buffer, loop+2, ansi_sequence_loop);
+                    
+                    // create sequence content array
+                    seqArrayCount = explode(&seqArray, ';', seqGrab);
+                    
+                    // a loophole in limbo
+                    for (seq_graphics_loop = 0; seq_graphics_loop < seqArrayCount; seq_graphics_loop++)
+                    {
+                        // convert split content value to integer
+                        seqValue = atoi(seqArray[seq_graphics_loop]);
                         
-                        // create sequence content array
-                        seqArrayCount = explode(&seqArray, ';', seqGrab);
-                        
-                        // a loophole in limbo
-                        for (seq_graphics_loop = 0; seq_graphics_loop < seqArrayCount; seq_graphics_loop++)
+                        if (seqValue == 0)
                         {
-                            // convert split content value to integer
-                            seqValue = atoi(seqArray[seq_graphics_loop]);
-                            
-                            if (seqValue == 0)
+                            color_background = 0;
+                            color_foreground = 7;
+                            bold = false;
+                            underline = false;
+                            italics = false;
+                            blink = false;
+                        }
+                        
+                        if (seqValue == 1)
+                        {
+                            if (workbench == false)
                             {
-                                color_background = 0;
-                                color_foreground=7;
-                                bold = false;
-                                underline = false;
-                                italics = false;
-                                blink = false;
+                                color_foreground+=8;
                             }
-                            
-                            if (seqValue == 1)
+                            bold = true;
+                        }
+                        
+                        if (seqValue == 3)
+                        {
+                            italics = true;
+                        }
+                        
+                        if (seqValue == 4)
+                        {
+                            underline = true;
+                        }
+                        
+                        if (seqValue == 5)
+                        {
+                            if (workbench == false)
                             {
-                                if (workbench == false)
-                                {
-                                    color_foreground+=8;
-                                }
-                                bold = true;
+                                color_background+=8;
                             }
+                            blink = true;
+                        }
+                        
+                        if (seqValue > 29 && seqValue < 38)
+                        {
+                            color_foreground = seqValue - 30;
                             
-                            if (seqValue == 3)
+                            if (bold == true)
                             {
-                                italics = true;
-                            }
-                            
-                            if (seqValue == 4)
-                            {
-                                underline = true;
-                            }
-                            
-                            if (seqValue == 5)
-                            {
-                                if (workbench == false)
-                                {
-                                    color_background+=8;
-                                }
-                                blink = true;
-                            }
-                            
-                            if (seqValue > 29 && seqValue < 38)
-                            {
-                                color_foreground = seqValue - 30;
-                                
-                                if (bold == true)
-                                {
-                                    color_foreground+=8;
-                                }
-                            }
-                            
-                            if (seqValue > 39 && seqValue < 48)
-                            {
-                                color_background = seqValue - 40;
-                                
-                                if (blink == true && int_icecolors == 1)
-                                {
-                                    color_background+=8;
-                                }
+                                color_foreground+=8;
                             }
                         }
+                        
+                        if (seqValue > 39 && seqValue < 48)
+                        {
+                            color_background = seqValue - 40;
+                            
+                            if (blink == true && int_icecolors == 1)
+                            {
+                                color_background+=8;
+                            }
+                        }
+                    }
                     
                     loop+=ansi_sequence_loop+2;
                     break;
@@ -608,7 +608,7 @@ void alAnsiLoader(char *input, char output[], char retinaout[], char font[], cha
                     loop+=ansi_sequence_loop+2;
                     break;
                 }
-
+                
                 // skipping set mode and reset mode sequences
                 if (ansi_sequence_character == 'h' || ansi_sequence_character == 'l')
                 {
@@ -630,7 +630,7 @@ void alAnsiLoader(char *input, char output[], char retinaout[], char font[], cha
                 position_y_max=position_y;
             }
             
-            // write current character in ansiChar structure 
+            // write current character in ansiChar structure
             if (isAmigaFont == false || (current_character != 12 && current_character != 13))
             {
                 // reallocate structure array memory
@@ -645,7 +645,7 @@ void alAnsiLoader(char *input, char output[], char retinaout[], char font[], cha
                 ansi_buffer[structIndex].underline = underline;
                 ansi_buffer[structIndex].position_x = position_x;
                 ansi_buffer[structIndex].position_y = position_y;
-                                
+                
                 structIndex++;
                 position_x++;
             }
@@ -663,9 +663,9 @@ void alAnsiLoader(char *input, char output[], char retinaout[], char font[], cha
     }
     
     if (isDizFile == true) {
-        columns = MIN(position_x_max,80);
+        columns = fmin(position_x_max,80);
     }
-        
+    
     // create that damn thingy
     im_ANSi = gdImageCreate(columns * int_bits,(position_y_max)*font_size_y);
     
@@ -694,10 +694,10 @@ void alAnsiLoader(char *input, char output[], char retinaout[], char font[], cha
         }
         
         for (loop=0; loop<16; loop++)
-        {     
+        {
             colors[loop]=gdImageColorAllocate(im_ANSi, cedBackgroundColor[0], cedBackgroundColor[1], cedBackgroundColor[2]);
         }
-
+        
         int32_t ced_color;
         ced_color = gdImageColorAllocate(im_ANSi, cedBackgroundColor[0], cedBackgroundColor[1], cedBackgroundColor[2]);
         ced_color = gdImageColorAllocate(im_Backgrnd, cedBackgroundColor[0], cedBackgroundColor[1], cedBackgroundColor[2]);
@@ -769,10 +769,11 @@ void alAnsiLoader(char *input, char output[], char retinaout[], char font[], cha
             colors[loop+8]=gdImageColorAllocate(im_Font, workbench_color[loop][0], workbench_color[loop][1], workbench_color[loop][2]);
         }
     }
-
+    
     else
     {
         // Allocate standard ANSi color palette
+        
         colors[0] = gdImageColorAllocate(im_Font, 0, 0, 0);
         colors[1] = gdImageColorAllocate(im_Font, 170, 0, 0);
         colors[2] = gdImageColorAllocate(im_Font, 0, 170, 0);
@@ -816,11 +817,11 @@ void alAnsiLoader(char *input, char output[], char retinaout[], char font[], cha
     {
         for (j=0;j<256;j++)
         {
-            alDrawChar(im_Font, font_data, font_size_x, font_size_x, font_size_y, 
+            alDrawChar(im_Font, font_data, font_size_x, font_size_x, font_size_y,
                        j, k, 20, k, j);
         }
     }
-        
+    
     // reconstruct background bitmap
     for (loop = 0; loop < 16; loop++)
     {
@@ -847,34 +848,34 @@ void alAnsiLoader(char *input, char output[], char retinaout[], char font[], cha
         
         if (isAmigaFont == false)
         {
-            gdImageCopy(im_ANSi, im_Backgrnd, position_x * int_bits, 
+            gdImageCopy(im_ANSi, im_Backgrnd, position_x * int_bits,
                         position_y * font_size_y, color_background * 9, 0, int_bits, font_size_y);
             
-            gdImageCopy(im_ANSi, im_Font, position_x * int_bits, position_y * font_size_y, 
+            gdImageCopy(im_ANSi, im_Font, position_x * int_bits, position_y * font_size_y,
                         character * font_size_x, color_foreground * font_size_y, int_bits, font_size_y);
         }
         else
         {
             if (color_background != 0 || italics == false)
             {
-                gdImageCopy(im_ANSi, im_Backgrnd, position_x * int_bits, 
+                gdImageCopy(im_ANSi, im_Backgrnd, position_x * int_bits,
                             position_y * font_size_y, color_background * 9, 0, int_bits, font_size_y);
             }
             
             if (italics == false)
             {
-                gdImageCopy(im_ANSi, im_Font, position_x * int_bits, position_y * font_size_y, 
+                gdImageCopy(im_ANSi, im_Font, position_x * int_bits, position_y * font_size_y,
                             character * font_size_x, color_foreground * font_size_y, int_bits, font_size_y);
             }
             else
             {
-                gdImageCopy(im_ANSi, im_Font, position_x * int_bits + 3, position_y * font_size_y, 
+                gdImageCopy(im_ANSi, im_Font, position_x * int_bits + 3, position_y * font_size_y,
                             character * font_size_x, color_foreground * font_size_y, int_bits,2);
                 
                 gdImageCopy(im_ANSi, im_Font, position_x * int_bits + 2, position_y * font_size_y + 2,
                             character * font_size_x, color_foreground * font_size_y + 2, int_bits, 4);
                 
-                gdImageCopy(im_ANSi, im_Font, position_x * int_bits + 1, position_y * font_size_y + 6, 
+                gdImageCopy(im_ANSi, im_Font, position_x * int_bits + 1, position_y * font_size_y + 6,
                             character * font_size_x, color_foreground * font_size_y + 6, int_bits, 4);
                 
                 gdImageCopy(im_ANSi, im_Font, position_x * int_bits, position_y * font_size_y + 10,
@@ -886,13 +887,13 @@ void alAnsiLoader(char *input, char output[], char retinaout[], char font[], cha
             
             if (italics == true && bold == true)
             {
-                gdImageCopy(im_ANSi, im_Font, position_x * int_bits + 3 + 1, position_y * font_size_y, 
+                gdImageCopy(im_ANSi, im_Font, position_x * int_bits + 3 + 1, position_y * font_size_y,
                             character * font_size_x, color_foreground * font_size_y ,int_bits, 2);
                 
-                gdImageCopy(im_ANSi, im_Font, position_x * int_bits + 2 + 1, position_y * font_size_y + 2, 
+                gdImageCopy(im_ANSi, im_Font, position_x * int_bits + 2 + 1, position_y * font_size_y + 2,
                             character * font_size_x, color_foreground * font_size_y + 2, int_bits, 4);
                 
-                gdImageCopy(im_ANSi, im_Font, position_x * int_bits + 1 + 1, position_y * font_size_y + 6, 
+                gdImageCopy(im_ANSi, im_Font, position_x * int_bits + 1 + 1, position_y * font_size_y + 6,
                             character * font_size_x, color_foreground * font_size_y + 6, int_bits, 4);
                 
                 gdImageCopy(im_ANSi, im_Font, position_x * int_bits + 1, position_y * font_size_y + 10,
@@ -904,7 +905,7 @@ void alAnsiLoader(char *input, char output[], char retinaout[], char font[], cha
             
             if (bold == true && italics == false && (ced == true || workbench == true))
             {
-                gdImageCopy(im_ANSi, im_Font, 1 + position_x * int_bits, position_y * font_size_y, 
+                gdImageCopy(im_ANSi, im_Font, 1 + position_x * int_bits, position_y * font_size_y,
                             character * font_size_x, color_foreground * font_size_y, int_bits, font_size_y);
             }
             
@@ -926,49 +927,49 @@ void alAnsiLoader(char *input, char output[], char retinaout[], char font[], cha
                 
                 while (loop_column < character_size_x)
                 {
-                    if (gdImageGetPixel(im_ANSi, position_x * int_bits + loop_column, 
-                                        position_y * font_size_y + 15) == color_background && 
-                        gdImageGetPixel(im_ANSi, position_x * int_bits +loop_column + 1, 
+                    if (gdImageGetPixel(im_ANSi, position_x * int_bits + loop_column,
+                                        position_y * font_size_y + 15) == color_background &&
+                        gdImageGetPixel(im_ANSi, position_x * int_bits +loop_column + 1,
                                         position_y * font_size_y + 15) == color_background)
                     {
-                        gdImageSetPixel(im_ANSi, position_x * int_bits + loop_column, 
+                        gdImageSetPixel(im_ANSi, position_x * int_bits + loop_column,
                                         position_y * font_size_y + 14, colors[color_foreground]);
                         
-                        gdImageSetPixel(im_ANSi, position_x * int_bits + loop_column, 
+                        gdImageSetPixel(im_ANSi, position_x * int_bits + loop_column,
                                         position_y * font_size_y + 15, colors[color_foreground]);
                     }
                     else if (gdImageGetPixel(im_ANSi, position_x * int_bits + loop_column,
-                                             position_y * font_size_y + 15) != color_background && 
+                                             position_y * font_size_y + 15) != color_background &&
                              gdImageGetPixel(im_ANSi, position_x * int_bits + loop_column + 1,
                                              position_y * font_size_y + 15) == color_background)
                     {
                         loop_column++;
-                    }                    
+                    }
                     loop_column++;
                 }
                 
                 if (pixelCarry == true)
                 {
-                    gdImageSetPixel(im_ANSi, position_x * int_bits, 
+                    gdImageSetPixel(im_ANSi, position_x * int_bits,
                                     position_y * font_size_y + 14, colors[color_foreground]);
                     
-                    gdImageSetPixel(im_ANSi, position_x * int_bits, 
+                    gdImageSetPixel(im_ANSi, position_x * int_bits,
                                     position_y * font_size_y + 15, colors[color_foreground]);
                     
                     pixelCarry = false;
                 }
                 
-                if (gdImageGetPixel(im_Font, character * font_size_x, 
+                if (gdImageGetPixel(im_Font, character * font_size_x,
                                     color_foreground * font_size_y + 15) != 20)
                 {
-                    gdImageSetPixel(im_ANSi, position_x * int_bits - 1, 
+                    gdImageSetPixel(im_ANSi, position_x * int_bits - 1,
                                     position_y * font_size_y + 14, colors[color_foreground]);
                     
-                    gdImageSetPixel(im_ANSi, position_x * int_bits - 1, 
+                    gdImageSetPixel(im_ANSi, position_x * int_bits - 1,
                                     position_y * font_size_y + 15, colors[color_foreground]);
                 }
                 
-                if (gdImageGetPixel(im_Font, character * font_size_x + character_size_x - 1, 
+                if (gdImageGetPixel(im_Font, character * font_size_x + character_size_x - 1,
                                     color_foreground * font_size_y + 15) != 20)
                 {
                     pixelCarry = true;
@@ -982,7 +983,7 @@ void alAnsiLoader(char *input, char output[], char retinaout[], char font[], cha
     {
         gdImageColorTransparent(im_ANSi, background_canvas);
     }
-
+    
     // create output image
     FILE *file_Out = fopen(output, "wb");
     gdImagePng(im_ANSi, file_Out);
@@ -1024,7 +1025,7 @@ void alPcBoardLoader(char *input, char output[], char retinaout[], char font[], 
     int32_t font_size_y;
     int32_t columns = 80;
     const unsigned char *font_data;
-        
+    
     // let's see what font we should use to render output
     if (strcmp(font, "80x25") == 0) {
         font_data = font_pc_80x25;
@@ -1157,22 +1158,22 @@ void alPcBoardLoader(char *input, char output[], char retinaout[], char font[], 
         font_size_x = 9;
         font_size_y = 16;
     }
-
+    
     // now set bits to 8 if not already value 8 or 9
     if (strcmp(bits, "8") != 0 && strcmp(bits, "9") != 0) {
         sprintf(bits, "%s", "8");
     }
-
+    
     // load input file
     FILE *input_file = fopen(input, "r");
-    if (input_file == NULL) { 
+    if (input_file == NULL) {
         fputs("\nFile error.\n\n", stderr); exit (1);
     }
     
     // get the file size (bytes)
     size_t get_file_size = filesize(input);
     int32_t input_file_size = (int32_t)get_file_size;
-
+    
     // next up is loading our file into a dynamically allocated memory buffer
     unsigned char *input_file_buffer;
     size_t result;
@@ -1192,19 +1193,19 @@ void alPcBoardLoader(char *input, char output[], char retinaout[], char font[], 
     // close input file, we don't need it anymore
     rewind(input_file);
     fclose(input_file);
-
+    
     // libgd image pointers
     gdImagePtr im_PCB;
-
+    
     // convert numeric command line flags to integer values
     int32_t int_bits = atoi(bits);
-
+    
     // defines for stripping PCBoard codes
     char *stripped_file_buffer;
     char **pcbStripCodes;
     int32_t stripCount, loop, structIndex;
     
-    // create array of PCBoard strip codes defined in ALConfig.h
+    // create array of PCBoard strip codes defined in alconfig.h
     stripCount = explode(&pcbStripCodes, ',', PCBOARD_STRIP_CODES);
     
     // remove all specified PCB strip code occurances in input_file_buffer
@@ -1214,8 +1215,8 @@ void alPcBoardLoader(char *input, char output[], char retinaout[], char font[], 
     }
     
     // process PCBoard
-    int32_t character, current_character, next_character; 
-    int32_t color_background = 0, color_foreground = 7; 
+    int32_t character, current_character, next_character;
+    int32_t color_background = 0, color_foreground = 7;
     int32_t position_x = 0, position_y = 0, position_x_max = 0, position_y_max = 0;
     
     // PCB buffer structure array definition
@@ -1227,7 +1228,7 @@ void alPcBoardLoader(char *input, char output[], char retinaout[], char font[], 
     // reset loop
     loop = 0;
     structIndex = 0;
-        
+    
     while (loop < input_file_size)
     {
         current_character = input_file_buffer[loop];
@@ -1256,7 +1257,7 @@ void alPcBoardLoader(char *input, char output[], char retinaout[], char font[], 
             position_y++;
             position_x = 0;
         }
-
+        
         // Tab
         if (current_character==9)
         {
@@ -1270,7 +1271,7 @@ void alPcBoardLoader(char *input, char output[], char retinaout[], char font[], 
         }
         
         // PCB sequence
-        if (current_character == 64 & next_character == 88)
+        if (current_character == 64 && next_character == 88)
         {
             // set graphics rendition
             color_background = input_file_buffer[loop+2];
@@ -1278,8 +1279,8 @@ void alPcBoardLoader(char *input, char output[], char retinaout[], char font[], 
             
             loop+=3;
         }
-        else if (current_character == 64 & next_character == 67 & 
-                 input_file_buffer[loop+2] == 'L' & input_file_buffer[loop+3] == 'S')
+        else if (current_character == 64 && next_character == 67 &&
+                 input_file_buffer[loop+2] == 'L' && input_file_buffer[loop+3] == 'S')
         {
             // erase display
             position_x = 0;
@@ -1290,8 +1291,8 @@ void alPcBoardLoader(char *input, char output[], char retinaout[], char font[], 
             
             loop+=4;
         }
-        else if (current_character == 64 & next_character == 80 & input_file_buffer[loop+2] == 'O' 
-                 & input_file_buffer[loop+3] == 'S' & input_file_buffer[loop+4]== ':')
+        else if (current_character == 64 && next_character == 80 && input_file_buffer[loop+2] == 'O'
+                 && input_file_buffer[loop+3] == 'S' && input_file_buffer[loop+4]== ':')
         {
             // cursor position
             if (input_file_buffer[loop+6]=='@')
@@ -1304,7 +1305,7 @@ void alPcBoardLoader(char *input, char output[], char retinaout[], char font[], 
                 position_x = (10 * ((input_file_buffer[loop+5])-48) + (input_file_buffer[loop+6])-48)-1;
                 loop+=6;
             }
-        }     
+        }
         else if (current_character != 10 && current_character != 13 && current_character != 9)
         {
             // record number of columns and lines used
@@ -1340,10 +1341,11 @@ void alPcBoardLoader(char *input, char output[], char retinaout[], char font[], 
     // allocate buffer image memory
     im_PCB = gdImageCreate(columns * int_bits, (position_y_max)*font_size_y);
     
-    // allocate black color
+    // allocate black color and create background canvas
     gdImageColorAllocate(im_PCB, 0, 0, 0);
+    gdImageFill(im_PCB, 0, 0, 0);
     
-    // allocate color palette    
+    // allocate color palette
     int32_t colors[71];
     
     colors[48] = gdImageColorAllocate(im_PCB, 0, 0, 0);
@@ -1376,7 +1378,7 @@ void alPcBoardLoader(char *input, char output[], char retinaout[], char font[], 
         color_foreground = pcboard_buffer[loop].color_foreground;
         character = pcboard_buffer[loop].current_character;
         
-        alDrawChar(im_PCB, font_data, int_bits, font_size_x, font_size_y, 
+        alDrawChar(im_PCB, font_data, int_bits, font_size_x, font_size_y,
                    position_x, position_y, colors[color_background], colors[color_foreground], character);
     }
     
@@ -1416,7 +1418,7 @@ void alBinaryLoader(char *input, char output[], char retinaout[], char columns[]
     int32_t font_size_x;
     int32_t font_size_y;
     const unsigned char *font_data;
-
+    
     // let's see what font we should use to render output
     if (strcmp(font, "80x25") == 0) {
         font_data = font_pc_80x25;
@@ -1554,10 +1556,10 @@ void alBinaryLoader(char *input, char output[], char retinaout[], char columns[]
     if (strcmp(bits, "8") != 0 && strcmp(bits, "9") != 0) {
         sprintf(bits, "%s", "8");
     }
-
+    
     // load input file
     FILE *input_file = fopen(input, "r");
-    if (input_file == NULL) { 
+    if (input_file == NULL) {
         fputs("\nFile error.\n\n", stderr); exit (1);
     }
     
@@ -1587,14 +1589,14 @@ void alBinaryLoader(char *input, char output[], char retinaout[], char columns[]
     
     // libgd image pointers
     gdImagePtr im_Binary;
-
+    
     // convert numeric command line flags to integer values
     int32_t int_columns = atoi(columns);
     int32_t int_bits = atoi(bits);
     int32_t int_icecolors = atoi(icecolors);
     
     // allocate buffer image memory
-    im_Binary = gdImageCreate(int_columns * int_bits, 
+    im_Binary = gdImageCreate(int_columns * int_bits,
                               ((input_file_size / 2) / int_columns * font_size_y));
     
     if (!im_Binary) {
@@ -1603,8 +1605,8 @@ void alBinaryLoader(char *input, char output[], char retinaout[], char columns[]
     
     // allocate black color
     gdImageColorAllocate(im_Binary, 0, 0, 0);
-
-    // allocate color palette    
+    
+    // allocate color palette
     int32_t colors[16];
     
     colors[0] = gdImageColorAllocate(im_Binary, 0, 0, 0);
@@ -1623,14 +1625,14 @@ void alBinaryLoader(char *input, char output[], char retinaout[], char columns[]
     colors[13] = gdImageColorAllocate(im_Binary, 255, 85, 255);
     colors[14] = gdImageColorAllocate(im_Binary, 255, 255, 85);
     colors[15] = gdImageColorAllocate(im_Binary, 255, 255, 255);
-
+    
     // process binary
     int32_t character, attribute, color_background, color_foreground;
     int32_t loop = 0, position_x = 0, position_y = 0;
-
+    
     while (loop < input_file_size)
     {
-        if (position_x == int_columns) 
+        if (position_x == int_columns)
         {
             position_x = 0;
             position_y++;
@@ -1641,20 +1643,20 @@ void alBinaryLoader(char *input, char output[], char retinaout[], char columns[]
         
         color_background = (attribute & 240) >> 4;
         color_foreground = (attribute & 15);
-
+        
         
         if (color_background > 8 && int_icecolors == 0)
         {
             color_background -= 8;
         }
-
-        alDrawChar(im_Binary, font_data, int_bits, font_size_x, font_size_y, 
+        
+        alDrawChar(im_Binary, font_data, int_bits, font_size_x, font_size_y,
                    position_x, position_y, colors[color_background], colors[color_foreground], character);
-     
+        
         position_x++;
         loop+=2;
     }
-  
+    
     // create output image
     FILE *file_Out = fopen(output, "wb");
     gdImagePng(im_Binary, file_Out);
@@ -1679,7 +1681,7 @@ void alBinaryLoader(char *input, char output[], char retinaout[], char columns[]
         
         gdImageDestroy(im_RetinaANSi);
     }
-
+    
     // free memory
     gdImageDestroy(im_Binary);
 }
@@ -1688,11 +1690,11 @@ void alBinaryLoader(char *input, char output[], char retinaout[], char columns[]
 void alArtworxLoader(char *input, char output[], char retinaout[], char bits[], bool createRetinaRep)
 {
     const unsigned char *font_data;
-    unsigned char *font_data_adf;    
+    unsigned char *font_data_adf;
     
     // load input file
     FILE *input_file = fopen(input, "r");
-    if (input_file == NULL) { 
+    if (input_file == NULL) {
         fputs("\nFile error.\n\n", stderr); exit (1);
     }
     
@@ -1722,7 +1724,7 @@ void alArtworxLoader(char *input, char output[], char retinaout[], char bits[], 
     
     // libgd image pointers
     gdImagePtr im_ADF;
-
+    
     // create ADF instance
     im_ADF = gdImageCreate(640,(((input_file_size - 192 - 4096 -1) / 2) / 80) * 16);
     
@@ -1737,7 +1739,7 @@ void alArtworxLoader(char *input, char output[], char retinaout[], char bits[], 
     int32_t loop;
     int32_t index;
     int32_t colors[16];
-            
+    
     // process ADF font
     font_data_adf = (unsigned char *) malloc(sizeof(unsigned char)*4096);
     if (font_data_adf == NULL) {
@@ -1746,20 +1748,20 @@ void alArtworxLoader(char *input, char output[], char retinaout[], char bits[], 
     memcpy(font_data_adf,input_file_buffer+193,4096);
     
     font_data=font_data_adf;
-
-    // process ADF palette    
+    
+    // process ADF palette
     for (loop = 0; loop < 16; loop++)
     {
         index = (adf_colors[loop] * 3) + 1;
-        colors[loop] = gdImageColorAllocate(im_ADF, (input_file_buffer[index] << 2 | input_file_buffer[index] >> 4), 
-                                            (input_file_buffer[index + 1] << 2 | input_file_buffer[index + 1] >> 4), 
+        colors[loop] = gdImageColorAllocate(im_ADF, (input_file_buffer[index] << 2 | input_file_buffer[index] >> 4),
+                                            (input_file_buffer[index + 1] << 2 | input_file_buffer[index + 1] >> 4),
                                             (input_file_buffer[index + 2] << 2 | input_file_buffer[index + 2] >> 4));
     }
     
     gdImageColorAllocate(im_ADF, 0, 0, 0);
-       
+    
     // process ADF
-    int32_t position_x = 0, position_y = 0; 
+    int32_t position_x = 0, position_y = 0;
     int32_t character, attribute, color_foreground, color_background;
     loop = 192 + 4096 + 1;
     
@@ -1776,7 +1778,7 @@ void alArtworxLoader(char *input, char output[], char retinaout[], char bits[], 
         
         color_background = (attribute & 240) >> 4;
         color_foreground = attribute & 15;
-
+        
         alDrawChar(im_ADF, font_data, 8, 8, 16, position_x, position_y, color_background, color_foreground, character);
         
         position_x++;
@@ -1807,7 +1809,7 @@ void alArtworxLoader(char *input, char output[], char retinaout[], char bits[], 
         
         gdImageDestroy(im_RetinaANSi);
     }
-
+    
     // nuke garbage
     gdImageDestroy(im_ADF);
 }
@@ -1820,7 +1822,7 @@ void alIcedrawLoader(char *input, char output[], char retinaout[], char bits[], 
     
     // load input file
     FILE *input_file = fopen(input, "r");
-    if (input_file == NULL) { 
+    if (input_file == NULL) {
         fputs("\nFile error.\n\n", stderr); exit (1);
     }
     
@@ -1846,7 +1848,7 @@ void alIcedrawLoader(char *input, char output[], char retinaout[], char bits[], 
     
     // just like a tape, you know?
     rewind(input_file);
-
+    
     // IDF related: file contains a SAUCE record? adjust the file size
     if(fileHasSAUCE == true) {
         sauce *saucerec = sauceReadFile(input_file);
@@ -1856,13 +1858,13 @@ void alIcedrawLoader(char *input, char output[], char retinaout[], char bits[], 
     
     // close input file, we don't need it anymore
     fclose(input_file);
-
-    // extract relevant part of the IDF header, 16-bit endian unsigned short    
+    
+    // extract relevant part of the IDF header, 16-bit endian unsigned short
     int32_t x2 = (input_file_buffer[9] << 8) + input_file_buffer[8];
-
+    
     // libgd image pointers
     gdImagePtr im_IDF;
-
+    
     int32_t loop;
     int32_t index;
     int32_t colors[16];
@@ -1875,7 +1877,7 @@ void alIcedrawLoader(char *input, char output[], char retinaout[], char bits[], 
     memcpy(font_data_idf,input_file_buffer+(input_file_size - 48 - 4096),4096);
     
     font_data=font_data_idf;
-
+    
     // process IDF
     loop = 12;
     int32_t idf_sequence_length, idf_sequence_loop, i = 0;
@@ -1883,10 +1885,10 @@ void alIcedrawLoader(char *input, char output[], char retinaout[], char bits[], 
     // dynamically allocated memory buffer for IDF data
     unsigned char *idf_buffer, *temp;
     idf_buffer = malloc(sizeof(unsigned char));
-        
+    
     int16_t idf_data, idf_data_length;
-
-    while (loop < input_file_size - 4096 - 48) 
+    
+    while (loop < input_file_size - 4096 - 48)
     {
         memcpy(&idf_data,input_file_buffer+loop,2);
         
@@ -1897,7 +1899,7 @@ void alIcedrawLoader(char *input, char output[], char retinaout[], char bits[], 
             
             idf_sequence_length = idf_data_length & 255;
             
-            for (idf_sequence_loop = 0; idf_sequence_loop < idf_sequence_length; idf_sequence_loop++) 
+            for (idf_sequence_loop = 0; idf_sequence_loop < idf_sequence_length; idf_sequence_loop++)
             {
                 // reallocate IDF buffer memory
                 temp = realloc(idf_buffer, (i + 2) * sizeof(unsigned char));
@@ -1914,7 +1916,7 @@ void alIcedrawLoader(char *input, char output[], char retinaout[], char bits[], 
             }
             loop += 4;
         }
-        else { 
+        else {
             // reallocate IDF buffer memory
             temp = realloc(idf_buffer, (i + 2) * sizeof(unsigned char));
             if (idf_buffer != NULL) {
@@ -1945,16 +1947,16 @@ void alIcedrawLoader(char *input, char output[], char retinaout[], char bits[], 
     for (loop = 0; loop < 16; loop++)
     {
         index = (loop * 3) + input_file_size - 48;
-        colors[loop] = gdImageColorAllocate(im_IDF, (input_file_buffer[index] << 2 | input_file_buffer[index] >> 4), 
-                                            (input_file_buffer[index + 1] << 2 | input_file_buffer[index + 1] >> 4), 
+        colors[loop] = gdImageColorAllocate(im_IDF, (input_file_buffer[index] << 2 | input_file_buffer[index] >> 4),
+                                            (input_file_buffer[index + 1] << 2 | input_file_buffer[index + 1] >> 4),
                                             (input_file_buffer[index + 2] << 2 | input_file_buffer[index + 2] >> 4));
     }
-
-    // render IDF    
-    int32_t position_x = 0, position_y = 0; 
+    
+    // render IDF
+    int32_t position_x = 0, position_y = 0;
     int32_t character, attribute, color_foreground, color_background;
     
-    for (loop = 0; loop < i ; loop +=2) 
+    for (loop = 0; loop < i ; loop +=2)
     {
         if (position_x == x2 + 1)
         {
@@ -2386,7 +2388,7 @@ void alXbinLoader(char *input, char output[], char retinaout[], char bits[], boo
     
     // load input file
     FILE *input_file = fopen(input, "r");
-    if (input_file == NULL) { 
+    if (input_file == NULL) {
         fputs("\nFile error.\n\n", stderr); exit (1);
     }
     
@@ -2413,16 +2415,16 @@ void alXbinLoader(char *input, char output[], char retinaout[], char bits[], boo
     // close input file, we don't need it anymore
     rewind(input_file);
     fclose(input_file);
-
+    
     if (strcmp(strndup((char *)input_file_buffer, 5), "XBIN\x1a") != 0) {
         fputs("\nNot an XBin.\n\n", stderr); exit (4);
     }
-
+    
     int32_t xbin_width = (input_file_buffer[ 6 ] << 8) + input_file_buffer[ 5 ];
     int32_t xbin_height = (input_file_buffer[ 8 ] << 8) + input_file_buffer[ 7 ];
     int32_t xbin_fontsize = input_file_buffer[ 9 ];
     int32_t xbin_flags = input_file_buffer[ 10 ];
-
+    
     gdImagePtr im_XBIN;
     
     im_XBIN = gdImageCreate(8 * xbin_width, xbin_fontsize * xbin_height);
@@ -2436,7 +2438,7 @@ void alXbinLoader(char *input, char output[], char retinaout[], char bits[], boo
     
     int32_t colors[16];
     int32_t offset = 11;
-
+    
     // palette
     if( (xbin_flags & 1) == 1 ) {
         int32_t loop;
@@ -2446,11 +2448,11 @@ void alXbinLoader(char *input, char output[], char retinaout[], char bits[], boo
         {
             index = (loop * 3) + offset;
             
-            colors[loop] = gdImageColorAllocate(im_XBIN, (input_file_buffer[index] << 2 | input_file_buffer[index] >> 4), 
-                                                (input_file_buffer[index + 1] << 2 | input_file_buffer[index + 1] >> 4), 
+            colors[loop] = gdImageColorAllocate(im_XBIN, (input_file_buffer[index] << 2 | input_file_buffer[index] >> 4),
+                                                (input_file_buffer[index + 1] << 2 | input_file_buffer[index + 1] >> 4),
                                                 (input_file_buffer[index + 2] << 2 | input_file_buffer[index + 2] >> 4));
         }
-
+        
         offset += 48;
     }
     else {
@@ -2471,7 +2473,7 @@ void alXbinLoader(char *input, char output[], char retinaout[], char bits[], boo
         colors[14] = gdImageColorAllocate(im_XBIN, 255, 255, 85);
         colors[15] = gdImageColorAllocate(im_XBIN, 255, 255, 255);
     }
-
+    
     // font
     if( (xbin_flags & 2) == 2 ) {
         int32_t numchars = ( xbin_flags & 0x10 ? 512 : 256 );
@@ -2482,29 +2484,29 @@ void alXbinLoader(char *input, char output[], char retinaout[], char bits[], boo
             fputs ("\nMemory error.\n\n", stderr); exit (5);
         }
         memcpy(font_data_xbin,input_file_buffer+offset,(xbin_fontsize * numchars));
-
+        
         font_data=font_data_xbin;
-
+        
         offset += ( xbin_fontsize * numchars );
     }
     else {
         // using default 80x25 font
         font_data = font_pc_80x25;
     }
-
-    int32_t position_x = 0, position_y = 0; 
+    
+    int32_t position_x = 0, position_y = 0;
     int32_t character, attribute, color_foreground, color_background;
-
+    
     // read compressed xbin
     if( (xbin_flags & 4) == 4) {
         while(offset < input_file_size && position_y != xbin_height )
         {
             int32_t ctype = input_file_buffer[ offset ] & 0xC0;
             int32_t counter = ( input_file_buffer[ offset ] & 0x3F ) + 1;
-
+            
             character = -1;
             attribute = -1;
-
+            
             offset++;
             while( counter-- ) {
                 // none
@@ -2521,7 +2523,7 @@ void alXbinLoader(char *input, char output[], char retinaout[], char bits[], boo
                     }
                     attribute = input_file_buffer[ offset ];
                     offset++;
-                                    }
+                }
                 // attr
                 else if ( ctype == 0x80 ) {
                     if( attribute == -1 ) {
@@ -2542,14 +2544,14 @@ void alXbinLoader(char *input, char output[], char retinaout[], char bits[], boo
                         offset++;
                     }
                 }
-
+                
                 color_background = (attribute & 240) >> 4;
                 color_foreground = attribute & 15;
-             
+                
                 alDrawChar(im_XBIN, font_data, 8, 8, 16, position_x, position_y, colors[color_background], colors[color_foreground], character);
-
+                
                 position_x++;
-
+                
                 if (position_x == xbin_width)
                 {
                     position_x = 0;
@@ -2573,14 +2575,14 @@ void alXbinLoader(char *input, char output[], char retinaout[], char bits[], boo
             
             color_background = (attribute & 240) >> 4;
             color_foreground = attribute & 15;
-
+            
             alDrawChar(im_XBIN, font_data, 8, 8, xbin_fontsize, position_x, position_y, colors[color_background], colors[color_foreground], character);
             
             position_x++;
             offset+=2;
         }
     }
-
+    
     // create output file
     FILE *file_Out = fopen(output, "wb");
     gdImagePng(im_XBIN, file_Out);
@@ -2635,7 +2637,7 @@ char *str_replace(const char *string, const char *substr, const char *replacemen
         }
         memcpy (newstr, oldstr, tok - oldstr);
         memcpy (newstr + (tok - oldstr), replacement, strlen (replacement));
-        memcpy (newstr + (tok - oldstr) + strlen(replacement), 
+        memcpy (newstr + (tok - oldstr) + strlen(replacement),
                 tok + strlen (substr), strlen (oldstr) - strlen (substr) - (tok - oldstr));
         memset (newstr + strlen (oldstr) - strlen (substr) + strlen (replacement) , 0, 1);
         
